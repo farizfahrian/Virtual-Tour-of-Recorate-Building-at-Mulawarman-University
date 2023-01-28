@@ -86,7 +86,7 @@
         viewer.add(panorama);
 
         // Method to trigger control
-        $('#controlButton').on('click', function (event) {
+        $('#controlButton').on('click touchend', function (event) {
             controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
 
             switch (controlIndex) {
