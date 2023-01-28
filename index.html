@@ -76,9 +76,13 @@
         modeButton = document.querySelector('#modeButton');
 
         panorama = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
+        panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
 
         infospot = new PANOLENS.Infospot(350, PANOLENS.DataImage.Info);
         infospot.position.set(0, -2000, -5000);
+        infospot.addEventListener('click', function () {
+            viewer.setPanorama(panorama2);
+        });
 
         panorama.add(infospot);
 
