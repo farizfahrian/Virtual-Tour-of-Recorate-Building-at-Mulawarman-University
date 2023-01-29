@@ -32,6 +32,10 @@
             top: 1rem;
         }
 
+        #controlButton2 {
+            top: 1rem;
+        }
+
         #modeButton {
             top: 4rem;
         }
@@ -57,6 +61,14 @@
 
         </div>
         <button id="controlButton" class="button" type="button" style="cursor: pointer;">Control Toggle</button>
+        <button id="controlButton2" class="button" type="button" style="cursor: pointer;">Auto Rotate</button>
+
+    </div>
+
+    <div id="container">
+        <div class="control">
+
+        </div>
     </div>
     <!-- <button id="modeButton" class="button">Mode Toggle</button> -->
 
@@ -69,39 +81,86 @@
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
-        var videoPlaying = false;
+        var stopRotate = true;
+        var rotateCached = false;
 
         container = document.querySelector('#container');
         controlButton = document.querySelector('#controlButton');
         modeButton = document.querySelector('#modeButton');
 
+        viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false });
         panorama = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
         panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
 
         infospot = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
         infospot.position.set(-100, -500, -7000);
-        infospot.addHoverText("Pindah ke kamar");
         infospot.addEventListener('click', function () {
+            if (stopRotate == false) {
+                stopRotate = true;
+            }
+            viewer.panorama.rotation.y = 0;
             viewer.setPanorama(panorama2);
-            // infospot.removeHoverElement();
         });
+
+        // if (rotateCached === true) {
+        //     stopRotate = false;
+        //     viewer.addUpdateCallback(function () {
+        //         if (!stopRotate) {
+        //             viewer.panorama.rotation.y += 0.001;
+        //         }
+        //     });
+        // }
 
         panorama.add(infospot);
 
         infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
         infospot2.position.set(800, -500, -7000);
-        infospot2.addHoverText("Pindah ke goa");
         infospot2.addEventListener('click', function () {
+            if (stopRotate == false) {
+                stopRotate = true;
+            }
+
+            viewer.panorama.rotation.y = 0;
             viewer.setPanorama(panorama);
-            // infospot2.removeHoverElement();
         });
 
-        panorama2.add(infospot2);
+        // if (rotateCached === true) {
+        //     stopRotate = false;
+        //     viewer.addUpdateCallback(function () {
+        //         if (!stopRotate) {
+        //             viewer.panorama.rotation.y += 0.001;
+        //         }
+        //     });
+        // }
 
-        viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false });
+        panorama2.add(infospot2);
+        // panorama2.addEventListener('enter-fade-start', function () { });
+        panorama2.addEventListener('leave-complete', function (e) {
+            this.scale.set(-1, 1, 1);
+        }.bind(panorama2));
+
         viewer.add(panorama, panorama2);
 
-        // Method to trigger control
+        if (stopRotate === false) {
+            // var timeoutId = 0;
+            $(document).on('mousedown', function () {
+                // timeoutId = setTimeout(myFunction, 1000);
+                stopRotate = true;
+
+                viewer.addUpdateCallback(function () {
+                    viewer.panorama.rotation.y = 0;
+                });
+
+            }).on('mouseup mouseleave', function () {
+                // clearTimeout(timeoutId);
+                stopRotate = false;
+
+                viewer.addUpdateCallback(function () {
+                    viewer.panorama.rotation.y += 0.001;
+                });
+            });
+        }
+
         $('#controlButton').on('click touchend', function (event) {
             controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
 
@@ -114,34 +173,31 @@
             }
         });
 
-        // controlButton.addEventListener('click', function () {
+        $('#controlButton2').on('click touchend', function (event) {
+            if (stopRotate === false) {
+                stopRotate = true;
+                rotateCached = false;
+            } else if (stopRotate === true) {
+                stopRotate = false;
+                rotateCached = true;
+            }
+        });
+        if (rotateCached === true) {
+            stopRotate = false;
+            viewer.addUpdateCallback(function () {
+                if (!stopRotate) {
+                    viewer.panorama.rotation.y += 0.001;
+                }
+            });
+        }
 
-        //     controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
+        viewer.addUpdateCallback(function () {
+            if (!stopRotate) {
+                viewer.panorama.rotation.y += 0.001;
+            }
+        });
 
-        //     switch (controlIndex) {
 
-        //         case 0: viewer.enableControl(PANOLENS.CONTROLS.ORBIT); break;
-        //         case 1: viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION); break;
-        //         default: break;
-
-        //     }
-
-        // });
-
-        // modeButton.addEventListener('click', function () {
-
-        //     modeIndex = modeIndex >= 2 ? 0 : modeIndex + 1;
-
-        //     switch (modeIndex) {
-
-        //         case 0: viewer.disableEffect(); break;
-        //         case 1: viewer.enableEffect(PANOLENS.MODES.CARDBOARD); break;
-        //         case 2: viewer.enableEffect(PANOLENS.MODES.STEREO); break;
-        //         default: break;
-
-        //     }
-
-        // });
 
     </script>
 
