@@ -81,8 +81,12 @@
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
+
         var stopRotate = true;
         var rotateCached = false;
+
+        var rotateValue = 0.001;
+        var curentRotateVal;
 
         container = document.querySelector('#container');
         controlButton = document.querySelector('#controlButton');
@@ -98,68 +102,67 @@
             if (stopRotate == false) {
                 stopRotate = true;
             }
-            viewer.panorama.rotation.y = 0;
+            viewer.panorama.rotation.y = curentRotateVal;
             viewer.setPanorama(panorama2);
+            curentRotateVal = 0;
         });
 
-        // if (rotateCached === true) {
-        //     stopRotate = false;
-        //     viewer.addUpdateCallback(function () {
-        //         if (!stopRotate) {
-        //             viewer.panorama.rotation.y += 0.001;
-        //         }
-        //     });
-        // }
+        panorama.addEventListener('enter-complete', function (e) {
+            if (rotateCached === true) {
+                setTimeout(function () {
+                    stopRotate = false;
+                }, 2500);
+            }
+        });
 
+        panorama.addEventListener('click', function (e) {
+            if (stopRotate === false) {
+                stopRotate = true;
+                viewer.panorama.rotation.y = curentRotateVal;
+                setTimeout(function () {
+                    stopRotate = false;
+                }, 2500);
+            }
+        });
         panorama.add(infospot);
+
 
         infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
         infospot2.position.set(800, -500, -7000);
+
         infospot2.addEventListener('click', function () {
             if (stopRotate == false) {
                 stopRotate = true;
             }
 
-            viewer.panorama.rotation.y = 0;
+            viewer.panorama.rotation.y = curentRotateVal;
             viewer.setPanorama(panorama);
+            curentRotateVal = 0;
         });
 
-        // if (rotateCached === true) {
-        //     stopRotate = false;
-        //     viewer.addUpdateCallback(function () {
-        //         if (!stopRotate) {
-        //             viewer.panorama.rotation.y += 0.001;
-        //         }
-        //     });
-        // }
 
         panorama2.add(infospot2);
-        // panorama2.addEventListener('enter-fade-start', function () { });
-        panorama2.addEventListener('leave-complete', function (e) {
-            this.scale.set(-1, 1, 1);
-        }.bind(panorama2));
+        panorama2.addEventListener('enter-complete', function (e) {
+            if (rotateCached === true) {
+                setTimeout(function () {
+                    stopRotate = false;
+                }, 2500);
+            }
+        });
+
+        panorama2.addEventListener('ready', function (e) {
+            if (stopRotate === false) {
+                stopRotate = true;
+                viewer.panorama.rotation.y = curentRotateVal;
+                setTimeout(function () {
+                    stopRotate = false;
+                }, 2500);
+            }
+        });
 
         viewer.add(panorama, panorama2);
 
-        if (stopRotate === false) {
-            // var timeoutId = 0;
-            $(document).on('mousedown', function () {
-                // timeoutId = setTimeout(myFunction, 1000);
-                stopRotate = true;
 
-                viewer.addUpdateCallback(function () {
-                    viewer.panorama.rotation.y = 0;
-                });
-
-            }).on('mouseup mouseleave', function () {
-                // clearTimeout(timeoutId);
-                stopRotate = false;
-
-                viewer.addUpdateCallback(function () {
-                    viewer.panorama.rotation.y += 0.001;
-                });
-            });
-        }
 
         $('#controlButton').on('click touchend', function (event) {
             controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
@@ -182,22 +185,14 @@
                 rotateCached = true;
             }
         });
-        if (rotateCached === true) {
-            stopRotate = false;
-            viewer.addUpdateCallback(function () {
-                if (!stopRotate) {
-                    viewer.panorama.rotation.y += 0.001;
-                }
-            });
-        }
+
 
         viewer.addUpdateCallback(function () {
             if (!stopRotate) {
-                viewer.panorama.rotation.y += 0.001;
+                viewer.panorama.rotation.y += rotateValue;
+                curentRotateVal = viewer.panorama.rotation.y;
             }
         });
-
-
 
     </script>
 
