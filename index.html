@@ -136,6 +136,23 @@
             }
         });
 
+        $('#container').on('mousewheel', function (e) {
+            if (e.originalEvent.wheelDelta / 120 > 0) {
+                var currentZoom = viewer.camera.fov;
+                var newZoom = currentZoom - 5;
+                if (newZoom < 30) newZoom = 30;
+                viewer.setCameraFov(newZoom);
+                console.log('scrolling up !');
+            }
+            else {
+                var currentZoom = viewer.camera.fov;
+                var newZoom = currentZoom + 5;
+                if (newZoom > 110) newZoom = 110;
+                viewer.setCameraFov(newZoom);
+                console.log('scrolling down !');
+            }
+        })
+
 
     </script>
 
