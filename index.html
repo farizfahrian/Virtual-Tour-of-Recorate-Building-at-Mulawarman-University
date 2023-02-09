@@ -49,7 +49,7 @@
 
         container = document.querySelector('#container');
 
-        const selectElement = document.querySelector('#language');
+        const selectLocation = document.querySelector('#language');
 
         controlButton = document.querySelector('#controlButton');
 
@@ -63,7 +63,8 @@
         infospot.position.set(-100, -500, -7000);
 
         infospot.addEventListener('click', function () {
-            viewer.setPanorama(panorama3);
+            viewer.setPanorama(panorama2);
+            selectLocation.value = 'panorama2';
         });
 
         panorama1.add(infospot);
@@ -74,6 +75,7 @@
 
         infospot2.addEventListener('click', function () {
             viewer.setPanorama(panorama1);
+            selectLocation.value = 'panorama1';
         });
 
 
@@ -86,7 +88,7 @@
             viewer.setPanorama(targetPanorama);
         }
 
-        selectElement.addEventListener('change', (event) => {
+        selectLocation.addEventListener('change', (event) => {
             const result = event.target.value;
             if (result === 'panorama1') {
                 onButtonClick(panorama1);

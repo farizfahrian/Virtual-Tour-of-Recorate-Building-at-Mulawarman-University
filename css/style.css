@@ -56,7 +56,6 @@ body {
     padding-right: 2.5rem;
     padding-left: 2.5rem;
 
-
     height: 80px;
 }
 
@@ -73,7 +72,7 @@ body {
 
     .location-dropdown {
         position: absolute;
-        top: 100px;
+        top: 85px;
     }
 
     .control {
