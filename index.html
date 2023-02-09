@@ -7,64 +7,32 @@
         content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Panolens.js panorama infospot</title>
-    <style>
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        #container {
-            width: 100%;
-            height: 100%;
-        }
-
-        .button {
-            position: absolute;
-            left: 10px;
-            padding: 1rem;
-        }
-
-        #controlButton {
-            top: 1rem;
-            left: 8rem;
-        }
-
-        #controlButton2 {
-            top: 1rem;
-        }
-
-        #control {
-            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-
-            padding: 8px 5px 5px 5px;
-
-            position: absolute;
-            top: 0;
-
-            width: 100%;
-            height: 44px;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div id="container">
-        <div class="control">
-            <button id="controlButton" class="button" type="button" style="cursor: pointer;">Control Toggle</button>
-            <button id="controlButton2" class="button" type="button" style="cursor: pointer;">Auto Rotate</button>
-        </div>
 
+    <div class="control">
+        <select class="location-dropdown control-item" name="language" id="language">
+            <option value="panorama1" selected>Panorama 1</option>
+            <option value="panorama2">Panorama 2</option>
+            <option value="panorama3">Panorama 3</option>
+            <option value="panorama4">Panorama 4</option>
+        </select>
+        <div class="location-container control-item">
+            <p>Lobby</p>
+            <p>Lt.1 Gedung A</p>
+        </div>
+        <div class="icon-container control-item">
+            <img id="controlButton" class="button" src="assets/icons/gyroscope.svg" style="cursor: pointer;"></img>
+            <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;">
+            </img>
+        </div>
     </div>
 
     <div id="container">
-        <div class="control">
-
-        </div>
     </div>
     <!-- <button id="modeButton" class="button">Mode Toggle</button> -->
 
@@ -73,41 +41,66 @@
 
     <script>
 
-        var panorama, viewer, container, infospot, controlButton, modeButton, videoButton;
+        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, controlButton, modeButton, videoButton;
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
         var autoRotate = false;
 
         container = document.querySelector('#container');
+
+        const selectElement = document.querySelector('#language');
+
         controlButton = document.querySelector('#controlButton');
         modeButton = document.querySelector('#modeButton');
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
-        panorama = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
+        panorama1 = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
         panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
+        panorama3 = new PANOLENS.ImagePanorama('assets/images/kitchen.jpeg');
+        panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
 
         infospot = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
         infospot.position.set(-100, -500, -7000);
 
         infospot.addEventListener('click', function () {
-            viewer.setPanorama(panorama2);
+            viewer.setPanorama(panorama3);
         });
 
-        panorama.add(infospot);
+        panorama1.add(infospot);
 
 
         infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
         infospot2.position.set(800, -500, -7000);
 
         infospot2.addEventListener('click', function () {
-            viewer.setPanorama(panorama);
+            viewer.setPanorama(panorama1);
         });
 
 
         panorama2.add(infospot2);
 
-        viewer.add(panorama, panorama2);
+        viewer.add(panorama1, panorama2, panorama3, panorama4);
+
+        function onButtonClick(targetPanorama) {
+            // bar.classList.remove('hide');
+            viewer.setPanorama(targetPanorama);
+        }
+
+        selectElement.addEventListener('change', (event) => {
+            const result = event.target.value;
+            if (result === 'panorama1') {
+                onButtonClick(panorama1);
+                alert('panorama1');
+            } else if (result === 'panorama2') {
+                onButtonClick(panorama2);
+                alert('panorama2');
+            } else if (result === 'panorama3') {
+                onButtonClick(panorama3);
+            } else if (result === 'panorama4') {
+                onButtonClick(panorama4);
+            }
+        });
 
 
         $('#controlButton').on('click touchend', function (event) {
