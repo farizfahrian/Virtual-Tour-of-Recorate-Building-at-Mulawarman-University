@@ -4,6 +4,7 @@ body {
     height: 100%;
     overflow: hidden;
     margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 
 #container {
@@ -29,19 +30,21 @@ body {
     margin: 0;
 }
 
-p {
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
+.location-container>p {
+    margin-top: 0.20em;
+    margin-bottom: 0.20em;
 }
 
-/* #controlButton {
-            top: 1rem;
-            left: 8rem;
-        }
+.room-location {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.3px;
+}
 
-        #controlButton2 {
-            top: 1rem;
-        } */
+.floor-location {
+    font-weight: 400;
+    font-size: 14px;
+}
 
 .control {
     /* background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); */
@@ -55,7 +58,7 @@ p {
     padding-left: 2.5rem;
 
 
-    height: 104px;
+    height: 80px;
 }
 
 .control-item {

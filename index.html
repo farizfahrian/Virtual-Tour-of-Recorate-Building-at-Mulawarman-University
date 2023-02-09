@@ -7,41 +7,41 @@
         content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Panolens.js panorama infospot</title>
 </head>
 
 <body>
 
-
-    <div class="control">
-        <select class="location-dropdown control-item" name="language" id="language">
-            <option value="panorama1" selected>Panorama 1</option>
-            <option value="panorama2">Panorama 2</option>
-            <option value="panorama3">Panorama 3</option>
-            <option value="panorama4">Panorama 4</option>
-        </select>
-        <div class="location-container control-item">
-            <p>Lobby</p>
-            <p>Lt.1 Gedung A</p>
-        </div>
-        <div class="icon-container control-item">
-            <img id="controlButton" class="button" src="assets/icons/gyroscope.svg" style="cursor: pointer;"></img>
-            <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;">
-            </img>
-        </div>
-    </div>
-
     <div id="container">
+        <div class="control">
+            <select class="location-dropdown control-item" name="language" id="language">
+                <option value="panorama1" selected>Panorama 1</option>
+                <option value="panorama2">Panorama 2</option>
+                <option value="panorama3">Panorama 3</option>
+                <option value="panorama4">Panorama 4</option>
+            </select>
+            <div class="location-container control-item">
+                <p class="room-location">Ruangan Humas</p>
+                <p class="floor-location">Lt.1 Gedung A</p>
+            </div>
+            <div class="icon-container control-item">
+                <img id="controlButton" class="button" src="assets/icons/gyroscope.svg" style="cursor: pointer;"></img>
+                <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;">
+                </img>
+            </div>
+        </div>
     </div>
-    <!-- <button id="modeButton" class="button">Mode Toggle</button> -->
 
     <script src="build/three.min.js"></script>
     <script src="build/panolens.min.js"></script>
 
     <script>
 
-        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, controlButton, modeButton, videoButton;
+        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, controlButton, videoButton;
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
@@ -52,7 +52,6 @@
         const selectElement = document.querySelector('#language');
 
         controlButton = document.querySelector('#controlButton');
-        modeButton = document.querySelector('#modeButton');
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
         panorama1 = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
@@ -103,7 +102,7 @@
         });
 
 
-        $('#controlButton').on('click touchend', function (event) {
+        $('#controlButton').on('click', function (event) {
             controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
 
             switch (controlIndex) {
@@ -115,7 +114,7 @@
             }
         });
 
-        $('#controlButton2').on('click touchend', function (event) {
+        $('#controlButton2').on('click', function (event) {
             // alert(autoRotate);
             if (autoRotate === false) {
                 viewer.options.autoRotate = true;
