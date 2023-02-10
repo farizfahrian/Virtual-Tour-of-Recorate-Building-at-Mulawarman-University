@@ -28,13 +28,16 @@
             </optgroup>
         </select>
         <div class="location-container control-item">
-            <p class="room-location">Ruangan Keuangan</p>
+            <p class="room-location">Ruang Keuangan</p>
             <p class="floor-location">Lt.1 Gedung A</p>
         </div>
         <div class="icon-container control-item">
-            <img id="controlButton" class="button" src="assets/icons/gyroscope.svg" style="cursor: pointer;"></img>
-            <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;"></img>
-            <img id="controlButton3" class="button" src="assets/icons/fullscreen.svg" style="cursor: pointer;"></img>
+            <div id="controlButton" class="button" style="cursor: pointer;"><img src="assets/icons/gyroscope.svg"
+                    alt="gyroscope icon"></div>
+            <div id="controlButton2" class="button" style="cursor: pointer;"><img src="assets/icons/rotate.svg"
+                    alt="rotate icon"></div>
+            <div id="controlButton3" class="button" style="cursor: pointer;"><img src="assets/icons/fullscreen.svg"
+                    alt="fullscreen icon"></div>
         </div>
     </div>
     <div id="desc-container" style="display:none">
@@ -73,14 +76,13 @@
 
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
-        widget = new PANOLENS.Widget();
         panorama1 = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
         panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
         panorama3 = new PANOLENS.ImagePanorama('assets/images/kitchen.jpeg');
         panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
 
         infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
+        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
         infospot.position.set(-100, -500, -7000);
         infospot12.position.set(1300, -500, -7000);
 
@@ -94,7 +96,7 @@
         panorama1.add(infospot, infospot12);
 
 
-        infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.INFO);
+        infospot2 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
         infospot2.position.set(119.91, 588.49, 4955.08);
 
 
@@ -178,13 +180,11 @@
                 var newZoom = currentZoom - 5;
                 if (newZoom < 30) newZoom = 30;
                 viewer.setCameraFov(newZoom);
-                console.log('scrolling up !');
             } else {
                 var currentZoom = viewer.camera.fov;
                 var newZoom = currentZoom + 5;
                 if (newZoom > 110) newZoom = 110;
                 viewer.setCameraFov(newZoom);
-                console.log('scrolling down !');
             }
         })
 
