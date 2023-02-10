@@ -59,8 +59,41 @@ body {
     height: 80px;
 }
 
+#controlButton4 {
+    position: absolute;
+    right: 16px;
+}
+
 .control-item {
     margin: auto 0;
+}
+
+#desc-container {
+    max-width: 500px;
+    /* max-height: 500px; */
+
+    min-width: 200px;
+    /* min-height: 250px; */
+    background: #fff;
+    color: #000;
+    border-radius: 3px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#desc-container>iframe {
+    border: none;
+    width: 100%;
+}
+
+.text {
+    padding: 20px;
+}
+
+.title {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
 }
 
 @media (max-width: 650px) {
@@ -75,8 +108,21 @@ body {
         top: 85px;
     }
 
+    .room-location {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .floor-location {
+        font-weight: 400;
+        font-size: 0.75rem;
+    }
+
     .control {
         height: 70px;
+
+        padding-right: 1rem;
+        padding-left: 1rem;
     }
 
 }

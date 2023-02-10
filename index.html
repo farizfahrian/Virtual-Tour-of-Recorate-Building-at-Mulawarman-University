@@ -18,10 +18,14 @@
 
     <div class="control">
         <select class="location-dropdown control-item" name="language" id="language">
-            <option value="panorama1" selected>Panorama 1</option>
-            <option value="panorama2">Panorama 2</option>
-            <option value="panorama3">Panorama 3</option>
-            <option value="panorama4">Panorama 4</option>
+            <optgroup label="Gedung 1 Lt.1">
+                <option value="panorama1" selected>Panorama 1</option>
+                <option value="panorama2">Panorama 2</option>
+            </optgroup>
+            <optgroup label="Gedung 1 Lt.2">
+                <option value="panorama3">Panorama 3</option>
+                <option value="panorama4">Panorama 4</option>
+            </optgroup>
         </select>
         <div class="location-container control-item">
             <p class="room-location">Ruangan Keuangan</p>
@@ -29,11 +33,25 @@
         </div>
         <div class="icon-container control-item">
             <img id="controlButton" class="button" src="assets/icons/gyroscope.svg" style="cursor: pointer;"></img>
-            <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;">
-            </img>
+            <img id="controlButton2" class="button" src="assets/icons/rotate.svg" style="cursor: pointer;"></img>
+            <img id="controlButton3" class="button" src="assets/icons/fullscreen.svg" style="cursor: pointer;"></img>
         </div>
     </div>
+    <div id="desc-container" style="display:none">
+        <div class="title">
+
+            <p>
+                China's Forgotten War
+            </p>
+        </div>
+        <div class="text">WWII came to the small town of Tai’erzhuang in central China – and it was never the same
+            again. The town was strategically placed, on the north-south transport railway corridor and the ancient
+            Grand Canal, and so was a focus of the Japanese Imperial army as it advanced. Li Jing Shan was only a
+            child when his family fled the fighting. They returned to find their home, and most of the town, in
+            ruins.</div>
+    </div>
     <div id="container">
+        <img id="controlButton4" class="button" src="assets/icons/fullscreen.svg" style="cursor: pointer;"></img>
     </div>
 
     <script src="build/three.min.js"></script>
@@ -41,37 +59,44 @@
 
     <script>
 
-        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, controlButton, videoButton;
+        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, videoButton;
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
-        var autoRotate = false;
+        var isAutoRotate = false;
+        var isFullscreen = false;
+
 
         container = document.querySelector('#container');
 
         const selectLocation = document.querySelector('#language');
 
-        controlButton = document.querySelector('#controlButton');
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
+        widget = new PANOLENS.Widget();
         panorama1 = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
         panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
         panorama3 = new PANOLENS.ImagePanorama('assets/images/kitchen.jpeg');
         panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
 
-        infospot = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
+        infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
         infospot.position.set(-100, -500, -7000);
+        infospot12.position.set(1300, -500, -7000);
 
         infospot.addEventListener('click', function () {
             viewer.setPanorama(panorama2);
             selectLocation.value = 'panorama2';
         });
 
-        panorama1.add(infospot);
+        infospot12.addHoverElement(document.getElementById('desc-container'), 200);
+
+        panorama1.add(infospot, infospot12);
 
 
-        infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.Info);
-        infospot2.position.set(800, -500, -7000);
+        infospot2 = new PANOLENS.Infospot(500, PANOLENS.DataImage.INFO);
+        infospot2.position.set(119.91, 588.49, 4955.08);
+
 
         infospot2.addEventListener('click', function () {
             viewer.setPanorama(panorama1);
@@ -92,10 +117,8 @@
             const result = event.target.value;
             if (result === 'panorama1') {
                 onButtonClick(panorama1);
-                alert('panorama1');
             } else if (result === 'panorama2') {
                 onButtonClick(panorama2);
-                alert('panorama2');
             } else if (result === 'panorama3') {
                 onButtonClick(panorama3);
             } else if (result === 'panorama4') {
@@ -117,16 +140,35 @@
         });
 
         $('#controlButton2').on('click', function (event) {
-            // alert(autoRotate);
-            if (autoRotate === false) {
+            // alert(isAutoRotate);
+            if (!isAutoRotate) {
                 viewer.options.autoRotate = true;
                 viewer.OrbitControls.autoRotate = true;
-                autoRotate = true;
+                isAutoRotate = true;
             } else {
                 clearTimeout(viewer.autoRotateRequestId);
                 viewer.options.autoRotate = false;
                 viewer.OrbitControls.autoRotate = false;
-                autoRotate = false;
+                isAutoRotate = false;
+            }
+        });
+
+        $('#controlButton4').on('click touchend', function (event) {
+
+            if (!isFullscreen) {
+                if (container.requestFullscreen) { container.requestFullscreen(); }
+                if (container.msRequestFullscreen) { container.msRequestFullscreen(); }
+                if (container.mozRequestFullScreen) { container.mozRequestFullScreen(); }
+                if (container.webkitRequestFullscreen) { container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); }
+
+                isFullscreen = true;
+            } else {
+                if (document.exitFullscreen) { document.exitFullscreen(); }
+                if (document.msExitFullscreen) { document.msExitFullscreen(); }
+                if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
+                if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+
+                isFullscreen = false;
             }
         });
 
@@ -137,8 +179,7 @@
                 if (newZoom < 30) newZoom = 30;
                 viewer.setCameraFov(newZoom);
                 console.log('scrolling up !');
-            }
-            else {
+            } else {
                 var currentZoom = viewer.camera.fov;
                 var newZoom = currentZoom + 5;
                 if (newZoom > 110) newZoom = 110;
