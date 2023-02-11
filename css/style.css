@@ -124,7 +124,7 @@ body {
 
     .location-dropdown {
         position: absolute;
-        top: 85px;
+        bottom: 85px;
     }
 
     .room-location {

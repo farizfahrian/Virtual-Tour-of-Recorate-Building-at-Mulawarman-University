@@ -62,7 +62,7 @@
 
     <script>
 
-        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, videoButton;
+        var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, infospot12, infospot2;
 
         var controlIndex = PANOLENS.CONTROLS.ORBIT;
         var modeIndex = 0;
@@ -81,32 +81,30 @@
         panorama3 = new PANOLENS.ImagePanorama('assets/images/kitchen.jpeg');
         panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
 
-        infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot.position.set(-100, -500, -7000);
-        infospot12.position.set(1300, -500, -7000);
 
+        infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+        infospot.position.set(-100, -500, -7000);
         infospot.addEventListener('click', function () {
             viewer.setPanorama(panorama2);
             selectLocation.value = 'panorama2';
         });
 
+        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+        infospot12.position.set(1300, -500, -7000);
         infospot12.addHoverElement(document.getElementById('desc-container'), 200);
 
-        panorama1.add(infospot, infospot12);
+        panorama1.add(infospot);
+        panorama1.add(infospot2);
 
 
-        infospot2 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
+        infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
         infospot2.position.set(119.91, 588.49, 4955.08);
-
-
         infospot2.addEventListener('click', function () {
             viewer.setPanorama(panorama1);
             selectLocation.value = 'panorama1';
         });
 
-
-        panorama2.add(infospot2);
+        panorama1.add(infospot2);
 
         viewer.add(panorama1, panorama2, panorama3, panorama4);
 
