@@ -69,10 +69,71 @@
         var isAutoRotate = false;
         var isFullscreen = false;
 
+        var infospotIcon;
 
         container = document.querySelector('#container');
-
         const selectLocation = document.querySelector('#language');
+
+
+        var textureLoader = new THREE.TextureLoader();
+        var textureHotspotPanorama1 = textureLoader.load('assets/icons/infospot.png', function () {
+            infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+            infospot.position.set(-100, -500, -7000);
+            infospot.addEventListener('click', function () {
+                viewer.setPanorama(panorama2);
+                selectLocation.value = 'panorama2';
+            });
+            panorama1.add(infospot);
+
+
+            infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+            infospot2.position.set(119.91, 588.49, 4955.08);
+            infospot2.addEventListener('click', function () {
+                viewer.setPanorama(panorama2);
+                selectLocation.value = 'panorama2';
+            });
+
+            panorama1.add(infospot2);
+        });
+
+        var textureInfoPanorama1 = textureLoader.load('assets/icons/info ruangan.png', function () {
+            infospot12 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
+            infospot12.position.set(1300, -500, -7000);
+            infospot12.addHoverElement(document.getElementById('desc-container'), 200);
+
+            panorama1.add(infospot12);
+        });
+
+
+        var textureHotspotPanorama2 = textureLoader.load('assets/icons/infospot.png', function () {
+            infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+            infospot.position.set(-100, -500, -7000);
+            infospot.addEventListener('click', function () {
+                viewer.setPanorama(panorama1);
+                selectLocation.value = 'panorama1';
+            });
+            panorama2.add(infospot);
+
+
+            infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+            infospot2.position.set(119.91, 588.49, 4955.08);
+            infospot2.addEventListener('click', function () {
+                viewer.setPanorama(panorama1);
+                selectLocation.value = 'panorama1';
+            });
+
+            panorama2.add(infospot2);
+        });
+
+        var textureInfoPanorama2 = textureLoader.load('assets/icons/info ruangan.png', function () {
+            infospot12 = new PANOLENS.Infospot(500, 'assets/icons/info ruangan.png');
+            infospot12.position.set(1300, -500, -7000);
+            infospot12.addHoverElement(document.getElementById('desc-container'), 200);
+
+            panorama2.add(infospot12);
+        });
+
+
 
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
@@ -82,29 +143,6 @@
         panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
 
 
-        infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot.position.set(-100, -500, -7000);
-        infospot.addEventListener('click', function () {
-            viewer.setPanorama(panorama2);
-            selectLocation.value = 'panorama2';
-        });
-
-        infospot12 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot12.position.set(1300, -500, -7000);
-        infospot12.addHoverElement(document.getElementById('desc-container'), 200);
-
-        panorama1.add(infospot);
-        panorama1.add(infospot2);
-
-
-        infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-        infospot2.position.set(119.91, 588.49, 4955.08);
-        infospot2.addEventListener('click', function () {
-            viewer.setPanorama(panorama1);
-            selectLocation.value = 'panorama1';
-        });
-
-        panorama1.add(infospot2);
 
         viewer.add(panorama1, panorama2, panorama3, panorama4);
 
@@ -185,7 +223,6 @@
                 viewer.setCameraFov(newZoom);
             }
         })
-
 
     </script>
 
