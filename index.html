@@ -15,6 +15,9 @@
 </head>
 
 <body>
+    <div id="progress">
+        <div id="bar"></div>
+    </div>
 
     <div class="control">
         <select class="location-dropdown control-item" name="language" id="language">
@@ -75,12 +78,31 @@
         const selectLocation = document.querySelector('#language');
 
 
+        bar = document.querySelector('#bar');
+
+        function onProgressUpdate(event) {
+            var percentage = event.progress.loaded / event.progress.total * 100;
+            bar.style.width = percentage + "%";
+            if (percentage >= 100) {
+                bar.classList.add('hide');
+                setTimeout(function () {
+                    bar.style.width = 0;
+                }, 1000);
+            }
+        }
+
+        function onButtonClick(targetPanorama) {
+            bar.classList.remove('hide');
+            viewer.setPanorama(targetPanorama);
+        }
+
+
         var textureLoader = new THREE.TextureLoader();
         var textureHotspotPanorama1 = textureLoader.load('assets/icons/infospot.png', function () {
             infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
             infospot.position.set(-100, -500, -7000);
             infospot.addEventListener('click', function () {
-                viewer.setPanorama(panorama2);
+                onButtonClick(panorama2);
                 selectLocation.value = 'panorama2';
             });
             panorama1.add(infospot);
@@ -89,7 +111,7 @@
             infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
             infospot2.position.set(119.91, 588.49, 4955.08);
             infospot2.addEventListener('click', function () {
-                viewer.setPanorama(panorama2);
+                onButtonClick(panorama2);
                 selectLocation.value = 'panorama2';
             });
 
@@ -138,18 +160,17 @@
 
         viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
         panorama1 = new PANOLENS.ImagePanorama('assets/images/tunnel.jpg');
+        panorama1.addEventListener('progress', onProgressUpdate);
         panorama2 = new PANOLENS.ImagePanorama('assets/images/interior.jpeg');
+        panorama2.addEventListener('progress', onProgressUpdate);
         panorama3 = new PANOLENS.ImagePanorama('assets/images/kitchen.jpeg');
+        panorama3.addEventListener('progress', onProgressUpdate);
         panorama4 = new PANOLENS.ImagePanorama('assets/images/room.jpeg');
-
+        panorama4.addEventListener('progress', onProgressUpdate);
 
 
         viewer.add(panorama1, panorama2, panorama3, panorama4);
 
-        function onButtonClick(targetPanorama) {
-            // bar.classList.remove('hide');
-            viewer.setPanorama(targetPanorama);
-        }
 
         selectLocation.addEventListener('change', (event) => {
             const result = event.target.value;
