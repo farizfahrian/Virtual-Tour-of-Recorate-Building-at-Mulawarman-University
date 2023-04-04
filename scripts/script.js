@@ -1,4 +1,4 @@
-var panorama1, panorama2, panorama3, panorama4, viewer, container, infospot, infospot12, infospot2;
+var panorama1, panorama2, panorama3, panorama4, viewer, container, selectLocation, infospot, infospot12, infospot2;
 
 var controlIndex = PANOLENS.CONTROLS.ORBIT;
 var modeIndex = 0;
@@ -8,7 +8,7 @@ var isFullscreen = false;
 var infospotIcon;
 
 container = document.querySelector('#container');
-const selectLocation = document.querySelector('#language');
+selectLocation = document.querySelector('#language');
 
 
 bar = document.querySelector('#bar');
@@ -49,6 +49,25 @@ var textureHotspotPanorama1 = textureLoader.load('assets/icons/infospot.png', fu
     });
 
     panorama1.add(infospot2);
+
+
+    infospot3 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+    infospot3.position.set(-100, -500, -7000);
+    infospot3.addEventListener('click', function () {
+        onButtonClick(panorama1);
+        selectLocation.value = 'panorama1';
+    });
+    panorama2.add(infospot3);
+
+
+    infospot4 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
+    infospot4.position.set(119.91, 588.49, 4955.08);
+    infospot4.addEventListener('click', function () {
+        onButtonClick(panorama1);
+        selectLocation.value = 'panorama1';
+    });
+
+    panorama2.add(infospot4);
 });
 
 var textureInfoPanorama1 = textureLoader.load('assets/icons/info ruangan.png', function () {
@@ -61,23 +80,7 @@ var textureInfoPanorama1 = textureLoader.load('assets/icons/info ruangan.png', f
 
 
 var textureHotspotPanorama2 = textureLoader.load('assets/icons/infospot.png', function () {
-    infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-    infospot.position.set(-100, -500, -7000);
-    infospot.addEventListener('click', function () {
-        viewer.setPanorama(panorama1);
-        selectLocation.value = 'panorama1';
-    });
-    panorama2.add(infospot);
-
-
-    infospot2 = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
-    infospot2.position.set(119.91, 588.49, 4955.08);
-    infospot2.addEventListener('click', function () {
-        viewer.setPanorama(panorama1);
-        selectLocation.value = 'panorama1';
-    });
-
-    panorama2.add(infospot2);
+    
 });
 
 var textureInfoPanorama2 = textureLoader.load('assets/icons/info ruangan.png', function () {
@@ -87,8 +90,6 @@ var textureInfoPanorama2 = textureLoader.load('assets/icons/info ruangan.png', f
 
     panorama2.add(infospot12);
 });
-
-
 
 
 viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
@@ -104,7 +105,7 @@ panorama4.addEventListener('progress', onProgressUpdate);
 
 viewer.add(panorama1, panorama2, panorama3, panorama4);
 
-
+// Dropdown Location
 selectLocation.addEventListener('change', (event) => {
     const result = event.target.value;
     if (result === 'panorama1') {
@@ -118,21 +119,17 @@ selectLocation.addEventListener('change', (event) => {
     }
 });
 
-
-$('#controlButton').on('click', function (event) {
+// List of Button Feature
+$('#controlButton').on('click', function (e) {
     controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
-
     switch (controlIndex) {
-
         case 0: viewer.enableControl(PANOLENS.CONTROLS.ORBIT); break;
         case 1: viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION); break;
         default: break;
-
     }
 });
 
-$('#controlButton2').on('click', function (event) {
-    // alert(isAutoRotate);
+$('#controlButton2').on('click', function (e) {
     if (!isAutoRotate) {
         viewer.options.autoRotate = true;
         viewer.OrbitControls.autoRotate = true;
@@ -145,26 +142,20 @@ $('#controlButton2').on('click', function (event) {
     }
 });
 
-$('#controlButton3').on('click touchend', function (event) {
-
-    if (!isFullscreen) {
-        if (container.requestFullscreen) { container.requestFullscreen(); }
-        if (container.msRequestFullscreen) { container.msRequestFullscreen(); }
-        if (container.mozRequestFullScreen) { container.mozRequestFullScreen(); }
-        if (container.webkitRequestFullscreen) { container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); }
-
-        isFullscreen = true;
-    } else {
-        if (document.exitFullscreen) { document.exitFullscreen(); }
-        if (document.msExitFullscreen) { document.msExitFullscreen(); }
-        if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
-        if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
-
-        isFullscreen = false;
-    }
+$('#controlButton3').on('click', function (e) {
+    if (!document.fullscreenElement) {
+        container.requestFullscreen().catch((err) => {
+          alert(
+            `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
+          );
+        });
+      } else {
+        document.exitFullscreen();
+      }
 });
 
-$('#container').on('mousewheel', function (e) {
+// Changing Scroll Wheel Behaviour
+$('#container').on('wheel', function (e) {
     if (e.originalEvent.wheelDelta / 120 > 0) {
         var currentZoom = viewer.camera.fov;
         var newZoom = currentZoom - 5;
