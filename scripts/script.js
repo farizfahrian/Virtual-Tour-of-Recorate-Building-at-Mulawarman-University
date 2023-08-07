@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
   splashScreen.style.display = 'flex';
 });
 
-document.addEventListener('load', function () {
+window.addEventListener('load', function () {
   const splashScreen = document.getElementById('splashContainer');
   const control = document.getElementById('control');
   
@@ -236,6 +236,12 @@ document.addEventListener('load', function () {
     splashScreen.classList.add('fade-out');
 
     setTimeout(() => {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Hide the splash screen immediately on mobile devices
+        splashScreen.style.display = 'none';
+      }
       control.style.display = 'flex';
       control.classList.add('swift-up-animation');
     }, 600);
