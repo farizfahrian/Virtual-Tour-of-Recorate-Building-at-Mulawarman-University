@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
   splashScreen.style.display = 'flex';
 });
 
-window.addEventListener('load', function () {
+document.addEventListener('load', function () {
   const splashScreen = document.getElementById('splashContainer');
   const control = document.getElementById('control');
   
