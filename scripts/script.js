@@ -638,25 +638,25 @@ selectButtons.forEach((button) => {
   });
 });
 
-var gyroPresent = false;
-window.addEventListener("devicemotion", function(event){
-    if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
-        gyroPresent = true;
-});
+// var gyroPresent = true;
+// window.addEventListener("devicemotion", function(event){
+//     if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+//         gyroPresent = true;
+// });
 
-if (gyroPresent) {
-  // If supported, show the feature button and attach the click event
-  $('#featureButton').show().on('click', function (e) {
-    controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
-    switch (controlIndex) {
-      case 0: viewer.enableControl(PANOLENS.CONTROLS.ORBIT); break;
-      case 1: viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION); break;
-      default: break;
-    }
-  });
-} else {
-  $('#featureButton').hide();
-}
+$('#featureButton').on('click', function (e) {
+  controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
+  switch (controlIndex) {
+    case 0: viewer.enableControl(PANOLENS.CONTROLS.ORBIT); break;
+    case 1: viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION); break;
+    default: break;
+  }
+});
+// if (gyroPresent) {
+//   // If supported, show the feature button and attach the click event
+// } else {
+//   $('#featureButton').hide();
+// }
 
 $('#featureButton2').on('click', function (e) {
   if (!isAutoRotate) {
