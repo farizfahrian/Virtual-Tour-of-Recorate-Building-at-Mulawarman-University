@@ -512,6 +512,7 @@ createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-
 createInfoPlace(halamanKiri, new THREE.Vector3(894.09, -129.04, -4908.65), 'desc-ult');
 createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), null, 'assets/icons/Exit.png');
 
+createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan');
 
 const buttonData = {
   'Lobby': {
@@ -550,7 +551,7 @@ const buttonData = {
     page: gd1Kanan2,
     coordinates: new THREE.Vector3(-4544.91, 1202.52, 1680.42)
   },
-  'Sekretaris WR 3': {
+  'Sekretariat WR 3': {
     page: gd1Kanan2,
     coordinates: new THREE.Vector3(4850.64, 717.78, -948.42)
   },
@@ -580,9 +581,9 @@ const buttonData = {
   },
   'Keuangan': {
     page: gd2Kiri3,
-    coordinates: new THREE.Vector3(-2962.84, 88.10, -4021.27)
+    coordinates: new THREE.Vector3(-2346.43, -639.67, -4358.28)
   },
-  'Sekretaris WR 2': {
+  'Sekretariat WR 2': {
     page: gd2Kanan,
     coordinates: new THREE.Vector3(672.59, -450.06, -4926.36)
   },
@@ -736,6 +737,7 @@ function filterBuildingsAndFloors() {
   const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
   const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
   const searchText = document.getElementById('searchInput').value.toLowerCase();
+  console.log(searchText);
 
   const buildings = document.querySelectorAll('.building');
   buildings.forEach(building => {
@@ -808,7 +810,7 @@ function updateFilter(element) {
   // Get the selected filters and search text
   const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
   const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
-  const searchText = document.querySelector('.search input').value.toLowerCase();
+  const searchText = document.querySelector('.searchInput').value.toLowerCase();
 
   // Show the buildings and floors based on the selected filters and search text
   buildings.forEach(building => {

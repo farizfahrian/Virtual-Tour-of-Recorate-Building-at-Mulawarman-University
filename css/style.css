@@ -450,7 +450,7 @@ body {
 #progress {
   position: absolute;
   width: 100%;
-  height: 6px;
+  height: 3px;
 }
 
 #bar {
