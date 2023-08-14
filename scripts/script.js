@@ -49,8 +49,6 @@ function createPanorama(imagePath) {
   
   panorama.addEventListener('enter-fade-start', function () { 
     viewer.tweenControlCenter(new THREE.Vector3(4944.62, -220.74, 644.03), 1);
-    
-    panorama.addEventListener('progress', onProgressUpdate);
     bar.classList.add('hide');
   });
 
@@ -257,6 +255,7 @@ function onButtonClick(targetPanorama) {
   const panoramaData = panoramaTexts.get(targetPanorama.uuid);
   if (panoramaData) {
     viewer.add(targetPanorama);
+    targetPanorama.addEventListener('progress', onProgressUpdate);
     const { floor, location } = panoramaData;
     floorText.textContent = floor;
     locationText.textContent = location;
@@ -272,6 +271,7 @@ function createInfospot(panorama, position, targetPanorama, coordinates) {
       viewer.add(targetPanorama);
       onButtonClick(targetPanorama);
       viewer.clearAllCache();
+      targetPanorama.addEventListener('progress', onProgressUpdate);
       targetPanorama.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(coordinates, 1);
       });
@@ -722,8 +722,6 @@ document.addEventListener('click', function (event) {
   }
 });
 
-
-
 function updateLocation(element) {
 
   selectButtons.forEach(button => {
@@ -737,17 +735,18 @@ function filterBuildingsAndFloors() {
   const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
   const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
   const searchText = document.getElementById('searchInput').value.toLowerCase();
-  console.log(searchText);
+  
 
   const buildings = document.querySelectorAll('.building');
   buildings.forEach(building => {
     const isBuildingSelected = selectedBuildingFilters.length === 0 || selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase()));
     building.style.display = isBuildingSelected ? 'flex' : 'none';
-
+    console.log(selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase())));
+    
     const floors = building.querySelectorAll('.floor');
     floors.forEach(floor => {
       const isFloorSelected = selectedFloorFilters.length === 0 || selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase()));
-      const shouldShowFloor = isBuildingSelected && isFloorSelected && floor.dataset.floorText.toLowerCase().includes(searchText);
+      const shouldShowFloor = isBuildingSelected && isFloorSelected && selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase())).includes(searchText);
       floor.style.display = shouldShowFloor ? 'flex' : 'none';
     });
   });
@@ -810,7 +809,8 @@ function updateFilter(element) {
   // Get the selected filters and search text
   const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
   const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
-  const searchText = document.querySelector('.searchInput').value.toLowerCase();
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  
 
   // Show the buildings and floors based on the selected filters and search text
   buildings.forEach(building => {
@@ -834,7 +834,6 @@ function updateFilter(element) {
     });
   });
 }
-
 
 
 function toggleFilterSection() {
