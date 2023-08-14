@@ -249,13 +249,13 @@ window.addEventListener('load', function () {
 function onButtonClick(targetPanorama) {
   bar.classList.remove('hide');
   viewer.setPanorama(targetPanorama);
+  targetPanorama.addEventListener('progress', onProgressUpdate);
 
   const locationText = document.getElementById('roomText');
   const floorText = document.getElementById('floorText');
   const panoramaData = panoramaTexts.get(targetPanorama.uuid);
   if (panoramaData) {
     viewer.add(targetPanorama);
-    targetPanorama.addEventListener('progress', onProgressUpdate);
     const { floor, location } = panoramaData;
     floorText.textContent = floor;
     locationText.textContent = location;
@@ -271,7 +271,6 @@ function createInfospot(panorama, position, targetPanorama, coordinates) {
       viewer.add(targetPanorama);
       onButtonClick(targetPanorama);
       viewer.clearAllCache();
-      targetPanorama.addEventListener('progress', onProgressUpdate);
       targetPanorama.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(coordinates, 1);
       });
