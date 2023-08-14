@@ -224,12 +224,9 @@ document.addEventListener('DOMContentLoaded', function () {
   splashScreen.style.display = 'flex';
 });
 
-window.addEventListener('load', function (event) {
+window.addEventListener('load', function () {
   const splashScreen = document.getElementById('splashContainer');
   const control = document.getElementById('control');
-  console.log(
-    halamanKanan.addEventListener('progress', onProgressUpdate.percentage)
-  );
 
   setTimeout(function () {
     splashScreen.classList.add('fade-out');
@@ -243,13 +240,14 @@ window.addEventListener('load', function (event) {
       }
       control.style.display = 'flex';
       control.classList.add('swift-up-animation');
+      bar.classList.add('hide');
     }, 600);
   }, 4000); // 
 });
 
 function onButtonClick(targetPanorama) {
   bar.classList.remove('hide');
-  // targetPanorama.addEventListener('progress', onProgressUpdate);
+  targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
 
   const locationText = document.getElementById('roomText');
