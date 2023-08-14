@@ -1,13 +1,11 @@
-var container, selectLocation, infospot, infospot12, infospot2;
-
 var controlIndex = PANOLENS.CONTROLS.ORBIT;
 var isAutoRotate = false;
 
 var infospotIcon;
 
-bar = document.querySelector('#bar');
+const bar = document.querySelector('#bar');
 
-container = document.querySelector('#container');
+const container = document.querySelector('#container');
 
 function clearCache() {
   // Clear any variables or data that need to be reset
@@ -226,10 +224,13 @@ document.addEventListener('DOMContentLoaded', function () {
   splashScreen.style.display = 'flex';
 });
 
-window.addEventListener('load', function () {
+window.addEventListener('load', function (event) {
   const splashScreen = document.getElementById('splashContainer');
   const control = document.getElementById('control');
-  
+  console.log(
+    halamanKanan.addEventListener('progress', onProgressUpdate.percentage)
+  );
+
   setTimeout(function () {
     splashScreen.classList.add('fade-out');
 
@@ -248,8 +249,8 @@ window.addEventListener('load', function () {
 
 function onButtonClick(targetPanorama) {
   bar.classList.remove('hide');
+  // targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
-  targetPanorama.addEventListener('progress', onProgressUpdate);
 
   const locationText = document.getElementById('roomText');
   const floorText = document.getElementById('floorText');
@@ -268,7 +269,6 @@ function createInfospot(panorama, position, targetPanorama, coordinates) {
     var infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
     infospot.position.copy(position);
     infospot.addEventListener('click', function () {
-      viewer.add(targetPanorama);
       onButtonClick(targetPanorama);
       viewer.clearAllCache();
       targetPanorama.addEventListener('enter-fade-start', function () {
