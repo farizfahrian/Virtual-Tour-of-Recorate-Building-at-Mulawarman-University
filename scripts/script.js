@@ -846,4 +846,6 @@ function toggleFeatureSection(element) {
 
   imgElement.src = isActiveIcon ? imgElement.src.replace('-white.svg', '.svg')
                                  : imgElement.src.replace('.svg', '-white.svg');
+
+  Event.preventDefault();
 }

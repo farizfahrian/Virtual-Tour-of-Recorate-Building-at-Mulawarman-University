@@ -13,18 +13,6 @@
   --color-gray-800: #1d2939;
   --color-gray-900: #101828;
 
-  --color-orange-25: #fefaf5;
-  --color-orange-50: #fef6ee;
-  --color-orange-100: #fdead7;
-  --color-orange-200: #f9dbaf;
-  --color-orange-300: #f7b27a;
-  --color-orange-400: #f38744;
-  --color-orange-500: #ef6820;
-  --color-orange-600: #e04f16;
-  --color-orange-700: #b93815;
-  --color-orange-800: #932f19;
-  --color-orange-900: #772917;
-
   --color-green-light: #e6f5ed;
 	--color-green-light-hover: #d9f0e4;
 	--color-green-light-active: #b0e0c8;
@@ -189,54 +177,6 @@
     font-weight: 700;
     line-height: 38px;
   }
-  .text-display-xs-regular {
-    font-size: 24px;
-    font-family: "Inter";
-    font-weight: 400;
-    line-height: 32px;
-  }
-  .text-display-xs-medium {
-    font-size: 24px;
-    font-family: "Inter";
-    font-weight: 500;
-    line-height: 32px;
-  }
-  .text-display-xs-semi-bold {
-    font-size: 24px;
-    font-family: "Inter";
-    font-weight: 700;
-    line-height: 32px;
-  }
-  .text-display-xs-bold {
-    font-size: 24px;
-    font-family: "Inter";
-    font-weight: 700;
-    line-height: 32px;
-  }
-  .text-xl-regular {
-    font-size: 20px;
-    font-family: "Inter";
-    font-weight: 400;
-    line-height: 30px;
-  }
-  .text-xl-medium {
-    font-size: 20px;
-    font-family: "Inter";
-    font-weight: 500;
-    line-height: 30px;
-  }
-  .text-xl-semi-bold {
-    font-size: 20px;
-    font-family: "Inter";
-    font-weight: 700;
-    line-height: 30px;
-  }
-  .text-xl-bold {
-    font-size: 20px;
-    font-family: "Inter";
-    font-weight: 700;
-    line-height: 30px;
-  }
   .text-lg-regular {
     font-size: 18px;
     font-family: "Inter";
@@ -309,20 +249,35 @@
     font-weight: 700;
     line-height: 20px;
   }
+  .text-xs-regular {
+    font-size: 12px;
+    font-family: "Inter";
+    font-weight: 400;
+    line-height: 16px;
+  }
+  .text-xs-medium {
+    font-size: 12px;
+    font-family: "Inter";
+    font-weight: 500;
+    line-height: 16px;
+  }
+  .text-xs-semi-bold {
+    font-size: 12px;
+    font-family: "Inter";
+    font-weight: 700;
+    line-height: 16px;
+  }
+  .text-xs-bold {
+    font-size: 12px;
+    font-family: "Inter";
+    font-weight: 700;
+    line-height: 16px;
+  }
   .effect-shadow-xs {
     box-shadow: 0px 1px 0px #bdbec0;
   }
   .effect-shadow-sm {
     box-shadow: 0px 1px 2px #101828, 0px 1px 3px #101828;
-  }
-  .effect-shadow-md {
-    box-shadow: 0px 2px 4px -2px #101828, 0px 4px 8px -2px #101828;
-  }
-  .effect-shadow-lg {
-    box-shadow: 0px 4px 6px -2px #101828, 0px 12px 16px -4px #101828;
-  }
-  .effect-shadow-xl {
-    box-shadow: 0px 8px 8px -4px #101828, 0px 20px 24px -4px #101828;
   }
 }
 
@@ -427,6 +382,33 @@ body {
   -ms-user-select: none; /* Internet Explorer */
   user-select: none;
 }
+
+/* Add this to your existing CSS or create a new stylesheet */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip:hover .tooltip-content,
+.tooltip:focus .tooltip-content {
+  display: block;
+}
+
+.tooltip-content {
+  display: none;
+  position: absolute;
+  width: max-content;
+  top: -130%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 1px 0px #bdbec0;
+  z-index: 1;
+}
+
 
 .mb-0 {
   margin: 0px;
@@ -544,6 +526,8 @@ body {
   padding: 24px;
   border-radius: 12px;
   overflow: auto;
+  box-shadow: 0px 1px 0px #bdbec0;
+
   -webkit-overflow-scrolling: touch;
 }
 
@@ -570,8 +554,6 @@ body {
   margin-block-end: 0;
 }
 
-
-
 .location-dropdown {
   cursor: pointer;
   display: flex;
@@ -585,6 +567,7 @@ body {
 
   border-radius: 8px;
   background: var(--color-base-white);
+  box-shadow: 0px 1px 0px #bdbec0;
 }
 
 .location-dropdown p {

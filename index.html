@@ -214,32 +214,20 @@
         <p id="floorText" class="floor-location">Halaman Rektorat</p>
       </div>
       <div class="icon-container control-item disable-selection">
-        <div
-          id="featureButton"
-          class="feature-button"
-          onclick="toggleFeatureSection(this)"
-        >
-          <img
-            src="assets/icons/gyroscope-white.svg"
-            data-inactive-icon="gyroscope.svg"
-            alt="gyroscope icon"
-          />
+        <div id="featureButton" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
+          <img src="assets/icons/gyroscope-white.svg" data-inactive-icon="gyroscope.svg" alt="gyroscope icon" />
+          <div class="tooltip-content text-sm-regular">Gyroscope</div>
         </div>
-        <div
-          id="featureButton2"
-          class="feature-button"
-          onclick="toggleFeatureSection(this)"
-        >
-          <img
-            src="assets/icons/rotate-white.svg"
-            data-inactive-icon="rotate.svg"
-            alt="rotate icon"
-          />
+        <div id="featureButton2" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
+          <img src="assets/icons/rotate-white.svg" data-inactive-icon="rotate.svg" alt="rotate icon" />
+          <div class="tooltip-content text-sm-regular">Auto Rotate</div>
         </div>
-        <div id="featureButton3" class="feature-button">
+        <div id="featureButton3" class="feature-button tooltip">
           <img src="assets/icons/fullscreen-white.svg" alt="fullscreen icon" />
+          <div class="tooltip-content text-sm-regular">Fullscreen</div>
         </div>
       </div>
+      
     </div>
 
     <div id="container"></div>
