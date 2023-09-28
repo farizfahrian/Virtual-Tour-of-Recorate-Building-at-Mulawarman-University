@@ -63,6 +63,13 @@ var halamanKanan = createPanorama('assets/images/halaman/Kanan.jpg');
 var halamanKananAtas = createPanorama('assets/images/halaman/Kanan-atas.jpg');
 var halamanPenghubung = createPanorama('assets/images/halaman/Penghubung.jpg');
 var halamanMPK = createPanorama('assets/images/halaman/MPK.jpg');
+var jalanULT = createPanorama('assets/images/ult/Luar.jpg');
+var halamanULT = createPanorama('assets/images/ult/Pintu.jpg');
+var depanULT = createPanorama('assets/images/ult/Depan.jpg');
+var tengahULT = createPanorama('assets/images/ult/Tengah.jpg');
+var kiriULT = createPanorama('assets/images/ult/Kiri.jpg');
+var kananULT = createPanorama('assets/images/ult/Kanan.jpg');
+var belakangULT = createPanorama('assets/images/ult/Belakang.jpg');
 
 var gdLobby = createPanorama('assets/images/gedung_depan/lt_1/Lobby.jpg');
 var gdLobby2 = createPanorama('assets/images/gedung_depan/lt_1/Lobby2.jpg');
@@ -141,6 +148,13 @@ const panoramaTexts = new Map([
   [halamanKananAtas.uuid, { floor: 'Halaman Rektorat', location: 'Halaman Belakang' }],
   [halamanPenghubung.uuid, { floor: 'Halaman Rektorat', location: 'Halaman Belakang' }],
   [halamanMPK.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
+  [jalanULT.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
+  [halamanULT.uuid, { floor: 'Halaman ULT', location: 'Parkiran MPK' }],
+  [depanULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
+  [kiriULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
+  [kananULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
+  [tengahULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
+  [belakangULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
 
   [gdLobby.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
   [gdLobby2.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
@@ -319,8 +333,33 @@ createInfospot(halamanKiriAtas, new THREE.Vector3(4953.84, -639.68, 27.93), hala
 createInfospot(halamanKiri, new THREE.Vector3(-689.16, -444.59, 4924.39), halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50));
 createInfospot(halamanKiri, new THREE.Vector3(-4976.04, -420.76, -98.72), halamanKiriAtas, new THREE.Vector3(370.93, 320.95, 4967.95));
 createInfospot(halamanKiri, new THREE.Vector3(4870.96, -513.93, -974.17), halamanMPK, new THREE.Vector3(4993.73, 14.87, -108.50));
+createInfospot(halamanKiri, new THREE.Vector3(2379.90, -401.49, -4372.82), jalanULT, new THREE.Vector3(4969.59, 79.10, 521.03));
 
 createInfospot(halamanMPK, new THREE.Vector3(-4883.64, -374.01, -990.58), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50));
+
+createInfospot(jalanULT, new THREE.Vector3(-4964.23, -442.53, -275.02), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(jalanULT, new THREE.Vector3(4970.90, -27.06, 526.65), halamanULT, new THREE.Vector3(-4952.39, 30.32, -642.69));
+
+createInfospot(halamanULT, new THREE.Vector3(4889.92, -955.03, -269.70), jalanULT, new THREE.Vector3(-4982.19, -61.90, -293.34));
+createInfospot(halamanULT, new THREE.Vector3(-4939.15, -348.46, -646.50), depanULT, new THREE.Vector3(-4947.47, 82.96, 660.54));
+
+createInfospot(depanULT, new THREE.Vector3(4797.32, -853.39, -1096.03), halamanULT, new THREE.Vector3(4970.00, -266.30, -372.76));
+createInfospot(depanULT, new THREE.Vector3(-1395.88, -2263.40, -4232.85), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56));
+createInfospot(depanULT, new THREE.Vector3(-1885.81, -2532.41, 3867.54), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16));
+
+createInfospot(kananULT, new THREE.Vector3(4633.46, -1809.20, -465.27), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36));
+createInfospot(kananULT, new THREE.Vector3(-257.70, -2225.31, -4462.11), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(kananULT, new THREE.Vector3(-4493.71, -1619.46, -1468.11), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00));
+
+createInfospot(tengahULT, new THREE.Vector3(-386.80, -1636.64, 4701.24), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(tengahULT, new THREE.Vector3(-821.41, -1705.11, -4618.17), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+
+createInfospot(kiriULT, new THREE.Vector3(4438.23, -1441.72, 1770.34), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36));
+createInfospot(kiriULT, new THREE.Vector3(-1099.60, -1969.90, 4454.24), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(kiriULT, new THREE.Vector3(-4659.89, -1493.08, 1013.46), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00));
+
+createInfospot(belakangULT, new THREE.Vector3(2834.89, -1278.00, -3910.95), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(belakangULT, new THREE.Vector3(4257.88, -993.31, 2414.01), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
 
 createInfospot(gdLobby, new THREE.Vector3(-4925.31, -844.62, -13.58), halamanDepan, new THREE.Vector3(4977.40, 304.08, 203.23));
 createInfospot(gdLobby, new THREE.Vector3(3661.43, -944.47, 3263.79), gdLobbyKiri, new THREE.Vector3(2697.65, -600.05, -4154.14));
@@ -428,11 +467,11 @@ createInfospot(gd3Kanan3, new THREE.Vector3(-4886.82, -1009.21, -123.31), gd3Kan
 createInfospot(gd3Kanan3, new THREE.Vector3(2968.19, -1268.63, 3807.11), gd3Koridor, new THREE.Vector3(4977.40, 304.08, 203.23));
 
 createInfospot(gd3Koridor, new THREE.Vector3(-2263.96, -1032.66, -4325.56), gd3Kanan3, new THREE.Vector3(86.01, 340.23, -4982.12));
-createInfospot(gd3Koridor, new THREE.Vector3(-2577.84, -1232.90, 4093.02), gd3Kiri3, new THREE.Vector3(86.01, 340.23, -4982.12));
-createInfospot(gd3Koridor, new THREE.Vector3(4869.51, -1102.10, -100.93), gd3Koridor2, new THREE.Vector3(86.01, 340.23, -4982.12));
+createInfospot(gd3Koridor, new THREE.Vector3(-2577.84, -1232.90, 4093.02), gd3Kiri3, new THREE.Vector3(-4960.29, 225.38, 543.88));
+createInfospot(gd3Koridor, new THREE.Vector3(4869.51, -1102.10, -100.93), gd3Koridor2, new THREE.Vector3(4211.10, -238.24, 2648.71));
 
-createInfospot(gd3Koridor2, new THREE.Vector3(4206.26, -427.56, 2654.83), gb3Lobby, new THREE.Vector3(86.01, 340.23, -4982.12));
-createInfospot(gd3Koridor2, new THREE.Vector3(-4199.08, -949.42, -2527.92), gd3Koridor, new THREE.Vector3(86.01, 340.23, -4982.12));
+createInfospot(gd3Koridor2, new THREE.Vector3(4206.26, -427.56, 2654.83), gb3Lobby, new THREE.Vector3(528.67, -164.14, -4965.13));
+createInfospot(gd3Koridor2, new THREE.Vector3(-4199.08, -949.42, -2527.92), gd3Koridor, new THREE.Vector3(-4989.82, -25.31, -175.30));
 
 
 
@@ -506,7 +545,7 @@ createInfospot(gb4Lobby, new THREE.Vector3(105.69, -918.88, -4905.71), gb4Tangga
 createInfoPlace(halamanKanan, new THREE.Vector3(4944.62, -220.74, 644.03), null, 'assets/icons/Enter.png');
 createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-mushola');
 
-createInfoPlace(halamanKiri, new THREE.Vector3(894.09, -129.04, -4908.65), 'desc-ult');
+createInfoPlace(halamanULT, new THREE.Vector3(181 -3790.29, 198.97, 3241.17), 'desc-ult');
 createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), null, 'assets/icons/Exit.png');
 
 createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan');
@@ -529,8 +568,8 @@ const buttonData = {
     coordinates: new THREE.Vector3(-4965.49, 107.20, -540.68)
   },
   'ULT': {
-    page: halamanKiri,
-    coordinates: new THREE.Vector3(894.09, -129.04, -4908.65)
+    page: halamanULT,
+    coordinates: new THREE.Vector3(-4231.21, 138.32, 2642.35)
   },
   'Akademik dan Evaluasi': {
     page: gd1Kiri,
@@ -833,9 +872,17 @@ function updateFilter(element) {
 }
 
 
-function toggleFilterSection() {
+function toggleFilterSection(element) {
   var filterSection = document.getElementById('filterSection');
   filterSection.classList.toggle('hidden');
+
+  element.classList.toggle('selected');
+
+  const imgElement = element.querySelector('img');
+  const isActiveIcon = imgElement.src.includes('-white');
+
+  imgElement.src = isActiveIcon ? imgElement.src.replace('-white.svg', '.svg')
+                                 : imgElement.src.replace('.svg', '-white.svg');
 }
 
 function toggleFeatureSection(element) {

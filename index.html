@@ -47,8 +47,8 @@
             />
             <img src="assets/icons/search.svg" />
           </div>
-          <div class="filter-button" onclick="toggleFilterSection()">
-            <img src="assets/icons/filter-lines.svg" alt="filter icon" />
+          <div class="filter-button" onclick="toggleFilterSection(this)">
+            <img src="assets/icons/filter-lines-white.svg" alt="filter icon" />
           </div>
         </div>
         <div class="filter-section" id="filterSection">
@@ -234,8 +234,7 @@
 
     <div id="desc-mushola" style="display: none">
       <div class="desc-container">
-        <div class="heading-text" style="justify-content: center;
-        ">
+        <div class="heading-text" style="justify-content: center;">
           <p class="title text-lg-semi-bold ">Mushola Rektorat</p>
         </div>
         <div class="text text-md-regular ">
@@ -250,18 +249,37 @@
       <div class="desc-container">
         <div class="heading-text">
           <p class="title text-lg-semi-bold">ULT (Unit Layanan Terpadu)</p>
-          <div class="operational-time">
-            <p class="text-sm-regular">Jam operasional</p>
-            <p class="text-sm-semi-bold">08.00 - 16.00</p>
+          <div class="operational-container">
+            <div class="operational-time">
+              <p class="text-sm-regular">Hari operasional</p>
+              <p class="text-sm-semi-bold">Senin - Sabtu</p>
+            </div>
+            <div class="operational-time">
+              <p class="text-sm-regular">Jam operasional</p>
+              <p class="text-sm-semi-bold">08.00 - 16.00</p>
+            </div>
           </div>
         </div>
         <div class="text text-md-regular">
           Unit Layanan Terpadu adalah sebuah pusat pelayanan yang menyediakan
           berbagai layanan dan informasi terkait universitas atau lembaga
           tertentu. Tujuan dari Unit Layanan Terpadu adalah untuk memberikan
-          kemudahan akses bagi mahasiswa, dosen, dan staf universitas dalam
-          mendapatkan layanan dan informasi yang beragam tanpa harus mengunjungi
-          berbagai tempat atau departemen yang berbeda.
+          kemudahan akses bagi mahasiswa mendapatkan layanan dan informasi yang beragam tanpa harus mengunjungi
+          berbagai departemen yang berbeda.
+        </div>
+        <div class="contact">
+          <div>
+            <img src="assets/icons/globe.svg" alt="web">
+            <a href="https://ult.unmul.ac.id/" target="_blank" class="text-sm-regular">https://ult.unmul.ac.id</a>
+          </div>
+          <div>
+            <img src="assets/icons/instagram.svg" alt="instagram">
+            <a href="https://ult.unmul.ac.id/" target="_blank" class="text-sm-regular">@ultunmul</a>
+          </div>
+          <div>
+            <img src="assets/icons/whatsapp.svg" alt="whatsapp">
+            <a href="https://wa.me/+628115809970" target="_blank" class="text-sm-regular">+628115809970</a>
+          </div>
         </div>
       </div>
     </div>
@@ -270,6 +288,11 @@
       <div class="desc-container">
         <div class="heading-text">
           <p class="title text-lg-semi-bold">Ruang Keuangan</p>
+          <div class="operational-container">
+            <div class="operational-time">
+              <p class="text-sm-regular">Hari operasional</p>
+              <p class="text-sm-semi-bold">Senin - Jumat</p>
+            </div>
           <div class="operational-time">
             <p class="text-sm-regular">Jam operasional</p>
             <p class="text-sm-semi-bold">08.00 - 16.00</p>
