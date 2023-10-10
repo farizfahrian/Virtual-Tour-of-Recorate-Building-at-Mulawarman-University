@@ -359,7 +359,7 @@ createInfospot(halamanKananAtas, new THREE.Vector3(286.19, -399.25, -4968.77), h
 createInfospot(halamanPenghubung, new THREE.Vector3(-211.86, -490.22, 4961.89), halamanKananAtas, new THREE.Vector3(-405.42, 28.87, 4977.62));
 createInfospot(halamanPenghubung, new THREE.Vector3(65.84, -349.80, -4982.81), halamanKiriAtas2, new THREE.Vector3(-241.62, 245.92, 4977.68));
 createInfospot(halamanPenghubung, new THREE.Vector3(4730.04, -813.56, -1377.70), gdLobby2, new THREE.Vector3(-4980.10, 158.98, -260.53), 28, 100);
-createInfospot(halamanPenghubung, new THREE.Vector3(-4971.56, -227.91, -371.81), gb1Lobby, new THREE.Vector3(4914.81, -241.64, -826.97));
+createInfospot(halamanPenghubung, new THREE.Vector3(-4971.56, -227.91, -371.81), gb1Lobby, new THREE.Vector3(4914.81, -241.64, -826.97), 50, 100);
 
 createInfospot(halamanKiriAtas2, new THREE.Vector3(-254.71, -482.44, 4960.57), halamanKiriAtas, new THREE.Vector3(-4905.65, 514.73, 754.50));
 createInfospot(halamanKiriAtas2, new THREE.Vector3(563.21, -426.51, -4946.51), halamanPenghubung, new THREE.Vector3(-74.25, 38.93, 4994.58));
@@ -431,7 +431,7 @@ createInfospot(gd1Kiri2, new THREE.Vector3(4857.03, -1169.06, -82.12), gd1Kiri, 
 createInfospot(gd2Tangga, new THREE.Vector3(4627.02, -1329.76, -1313.84), gdLobby, new THREE.Vector3(4597.21, -1408.92, -1338.99), 81, 98);
 createInfospot(gd2Tangga, new THREE.Vector3(2325.22, -1073.04, 4285.35), gd2Kanan, new THREE.Vector3(4977.40, 304.08, 203.23), 52, 127);
 createInfospot(gd2Tangga, new THREE.Vector3(3558.40, -1178.10, -3303.54), gd2Kiri, new THREE.Vector3(-4151.22, -762.09, -2666.99), 52, 73);
-createInfospot(gd2Tangga, new THREE.Vector3(3826.59, -1124.64, 3002.97), gd3Tangga, new THREE.Vector3(498.63, -11.73, 4973.41));
+createInfospot(gd2Tangga, new THREE.Vector3(3826.59, -1124.64, 3002.97), gd3Tangga, new THREE.Vector3(498.63, -11.73, 4973.41), 76, 90);
 createInfospot(gd2Tangga, new THREE.Vector3(-4837.94, -1131.24, -536.67), gd2Koridor, new THREE.Vector3(609.10, -19.14, 4958.16), 50, 100);
 
 createInfospot(gd2Kiri, new THREE.Vector3(-483.48, -1565.97, 4722.24), gd2Tangga, new THREE.Vector3(-4959.03, -224.82, -551.99), 29, 99);
@@ -442,7 +442,7 @@ createInfospot(gd2Kiri2, new THREE.Vector3(459.22, -1191.43, -4830.96), gd2Kiri3
 
 createInfospot(gd2Kiri3, new THREE.Vector3(-74.78, -1574.07, 4740.67), gd2Kiri2, new THREE.Vector3(-391.08, -411.29, 4961.84), 52, 59);
 createInfospot(gd2Kiri3, new THREE.Vector3(-105.88, -1257.37, -4830.88), gd2Kiri4, new THREE.Vector3(-694.04, -129.14, -4940.33), 52, 24);
-createInfospot(gd2Kiri3, new THREE.Vector3(-2348.41, -636.07, -4357.75), gd2Keuangan, new THREE.Vector3(4977.40, 304.08, 203.23));
+createInfospot(gd2Kiri3, new THREE.Vector3(-2348.41, -636.07, -4357.75), gd2Keuangan, new THREE.Vector3(4977.40, 304.08, 203.23), 74, 168);
 
 createInfospot(gd2Keuangan, new THREE.Vector3(1607.78, -2941.09, -3707.94), gd2Kiri3, new THREE.Vector3(3195.60, -512.70, 3799.11), 52, 45);
 
@@ -464,69 +464,69 @@ createInfospot(gd2Kanan4, new THREE.Vector3(592.78, -1325.03, 4776.82), gd2Kanan
 
 
 createInfospot(gd3Tangga, new THREE.Vector3(-782.49, -2593.74, -4197.11), gd2Tangga, new THREE.Vector3(-4955.87, -292.61, -554.97), 29, 99);
-createInfospot(gd3Tangga, new THREE.Vector3(-4915.84, -821.02, 176.00), gd3Kanan, new THREE.Vector3(-4986.71, 79.17, -194.18));
-createInfospot(gd3Tangga, new THREE.Vector3(4586.65, -1939.40, 396.31), gd3Kiri, new THREE.Vector3(-403.84, 114.20, 4974.35));
+createInfospot(gd3Tangga, new THREE.Vector3(-4915.84, -821.02, 176.00), gd3Kanan, new THREE.Vector3(-4986.71, 79.17, -194.18), 76, 124);
+createInfospot(gd3Tangga, new THREE.Vector3(4586.65, -1939.40, 396.31), gd3Kiri, new THREE.Vector3(-403.84, 114.20, 4974.35), 76, 74);
 
-createInfospot(gd3Kiri, new THREE.Vector3(-300.33, -2026.52, -4551.52), gd3Tangga, new THREE.Vector3(-4990.63, -40.92, 148.11));
-createInfospot(gd3Kiri, new THREE.Vector3(4754.07, -1542.46, 37.25), gd3Kiri2, new THREE.Vector3(100.40, 137.31, 4989.34));
+createInfospot(gd3Kiri, new THREE.Vector3(-300.33, -2026.52, -4551.52), gd3Tangga, new THREE.Vector3(-4990.63, -40.92, 148.11), 76, 90);
+createInfospot(gd3Kiri, new THREE.Vector3(4754.07, -1542.46, 37.25), gd3Kiri2, new THREE.Vector3(100.40, 137.31, 4989.34), 53, 74);
 
-createInfospot(gd3Kiri2, new THREE.Vector3(200.36, -1400.02, -4785.69), gd3Kiri, new THREE.Vector3(-4975.40, -57.19, 426.51));
-createInfospot(gd3Kiri2, new THREE.Vector3(8.37, -1148.47, 4865.14), gd3Kiri3, new THREE.Vector3(241.88, 336.43, 4974.11));
-createInfospot(gd3Kiri2, new THREE.Vector3(-4895.73, -994.43, 9.37), gd3LKiri, new THREE.Vector3(-254.71, -269.16, 4976.08));
+createInfospot(gd3Kiri2, new THREE.Vector3(200.36, -1400.02, -4785.69), gd3Kiri, new THREE.Vector3(-4975.40, -57.19, 426.51), 76, 74);
+createInfospot(gd3Kiri2, new THREE.Vector3(8.37, -1148.47, 4865.14), gd3Kiri3, new THREE.Vector3(241.88, 336.43, 4974.11), 37, 74);
+createInfospot(gd3Kiri2, new THREE.Vector3(-4895.73, -994.43, 9.37), gd3LKiri, new THREE.Vector3(-254.71, -269.16, 4976.08), 53, 52);
 
-createInfospot(gd3LKiri, new THREE.Vector3(486.46, -796.55, -4910.09), gd3Kiri2, new THREE.Vector3(4993.14, -73.55, 75.75));
-createInfospot(gd3LKiri, new THREE.Vector3(-165.24, -1382.84, 4792.38), gd3LKiri2, new THREE.Vector3(412.48, -273.02, 4967.66));
+createInfospot(gd3LKiri, new THREE.Vector3(486.46, -796.55, -4910.09), gd3Kiri2, new THREE.Vector3(4993.14, -73.55, 75.75), 53, 74);
+createInfospot(gd3LKiri, new THREE.Vector3(-165.24, -1382.84, 4792.38), gd3LKiri2, new THREE.Vector3(412.48, -273.02, 4967.66), 53, 35);
 
-createInfospot(gd3LKiri2, new THREE.Vector3(-323.41, -1123.77, -4853.54), gd3LKiri, new THREE.Vector3(471.02, -162.43, -4968.93));
-
-
-createInfospot(gd3Kiri3, new THREE.Vector3(-1072.53, -1223.69, -4722.61), gd3Kiri2, new THREE.Vector3(191.25, -226.51, -4981.08));
-createInfospot(gd3Kiri3, new THREE.Vector3(3959.23, -1097.96, 2843.08), gd3Koridor, new THREE.Vector3(4977.40, 304.08, 203.23));
+createInfospot(gd3LKiri2, new THREE.Vector3(-323.41, -1123.77, -4853.54), gd3LKiri, new THREE.Vector3(471.02, -162.43, -4968.93), 53, 52);
 
 
-createInfospot(gd3Kanan, new THREE.Vector3(4877.60, -1008.03, 303.63), gd3Tangga, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gd3Kanan, new THREE.Vector3(121.63, -1380.44, -4795.34), gd3Kanan2, new THREE.Vector3(246.09, -96.97, 4983.29));
-
-createInfospot(gd3Kanan2, new THREE.Vector3(-250.75, -1288.78, -4814.43), gd3Kanan, new THREE.Vector3(4488.20, 368.24, 4959.95));
-createInfospot(gd3Kanan2, new THREE.Vector3(266.22, -1072.36, 4866.77), gd3Kanan3, new THREE.Vector3(4922.04, 269.58, -774.28));
-createInfospot(gd3Kanan2, new THREE.Vector3(4789.00, -1388.48, -199.44), gd3LKanan, new THREE.Vector3(451.04, -108.19, -4972.11));
-
-createInfospot(gd3LKanan, new THREE.Vector3(445.40, -1096.78, -4852.52), gd3LKanan2, new THREE.Vector3(360.56, -154.03, -4975.05));
-createInfospot(gd3LKanan, new THREE.Vector3(-192.94, -1253.53, 4827.40), gd3Kanan2, new THREE.Vector3(-4991.75, 46.61, 122.49));
-
-createInfospot(gd3LKanan2, new THREE.Vector3(338.78, -1441.53, -4766.73), gd3LKanan3, new THREE.Vector3(26.18, 75.54, 4995.66));
-createInfospot(gd3LKanan2, new THREE.Vector3(-195.31, -976.84, 4889.48), gd3LKanan, new THREE.Vector3(-155.42, -152.54, 4985.86));
-
-createInfospot(gd3LKanan3, new THREE.Vector3(121.51, -1470.08, -4770.07), gd3LKanan2, new THREE.Vector3(-213.43, -214.72, 4980.38));
+createInfospot(gd3Kiri3, new THREE.Vector3(-1072.53, -1223.69, -4722.61), gd3Kiri2, new THREE.Vector3(191.25, -226.51, -4981.08), 53, 74);
+createInfospot(gd3Kiri3, new THREE.Vector3(3959.23, -1097.96, 2843.08), gd3Koridor, new THREE.Vector3(4977.40, 304.08, 203.23), 17, 99);
 
 
-createInfospot(gd3Kanan3, new THREE.Vector3(-4886.82, -1009.21, -123.31), gd3Kanan2, new THREE.Vector3(-214.66, 65.44, -4986.18));
-createInfospot(gd3Kanan3, new THREE.Vector3(2968.19, -1268.63, 3807.11), gd3Koridor, new THREE.Vector3(4977.40, 304.08, 203.23));
+createInfospot(gd3Kanan, new THREE.Vector3(4877.60, -1008.03, 303.63), gd3Tangga, new THREE.Vector3(4977.40, 304.08, 203.23), 76, 90);
+createInfospot(gd3Kanan, new THREE.Vector3(121.63, -1380.44, -4795.34), gd3Kanan2, new THREE.Vector3(246.09, -96.97, 4983.29), 53, 124);
 
-createInfospot(gd3Koridor, new THREE.Vector3(-2263.96, -1032.66, -4325.56), gd3Kanan3, new THREE.Vector3(86.01, 340.23, -4982.12));
-createInfospot(gd3Koridor, new THREE.Vector3(-2577.84, -1232.90, 4093.02), gd3Kiri3, new THREE.Vector3(-4960.29, 225.38, 543.88));
-createInfospot(gd3Koridor, new THREE.Vector3(4869.51, -1102.10, -100.93), gd3Koridor2, new THREE.Vector3(4211.10, -238.24, 2648.71));
+createInfospot(gd3Kanan2, new THREE.Vector3(-250.75, -1288.78, -4814.43), gd3Kanan, new THREE.Vector3(4488.20, 368.24, 4959.95), 76, 124);
+createInfospot(gd3Kanan2, new THREE.Vector3(266.22, -1072.36, 4866.77), gd3Kanan3, new THREE.Vector3(4922.04, 269.58, -774.28), 37, 124);
+createInfospot(gd3Kanan2, new THREE.Vector3(4789.00, -1388.48, -199.44), gd3LKanan, new THREE.Vector3(451.04, -108.19, -4972.11), 53, 137);
 
-createInfospot(gd3Koridor2, new THREE.Vector3(4206.26, -427.56, 2654.83), gb3Lobby, new THREE.Vector3(528.67, -164.14, -4965.13));
-createInfospot(gd3Koridor2, new THREE.Vector3(-4199.08, -949.42, -2527.92), gd3Koridor, new THREE.Vector3(-4989.82, -25.31, -175.30));
+createInfospot(gd3LKanan, new THREE.Vector3(445.40, -1096.78, -4852.52), gd3LKanan2, new THREE.Vector3(360.56, -154.03, -4975.05), 53, 150);
+createInfospot(gd3LKanan, new THREE.Vector3(-192.94, -1253.53, 4827.40), gd3Kanan2, new THREE.Vector3(-4991.75, 46.61, 122.49), 53, 124);
+
+createInfospot(gd3LKanan2, new THREE.Vector3(338.78, -1441.53, -4766.73), gd3LKanan3, new THREE.Vector3(26.18, 75.54, 4995.66), 53, 168);
+createInfospot(gd3LKanan2, new THREE.Vector3(-195.31, -976.84, 4889.48), gd3LKanan, new THREE.Vector3(-155.42, -152.54, 4985.86), 53, 137);
+
+createInfospot(gd3LKanan3, new THREE.Vector3(121.51, -1470.08, -4770.07), gd3LKanan2, new THREE.Vector3(-213.43, -214.72, 4980.38), 53, 150);
+
+
+createInfospot(gd3Kanan3, new THREE.Vector3(-4886.82, -1009.21, -123.31), gd3Kanan2, new THREE.Vector3(-214.66, 65.44, -4986.18), 53, 124);
+createInfospot(gd3Kanan3, new THREE.Vector3(2968.19, -1268.63, 3807.11), gd3Koridor, new THREE.Vector3(4977.40, 304.08, 203.23), 17, 99);
+
+createInfospot(gd3Koridor, new THREE.Vector3(-2263.96, -1032.66, -4325.56), gd3Kanan3, new THREE.Vector3(86.01, 340.23, -4982.12), 37, 124);
+createInfospot(gd3Koridor, new THREE.Vector3(-2577.84, -1232.90, 4093.02), gd3Kiri3, new THREE.Vector3(-4960.29, 225.38, 543.88), 37, 74);
+createInfospot(gd3Koridor, new THREE.Vector3(4869.51, -1102.10, -100.93), gd3Koridor2, new THREE.Vector3(4211.10, -238.24, 2648.71), 80, 100);
+
+createInfospot(gd3Koridor2, new THREE.Vector3(4206.26, -427.56, 2654.83), gb3Lobby, new THREE.Vector3(528.67, -164.14, -4965.13), 50, 100);
+createInfospot(gd3Koridor2, new THREE.Vector3(-4199.08, -949.42, -2527.92), gd3Koridor, new THREE.Vector3(-4989.82, -25.31, -175.30), 17, 99);
 
 
 
-createInfospot(gb1Lobby, new THREE.Vector3(-4971.56, -227.91, -371.81), halamanPenghubung, new THREE.Vector3(79.40, 263.53, -4985.48));
-createInfospot(gb1Lobby, new THREE.Vector3(640.67, -1720.45, 4631.59), gb1Kiri, new THREE.Vector3(-2817.40, -183.49, -4115.42));
-createInfospot(gb1Lobby, new THREE.Vector3(-824.54, -1702.28, -4618.73), gb1Kanan, new THREE.Vector3(4082.36, -260.97, -2862.72));
+createInfospot(gb1Lobby, new THREE.Vector3(-4971.56, -227.91, -371.81), halamanPenghubung, new THREE.Vector3(4940.86, 41.11, 712.81));
+createInfospot(gb1Lobby, new THREE.Vector3(640.67, -1720.45, 4631.59), gb1Kiri, new THREE.Vector3(-2817.40, -183.49, -4115.42), 42, 74);
+createInfospot(gb1Lobby, new THREE.Vector3(-824.54, -1702.28, -4618.73), gb1Kanan, new THREE.Vector3(4082.36, -260.97, -2862.72), 42, 124);
 
-createInfospot(gb1Kiri, new THREE.Vector3(3292.55, -2045.92, -3145.04), gb1Lobby, new THREE.Vector3(-3677.92, 70.20, -3379.56));
-createInfospot(gb1Kiri, new THREE.Vector3(-1584.94, -2054.51, 4263.28), gb2Tangga, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb1Kiri, new THREE.Vector3(3292.55, -2045.92, -3145.04), gb1Lobby, new THREE.Vector3(-3677.92, 70.20, -3379.56), 50, 100);
+createInfospot(gb1Kiri, new THREE.Vector3(-1584.94, -2054.51, 4263.28), gb2Tangga, new THREE.Vector3(4992.14, -182.87, -12.78), 33, 98);
 
-createInfospot(gb1Kanan, new THREE.Vector3(-2352.69, -1859.25, -3996.39), gb1Lobby, new THREE.Vector3(-3156.16, -76.14, 3865.33));
-createInfospot(gb1Kanan, new THREE.Vector3(1285.87, -1980.71, 4399.18), gb2Tangga, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb1Kanan, new THREE.Vector3(-2352.69, -1859.25, -3996.39), gb1Lobby, new THREE.Vector3(-3156.16, -76.14, 3865.33), 50, 100);
+createInfospot(gb1Kanan, new THREE.Vector3(1285.87, -1980.71, 4399.18), gb2Tangga, new THREE.Vector3(4992.14, -182.87, -12.78), 33, 98);
 
 createInfospot(gb2Tangga, new THREE.Vector3(4877.68, -1086.24, 5.24), gb2Lobby, new THREE.Vector3(309.22, -174.21, -4976.95), 45, 100);
-createInfospot(gb2Tangga, new THREE.Vector3(-3715.77, -1872.58, -2765.55), gb1Kiri, new THREE.Vector3(444.66, -136.94, -4971.32));
-createInfospot(gb2Tangga, new THREE.Vector3(-3408.36, -1740.71, 3205.49), gb1Kanan, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb2Tangga, new THREE.Vector3(-3715.77, -1872.58, -2765.55), gb1Kiri, new THREE.Vector3(444.66, -136.94, -4971.32), 42, 74);
+createInfospot(gb2Tangga, new THREE.Vector3(-3408.36, -1740.71, 3205.49), gb1Kanan, new THREE.Vector3(4992.14, -182.87, -12.78), 42, 124);
 
-createInfospot(gb2Lobby, new THREE.Vector3(-209.95, -1007.56, 4882.61), gb2Tangga, new THREE.Vector3(79.40, 263.53, -4985.48));
+createInfospot(gb2Lobby, new THREE.Vector3(-209.95, -1007.56, 4882.61), gb2Tangga, new THREE.Vector3(79.40, 263.53, -4985.48), 33, 98);
 createInfospot(gb2Lobby, new THREE.Vector3(-4789.64, -1372.60, -272.65), gb2TanggaKiri, new THREE.Vector3(-343.74, -31.29, 4980.76), 45, 74);
 createInfospot(gb2Lobby, new THREE.Vector3(4835.55, -1205.93, 293.50), gb2TanggaKanan, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 124);
 createInfospot(gb2Lobby, new THREE.Vector3(323.69, -911.31, -4895.79), gd2Koridor, new THREE.Vector3(-585.82, -100.17, -4958.62), 50, 100);
@@ -535,16 +535,16 @@ createInfospot(gd2Koridor, new THREE.Vector3(-552.57, -782.28, -4905.61), gd2Tan
 createInfospot(gd2Koridor, new THREE.Vector3(584.83, -665.04, 4914.54), gb2Lobby, new THREE.Vector3(-207.43, 77.13, 4986.10), 45, 100);
 
 
-createInfospot(gb2TanggaKiri, new THREE.Vector3(4572.83, -1288.11, 1540.42), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36));
+createInfospot(gb2TanggaKiri, new THREE.Vector3(4572.83, -1288.11, 1540.42), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36), 33, 98);
 createInfospot(gb2TanggaKiri, new THREE.Vector3(-363.33, -1110.97, 4854.00), gb2Kiri, new THREE.Vector3(421.84, -150.13, -4971.99), 45, 48);
 createInfospot(gb2TanggaKiri, new THREE.Vector3(230.43, -1439.06, -4773.11), gb2Lobby, new THREE.Vector3(4982.24, -187.19, 198.63), 45, 100);
 
-createInfospot(gb2TanggaKanan, new THREE.Vector3(1287.52, -1190.96, 4674.55), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36));
+createInfospot(gb2TanggaKanan, new THREE.Vector3(1287.52, -1190.96, 4674.55), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36), 33, 98);
 createInfospot(gb2TanggaKanan, new THREE.Vector3(4858.37, -1139.51, 171.54), gb2Kanan, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 135);
 createInfospot(gb2TanggaKanan, new THREE.Vector3(-4799.36, -1363.71, -135.07), gb2Lobby, new THREE.Vector3(-4985.05, -38.56, -256.39), 45, 100);
 
 createInfospot(gb2Kiri, new THREE.Vector3(-447.73, -627.58, 4933.27), gb2TanggaKiri, new THREE.Vector3(288.16, -97.89, -4981.05), 45, 74);
-createInfospot(gb2Kiri, new THREE.Vector3(-1994.90, -428.06, 4561.60), gb2RT, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb2Kiri, new THREE.Vector3(-1994.90, -428.06, 4561.60), gb2RT, new THREE.Vector3(4992.14, -182.87, -12.78), 23, 35);
 
 createInfospot(gb2RT, new THREE.Vector3(-863.19, -1255.06, -4753.95), gb2TanggaKiri, new THREE.Vector3(-4125.70, -274.93, -2794.99), 45, 74);
 
@@ -554,32 +554,32 @@ createInfospot(gb2Kanan, new THREE.Vector3(-4757.19, -1515.85, 120.94), gb2Tangg
 createInfospot(gb2Kanan, new THREE.Vector3(4966.16, -457.80, -203.76), gb2TU, new THREE.Vector3(-4689.31, -58.02, -1710.60), 70, 171);
 
 
-createInfospot(gb3Tangga, new THREE.Vector3(-4901.32, -942.96, -98.02), gb3Lobby, new THREE.Vector3(-520.95, -28.25, 4971.59));
+createInfospot(gb3Tangga, new THREE.Vector3(-4901.32, -942.96, -98.02), gb3Lobby, new THREE.Vector3(-520.95, -28.25, 4971.59), 45, 100);
 createInfospot(gb3Tangga, new THREE.Vector3(3706.43, -1940.26, -2733.54), gb2TanggaKanan, new THREE.Vector3(-3763.42, -228.35, -3272.51), 45, 124);
 createInfospot(gb3Tangga, new THREE.Vector3(3440.39, -1934.18, 3066.52), gb2TanggaKiri, new THREE.Vector3(-1314.32, -143.90, -4811.27), 45, 74);
 
-createInfospot(gb3Lobby, new THREE.Vector3(521.18, -925.47, -4881.78), gb3Tangga, new THREE.Vector3(-4989.99, 105.21, 112.19));
-createInfospot(gb3Lobby, new THREE.Vector3(4832.90, -1135.98, 562.50), gb3TanggaKiri, new THREE.Vector3(-4984.87, 15.60, 277.05));
-createInfospot(gb3Lobby, new THREE.Vector3(-4860.23, -1049.94, -476.00), gb3TanggaKanan, new THREE.Vector3(-4986.78, -60.72, 206.81));
-createInfospot(gb3Lobby, new THREE.Vector3(-512.02, -1805.53, 4629.71), gd3Koridor2, new THREE.Vector3(-4276.93, -129.72, -2572.57));
+createInfospot(gb3Lobby, new THREE.Vector3(521.18, -925.47, -4881.78), gb3Tangga, new THREE.Vector3(-4989.99, 105.21, 112.19), 33, 98);
+createInfospot(gb3Lobby, new THREE.Vector3(4832.90, -1135.98, 562.50), gb3TanggaKiri, new THREE.Vector3(-4984.87, 15.60, 277.05), 45, 77);
+createInfospot(gb3Lobby, new THREE.Vector3(-4860.23, -1049.94, -476.00), gb3TanggaKanan, new THREE.Vector3(-4986.78, -60.72, 206.81), 45, 119);
+createInfospot(gb3Lobby, new THREE.Vector3(-512.02, -1805.53, 4629.71), gd3Koridor2, new THREE.Vector3(-4276.93, -129.72, -2572.57), 80, 100);
 
-createInfospot(gb3TanggaKanan, new THREE.Vector3(-2158.98, -1061.97, -4372.51), gb4Tangga, new THREE.Vector3(-4982.74, 87.54, 263.71));
-createInfospot(gb3TanggaKanan, new THREE.Vector3(4638.17, -1849.45, -92.07), gb3Lobby, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb3TanggaKanan, new THREE.Vector3(-2158.98, -1061.97, -4372.51), gb4Tangga, new THREE.Vector3(-4982.74, 87.54, 263.71), 33, 98);
+createInfospot(gb3TanggaKanan, new THREE.Vector3(4638.17, -1849.45, -92.07), gb3Lobby, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 100);
 
-createInfospot(gb3TanggaKiri, new THREE.Vector3(4712.47, -1615.69, -319.90), gb3Lobby, new THREE.Vector3(-4973.15, 46.44, -477.45));
-createInfospot(gb3TanggaKiri, new THREE.Vector3(-4878.02, -1027.85, 220.41), gb3Kiri, new THREE.Vector3(479.55, -72.70, -4972.01));
-createInfospot(gb3TanggaKiri, new THREE.Vector3(-1619.00, -1053.22, 4603.39), gb4Tangga, new THREE.Vector3(-4982.74, 87.54, 263.71));
+createInfospot(gb3TanggaKiri, new THREE.Vector3(4712.47, -1615.69, -319.90), gb3Lobby, new THREE.Vector3(-4973.15, 46.44, -477.45), 45, 100);
+createInfospot(gb3TanggaKiri, new THREE.Vector3(-4878.02, -1027.85, 220.41), gb3Kiri, new THREE.Vector3(479.55, -72.70, -4972.01), 45, 58);
+createInfospot(gb3TanggaKiri, new THREE.Vector3(-1619.00, -1053.22, 4603.39), gb4Tangga, new THREE.Vector3(-4982.74, 87.54, 263.71), 33, 98);
 
-createInfospot(gb3Kiri, new THREE.Vector3(473.04, -1163.44, -4837.81), gb3Kiri2, new THREE.Vector3(-4984.87, 15.60, 277.05));
-createInfospot(gb3Kiri, new THREE.Vector3(-455.21, -1172.19, 4836.59), gb3TanggaKiri, new THREE.Vector3(4992.14, -182.87, -12.78));
+createInfospot(gb3Kiri, new THREE.Vector3(473.04, -1163.44, -4837.81), gb3Kiri2, new THREE.Vector3(-4984.87, 15.60, 277.05), 45, 36);
+createInfospot(gb3Kiri, new THREE.Vector3(-455.21, -1172.19, 4836.59), gb3TanggaKiri, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 77);
 
-createInfospot(gb3Kiri2, new THREE.Vector3(4822.47, -1265.03, -225.09), gb3Kiri, new THREE.Vector3(-464.55, -266.11, 4965.20));
+createInfospot(gb3Kiri2, new THREE.Vector3(4822.47, -1265.03, -225.09), gb3Kiri, new THREE.Vector3(-464.55, -266.11, 4965.20), 45, 58);
 
-createInfospot(gb4Tangga, new THREE.Vector3(-4870.61, -1116.78, 24.23), gb4Lobby, new THREE.Vector3(-93.36, 91.54, 4991.51));
-createInfospot(gb4Tangga, new THREE.Vector3(3377.61, -1935.28, -3132.01), gb3TanggaKanan, new THREE.Vector3(3568.09, -620.14, 3433.43));
-createInfospot(gb4Tangga, new THREE.Vector3(3721.61, -1973.17, 2688.67), gb3TanggaKiri, new THREE.Vector3(3799.92, -479.03, -3200.93));
+createInfospot(gb4Tangga, new THREE.Vector3(-4870.61, -1116.78, 24.23), gb4Lobby, new THREE.Vector3(-93.36, 91.54, 4991.51), 45, 100);
+createInfospot(gb4Tangga, new THREE.Vector3(3377.61, -1935.28, -3132.01), gb3TanggaKanan, new THREE.Vector3(3568.09, -620.14, 3433.43), 45, 119);
+createInfospot(gb4Tangga, new THREE.Vector3(3721.61, -1973.17, 2688.67), gb3TanggaKiri, new THREE.Vector3(3799.92, -479.03, -3200.93), 45, 77);
 
-createInfospot(gb4Lobby, new THREE.Vector3(105.69, -918.88, -4905.71), gb4Tangga, new THREE.Vector3(4963.91, -461.86, -237.52));
+createInfospot(gb4Lobby, new THREE.Vector3(105.69, -918.88, -4905.71), gb4Tangga, new THREE.Vector3(4963.91, -461.86, -237.52), 33, 98);
 
 createInfoPlace(halamanKanan, new THREE.Vector3(4944.62, -220.74, 644.03), null, 'assets/icons/Enter.png');
 createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-mushola');
@@ -650,15 +650,21 @@ const buttonData = {
   },
   'Lobby2': {
     page: gb1Lobby,
-    coordinates: new THREE.Vector3(4922.85, -329.88, -754.08)
+    coordinates: new THREE.Vector3(4922.85, -329.88, -754.08),
+    top: 50,
+    left: 100
   },
   'Kantin 1': {
     page: gb1Kiri,
-    coordinates: new THREE.Vector3(-2781.08, -152.93, -4140.44)
+    coordinates: new THREE.Vector3(-2781.08, -152.93, -4140.44),
+    top: 42,
+    left: 74
   },
   'Kantin 2': {
     page: gb1Kanan,
-    coordinates: new THREE.Vector3(3682.00, -281.03, -3363.78)
+    coordinates: new THREE.Vector3(3682.00, -281.03, -3363.78),
+    top: 42,
+    left: 124
   },
   'Rumah Tangga': {
     page: gb2Kiri,
@@ -704,23 +710,33 @@ const buttonData = {
   },
   'Rektor': {
     page: gd3Tangga,
-    coordinates: new THREE.Vector3(-3497.82, -285.13, 3547.73)
+    coordinates: new THREE.Vector3(-3497.82, -285.13, 3547.73), 
+    top: 76,
+    left: 90
   },
   'Sekretariat Rektor': {
     page: gd3Kiri,
-    coordinates: new THREE.Vector3(-413.54, -48.25, 4976.43)
+    coordinates: new THREE.Vector3(-413.54, -48.25, 4976.43),
+    top: 76,
+    left: 74 
   },
   'Humas': {
     page: gd3LKiri2,
-    coordinates: new THREE.Vector3(-1685.00, -634.46, 4654.43)
+    coordinates: new THREE.Vector3(-1685.00, -634.46, 4654.43),
+    top: 53,
+    left: 35
   },
   'Rapat Lt.3': {
     page: gd3LKiri2,
-    coordinates: new THREE.Vector3(4539.05, -34.65, 2086.96)
+    coordinates: new THREE.Vector3(4539.05, -34.65, 2086.96),
+    top: 53,
+    left: 35
   },
   'Serbaguna Lt.4': {
     page: gb4Lobby,
-    coordinates: new THREE.Vector3(4850.92, -170.99, 1162.23)
+    coordinates: new THREE.Vector3(4850.92, -170.99, 1162.23),
+    top: 50,
+    left: 100
   },
 };
 
@@ -736,7 +752,7 @@ selectButtons.forEach((button) => {
     const data = buttonData[text];
     console.log();
     if (floorText === 'Gedung belakang Lt.1' && text === 'Lobby') {
-      onButtonClick(buttonData.Lobby2.page);
+      onButtonClick(buttonData.Lobby2.page, buttonData.Lobby2.top,buttonData.Lobby2.left);
       buttonData.Lobby2.page.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(buttonData.Lobby2.coordinates, 1);
       });
