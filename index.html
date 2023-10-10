@@ -34,24 +34,14 @@
       </div>
     </div>
 
-    <div class="floormap-container">
+    <div id="floormapContainer" class="floormap-container">
       <img id="floorImage" class="floormap" src="assets/images/floormap/gedung_depan_lt1.png">
-      <div id="redDot" class="red-dot" style="top: 0px; left: 0px;"></div>
+      <div id="redDot" class="red-dot"></div>
     </div>
 
     <div class="search-container disable-selection" id="searchContainer">
       <div class="search" id="search">
         <div class="header-input">
-          <div class="search-input">
-            <input
-              class="text-md-regular"
-              id="searchInput"
-              type="text"
-              placeholder="Cari ruangan"
-              oninput="filterSelectButtons(this.value)"
-            />
-            <img src="assets/icons/search.svg" />
-          </div>
           <div class="filter-button" onclick="toggleFilterSection(this)">
             <img src="assets/icons/filter-lines-white.svg" alt="filter icon" />
           </div>

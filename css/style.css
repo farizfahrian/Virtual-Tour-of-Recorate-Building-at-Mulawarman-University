@@ -342,8 +342,12 @@ body {
   animation: swift-up2 0.6s ease-out forwards;
 }
 
+.swift-down-animation {
+  animation: swift-down 0.6s ease-out forwards;
+}
+
 .splash-container.fade-out {
-  animation: fadeOut 0.5s ease-in forwards;
+  animation: fadeOut 0.5s ease-out forwards;
 }
 
 @keyframes fadeOut {
@@ -351,7 +355,6 @@ body {
     opacity: 1;
   }
   to {
-    top: -100px;
     opacity: 0;
     display: none;
   }
@@ -366,6 +369,16 @@ body {
 @keyframes swift-up2 {
   to {
     bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes swift-down {
+  from {
+    top: 0;
+  }
+  to {
+    top: 24px;
     opacity: 1;
   }
 }
@@ -634,7 +647,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
@@ -725,10 +738,11 @@ body {
 
 .filter-button {
   display: flex;
-  padding: 12px;
+  padding: 8px;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  flex-grow: 1;
 
   border-radius: 8px;
 
@@ -808,24 +822,9 @@ body {
   color: var(--color-gray-700);
 }
 
-.search-input {
+.header-input {
   display: flex;
-  padding: 10px 14px;
-  align-items: center;
-  gap: 8px;
   align-self: stretch;
-  border-radius: 8px;
-  border: 1px solid var(--gray-300, #d0d5dd);
-  background: var(--base-white, #fff);
-  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  flex: 1;
-}
-
-.search-input input[type="text"] {
-  flex: 1;
-  width: 100%;
-  border: none;
-  outline: none;
 }
 
 .floormap-container {
@@ -833,7 +832,7 @@ body {
   top: 24px;
   left: 24px;
 
-  display: inline-flex;
+  display: none;
   padding: 4px;
   flex-direction: column;
   align-items: flex-start;
@@ -853,6 +852,8 @@ body {
 
 .red-dot {
   position: absolute;
+  top: 22px;
+  left: 97px;
   background-color: red;
   width: 10px;
   height: 10px;

@@ -150,11 +150,11 @@ const panoramaTexts = new Map([
   [halamanMPK.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
   [jalanULT.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
   [halamanULT.uuid, { floor: 'Halaman ULT', location: 'Parkiran MPK' }],
-  [depanULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
-  [kiriULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
-  [kananULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
-  [tengahULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
-  [belakangULT.uuid, { floor: 'Ruangan ULT', location: 'Parkiran MPK' }],
+  [depanULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
+  [kiriULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
+  [kananULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
+  [tengahULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
+  [belakangULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
 
   [gdLobby.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
   [gdLobby2.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
@@ -180,7 +180,7 @@ const panoramaTexts = new Map([
   [gd2Kiri4.uuid, { floor: 'Gedung Depan Lt.2', location: 'Lorong Kiri' }],
   [gd2Kiri5.uuid, { floor: 'Gedung Depan Lt.2', location: 'Lorong Kiri' }],
   [gd2Keuangan.uuid, { floor: 'Gedung Depan Lt.2', location: 'Keuangan' }],
-  [gd2Koridor.uuid, { floor: 'Gedung Depan Lt.2', location: 'Koridor' }],
+  [gd2Koridor.uuid, { floor: 'Koridor Penghubung Lt.2', location: 'Koridor Penghubung' }],
 
   [gd3Tangga.uuid, { floor: 'Gedung Depan Lt.3', location: 'Tangga' }],
   [gd3Kanan.uuid, { floor: 'Gedung Depan Lt.3', location: 'Lorong' }],
@@ -195,7 +195,7 @@ const panoramaTexts = new Map([
   [gd3LKiri.uuid, { floor: 'Gedung Depan Lt.3', location: 'Lorong Kiri' }],
   [gd3LKiri2.uuid, { floor: 'Gedung Depan Lt.3', location: 'Lorong Kiri' }],
   [gd3Koridor.uuid, { floor: 'Gedung Depan Lt.3', location: 'Koridor' }],
-  [gd3Koridor2.uuid, { floor: 'Gedung Depan Lt.3', location: 'Koridor' }],
+  [gd3Koridor2.uuid, { floor: 'Koridor Penghubung Lt.3', location: 'Koridor Penghubung' }],
 
   [gb1Lobby.uuid, { floor: 'Gedung Belakang Lt.1', location: 'Lobby' }],
   [gb1Kiri.uuid, { floor: 'Gedung Belakang Lt.1', location: 'Kantin 1' }],
@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('load', function () {
   const splashScreen = document.getElementById('splashContainer');
   const control = document.getElementById('control');
+  const floormap = document.getElementById('floormapContainer');
 
   setTimeout(function () {
     splashScreen.classList.add('fade-out');
@@ -254,12 +255,16 @@ window.addEventListener('load', function () {
       }
       control.style.display = 'flex';
       control.classList.add('swift-up-animation');
+      
+      floormap.style.display = 'inline-flex';
+      floormap.classList.add('swift-down-animation');
+
       bar.classList.add('hide');
     }, 600);
   }, 4000); // 
 });
 
-function onButtonClick(targetPanorama) {
+function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
   bar.classList.remove('hide');
   targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
@@ -273,15 +278,45 @@ function onButtonClick(targetPanorama) {
     floorText.textContent = floor;
     locationText.textContent = location;
   }
+  console.log(floorText);
+
+  const floorImage = document.getElementById("floorImage");
+  if (floorText.textContent === 'Gedung Depan Lt.1') {
+    floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
+  } else if (floorText.textContent === "Gedung Depan Lt.2") {
+    floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
+  } else if (floorText.textContent === "Gedung Depan Lt.3") {
+    floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
+  } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+    floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
+  } else if (floorText.textContent === "Gedung Belakang Lt.2") {
+    floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
+  } else if (floorText.textContent === "Gedung Belakang Lt.3") {
+    floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
+  } else if (floorText.textContent === "Gedung Belakang Lt.4") {
+    floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
+  } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+    floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+  } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
+    floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+  } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
+    floorImage.src = "assets/images/floormap/penghubung_lt3.png";
+  }
+
+  const redDot = document.getElementById("redDot");
+  
+  redDot.style.top = redDotTopCoord + "px";
+  redDot.style.left = redDotLeftCoord + "px";
+  redDot.style.display = "block";
 }
 
-function createInfospot(panorama, position, targetPanorama, coordinates) {
+function createInfospot(panorama, position, targetPanorama, coordinates, redDotTopCoord, redDotLeftCoord) {
   var textureLoader = new THREE.TextureLoader();
   textureLoader.load('assets/icons/infospot.png', function () {
     var infospot = new PANOLENS.Infospot(500, 'assets/icons/infospot.png');
     infospot.position.copy(position);
     infospot.addEventListener('click', function () {
-      onButtonClick(targetPanorama);
+      onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord);
       viewer.clearAllCache();
       targetPanorama.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(coordinates, 1);
@@ -289,6 +324,8 @@ function createInfospot(panorama, position, targetPanorama, coordinates) {
     });
     panorama.add(infospot);
   });
+
+
 }
 
 function createInfoPlace(panorama, position, descId = null, assetLocation = 'assets/icons/info-ruangan.png') {
@@ -308,10 +345,10 @@ function createInfoPlace(panorama, position, descId = null, assetLocation = 'ass
 
 createInfospot(halamanTiang, new THREE.Vector3(-4986.21, -69.52, 211.10), halamanDepan, new THREE.Vector3(-4960.98, 237.15, -536.58));
 
-createInfospot(halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), halamanKanan, new THREE.Vector3(-1990.98, 342.98, 4569.70));
-createInfospot(halamanDepan, new THREE.Vector3(4885.27, -843.06, 603.77), halamanTiang, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(halamanDepan, new THREE.Vector3(-4956.69, -366.28, -531.28), gdLobby, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(halamanDepan, new THREE.Vector3(743.10, -454.38, -4914.68), halamanKiri, new THREE.Vector3(705.35, 57.83, -4941.37));
+createInfospot(halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), halamanKanan, new THREE.Vector3(-1990.98, 342.98, 4569.70),100,100);
+createInfospot(halamanDepan, new THREE.Vector3(4885.27, -843.06, 603.77), halamanTiang, new THREE.Vector3(4977.40, 304.08, 203.23),100,100);
+createInfospot(halamanDepan, new THREE.Vector3(-4956.69, -366.28, -531.28), gdLobby, new THREE.Vector3(4977.40, 304.08, 203.23), 81, 98);
+createInfospot(halamanDepan, new THREE.Vector3(743.10, -454.38, -4914.68), halamanKiri, new THREE.Vector3(705.35, 57.83, -4941.37),100,100);
 
 createInfospot(halamanKanan, new THREE.Vector3(-1286.88, -601.83, -4782.89), halamanDepan, new THREE.Vector3(705.35, 57.83, -4941.37));
 createInfospot(halamanKanan, new THREE.Vector3(-4977.46, -287.91, -214.31), halamanKananAtas, new THREE.Vector3(-4965.49, 107.20, -540.68));
@@ -321,7 +358,7 @@ createInfospot(halamanKananAtas, new THREE.Vector3(286.19, -399.25, -4968.77), h
 
 createInfospot(halamanPenghubung, new THREE.Vector3(-211.86, -490.22, 4961.89), halamanKananAtas, new THREE.Vector3(-405.42, 28.87, 4977.62));
 createInfospot(halamanPenghubung, new THREE.Vector3(65.84, -349.80, -4982.81), halamanKiriAtas2, new THREE.Vector3(-241.62, 245.92, 4977.68));
-createInfospot(halamanPenghubung, new THREE.Vector3(4730.04, -813.56, -1377.70), gdLobby2, new THREE.Vector3(-4980.10, 158.98, -260.53));
+createInfospot(halamanPenghubung, new THREE.Vector3(4730.04, -813.56, -1377.70), gdLobby2, new THREE.Vector3(-4980.10, 158.98, -260.53), 28, 100);
 createInfospot(halamanPenghubung, new THREE.Vector3(-4971.56, -227.91, -371.81), gb1Lobby, new THREE.Vector3(4914.81, -241.64, -826.97));
 
 createInfospot(halamanKiriAtas2, new THREE.Vector3(-254.71, -482.44, 4960.57), halamanKiriAtas, new THREE.Vector3(-4905.65, 514.73, 754.50));
@@ -330,10 +367,10 @@ createInfospot(halamanKiriAtas2, new THREE.Vector3(563.21, -426.51, -4946.51), h
 createInfospot(halamanKiriAtas, new THREE.Vector3(-659.88, -269.95, -4940.15), halamanKiri, new THREE.Vector3(4975.90, 111.93, 375.85));
 createInfospot(halamanKiriAtas, new THREE.Vector3(4953.84, -639.68, 27.93), halamanKiriAtas2, new THREE.Vector3(452.74, 142.12, -4970.69));
 
-createInfospot(halamanKiri, new THREE.Vector3(-689.16, -444.59, 4924.39), halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(halamanKiri, new THREE.Vector3(-4976.04, -420.76, -98.72), halamanKiriAtas, new THREE.Vector3(370.93, 320.95, 4967.95));
-createInfospot(halamanKiri, new THREE.Vector3(4870.96, -513.93, -974.17), halamanMPK, new THREE.Vector3(4993.73, 14.87, -108.50));
-createInfospot(halamanKiri, new THREE.Vector3(2379.90, -401.49, -4372.82), jalanULT, new THREE.Vector3(4969.59, 79.10, 521.03));
+createInfospot(halamanKiri, new THREE.Vector3(-689.16, -444.59, 4924.39), halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50),50,50);
+createInfospot(halamanKiri, new THREE.Vector3(-4976.04, -420.76, -98.72), halamanKiriAtas, new THREE.Vector3(370.93, 320.95, 4967.95),50,50);
+createInfospot(halamanKiri, new THREE.Vector3(4870.96, -513.93, -974.17), halamanMPK, new THREE.Vector3(4993.73, 14.87, -108.50),50,50);
+createInfospot(halamanKiri, new THREE.Vector3(2379.90, -401.49, -4372.82), jalanULT, new THREE.Vector3(4969.59, 79.10, 521.03),50,50);
 
 createInfospot(halamanMPK, new THREE.Vector3(-4883.64, -374.01, -990.58), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50));
 
@@ -362,71 +399,71 @@ createInfospot(belakangULT, new THREE.Vector3(2834.89, -1278.00, -3910.95), kiri
 createInfospot(belakangULT, new THREE.Vector3(4257.88, -993.31, 2414.01), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
 
 createInfospot(gdLobby, new THREE.Vector3(-4925.31, -844.62, -13.58), halamanDepan, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gdLobby, new THREE.Vector3(3661.43, -944.47, 3263.79), gdLobbyKiri, new THREE.Vector3(2697.65, -600.05, -4154.14));
-createInfospot(gdLobby, new THREE.Vector3(1122.77, -1022.19, -4755.44), gdLobbyKanan, new THREE.Vector3(-1897.02, 239.75, -4610.11));
-createInfospot(gdLobby, new THREE.Vector3(2468.64, -1477.17, -4081.91), gd2Tangga, new THREE.Vector3(-4952.06, -334.60, -568.49));
+createInfospot(gdLobby, new THREE.Vector3(3661.43, -944.47, 3263.79), gdLobbyKiri, new THREE.Vector3(2697.65, -600.05, -4154.14), 49, 78);
+createInfospot(gdLobby, new THREE.Vector3(1122.77, -1022.19, -4755.44), gdLobbyKanan, new THREE.Vector3(-1897.02, 239.75, -4610.11), 49, 121);
+createInfospot(gdLobby, new THREE.Vector3(2468.64, -1477.17, -4081.91), gd2Tangga, new THREE.Vector3(-4952.06, -334.60, -568.49), 29, 99);
 
 createInfospot(gdLobby2, new THREE.Vector3(4926.39, -724.57, 360.08), halamanPenghubung, new THREE.Vector3(-4976.35, 261.76, 254.96));
-createInfospot(gdLobby2, new THREE.Vector3(-2628.56, -1186.21, -4075.77), gdLobbyKanan, new THREE.Vector3(-4179.59, -231.09, 2715.15));
-createInfospot(gdLobby2, new THREE.Vector3(-3487.27, -1148.65, 3384.22), gdLobbyKiri, new THREE.Vector3(4822.92, -687.55, 1098.35));
+createInfospot(gdLobby2, new THREE.Vector3(-2628.56, -1186.21, -4075.77), gdLobbyKanan, new THREE.Vector3(-4179.59, -231.09, 2715.15), 49, 121);
+createInfospot(gdLobby2, new THREE.Vector3(-3487.27, -1148.65, 3384.22), gdLobbyKiri, new THREE.Vector3(4822.92, -687.55, 1098.35), 49, 78);
 
-createInfospot(gdLobbyKanan, new THREE.Vector3(33.79, -1157.67, 4861.98), gdLobby, new THREE.Vector3(-3022.15, -116.00, 3971.83));
-createInfospot(gdLobbyKanan, new THREE.Vector3(3972.99, -1276.52, -2740.12), gdLobby2, new THREE.Vector3(3141.98, -417.46, 3857.02));
-createInfospot(gdLobbyKanan, new THREE.Vector3(-4834.95, -1213.91, -261.96), gd1Kanan, new THREE.Vector3(-8.11, -52.24, 4997.52));
+createInfospot(gdLobbyKanan, new THREE.Vector3(33.79, -1157.67, 4861.98), gdLobby, new THREE.Vector3(-3022.15, -116.00, 3971.83), 81, 98);
+createInfospot(gdLobbyKanan, new THREE.Vector3(3972.99, -1276.52, -2740.12), gdLobby2, new THREE.Vector3(3141.98, -417.46, 3857.02), 28, 100);
+createInfospot(gdLobbyKanan, new THREE.Vector3(-4834.95, -1213.91, -261.96), gd1Kanan, new THREE.Vector3(-8.11, -52.24, 4997.52), 49, 140);
 
-createInfospot(gd1Kanan, new THREE.Vector3(-51.65, -1501.55, -4764.85), gdLobbyKanan, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gd1Kanan, new THREE.Vector3(-28.33, -867.48, 4919.99), gd1Kanan2, new THREE.Vector3(320.81, -15.37, -4982.58));
+createInfospot(gd1Kanan, new THREE.Vector3(-51.65, -1501.55, -4764.85), gdLobbyKanan, new THREE.Vector3(4977.40, 304.08, 203.23), 49, 121);
+createInfospot(gd1Kanan, new THREE.Vector3(-28.33, -867.48, 4919.99), gd1Kanan2, new THREE.Vector3(320.81, -15.37, -4982.58), 49, 156);
 
-createInfospot(gd1Kanan2, new THREE.Vector3(-249.94, -1064.49, 4869.19), gd1Kanan, new THREE.Vector3(88.78, -177.77, -4988.36));
-createInfospot(gd1Kanan2, new THREE.Vector3(306.56, -1020.12, -4875.05), gd1Kanan3, new THREE.Vector3(-891.50, -14.63, -4913.61));
+createInfospot(gd1Kanan2, new THREE.Vector3(-249.94, -1064.49, 4869.19), gd1Kanan, new THREE.Vector3(88.78, -177.77, -4988.36), 49, 140);
+createInfospot(gd1Kanan2, new THREE.Vector3(306.56, -1020.12, -4875.05), gd1Kanan3, new THREE.Vector3(-891.50, -14.63, -4913.61), 49, 170);
 
-createInfospot(gd1Kanan3, new THREE.Vector3(931.49, -859.96, 4829.97), gd1Kanan2, new THREE.Vector3(-218.33, -116.53, 4983.98));
+createInfospot(gd1Kanan3, new THREE.Vector3(931.49, -859.96, 4829.97), gd1Kanan2, new THREE.Vector3(-218.33, -116.53, 4983.98), 49, 156);
 
-createInfospot(gdLobbyKiri, new THREE.Vector3(-380.45, -865.16, 4902.00), gdLobby, new THREE.Vector3(-3610.17, -133.54, -3443.80));
-createInfospot(gdLobbyKiri, new THREE.Vector3(-4008.05, -1296.55, -2564.74), gdLobby2, new THREE.Vector3(3218.45, -492.27, -3783.72));
-createInfospot(gdLobbyKiri, new THREE.Vector3(4449.00, -1173.44, -1953.12), gd1Kiri, new THREE.Vector3(-3893.72, -836.30, -3011.08));
+createInfospot(gdLobbyKiri, new THREE.Vector3(-380.45, -865.16, 4902.00), gdLobby, new THREE.Vector3(-3610.17, -133.54, -3443.80), 81, 98);
+createInfospot(gdLobbyKiri, new THREE.Vector3(-4008.05, -1296.55, -2564.74), gdLobby2, new THREE.Vector3(3218.45, -492.27, -3783.72), 28, 100);
+createInfospot(gdLobbyKiri, new THREE.Vector3(4449.00, -1173.44, -1953.12), gd1Kiri, new THREE.Vector3(-3893.72, -836.30, -3011.08), 49, 58);
 
-createInfospot(gd1Kiri, new THREE.Vector3(-3868.78, -993.15, -2992.36), gd1Kiri2, new THREE.Vector3(-4980.33, -419.91, -18.90));
-createInfospot(gd1Kiri, new THREE.Vector3(3852.92, -1500.50, 2807.86), gdLobbyKiri, new THREE.Vector3(-4540.36, -292.63, 2062.10));
+createInfospot(gd1Kiri, new THREE.Vector3(-3868.78, -993.15, -2992.36), gd1Kiri2, new THREE.Vector3(-4980.33, -419.91, -18.90), 49, 38);
+createInfospot(gd1Kiri, new THREE.Vector3(3852.92, -1500.50, 2807.86), gdLobbyKiri, new THREE.Vector3(-4540.36, -292.63, 2062.10), 49, 78);
 
-createInfospot(gd1Kiri2, new THREE.Vector3(4857.03, -1169.06, -82.12), gd1Kiri, new THREE.Vector3(4001.28, -190.52, 2981.15));
+createInfospot(gd1Kiri2, new THREE.Vector3(4857.03, -1169.06, -82.12), gd1Kiri, new THREE.Vector3(4001.28, -190.52, 2981.15), 49, 58);
 
-createInfospot(gd2Tangga, new THREE.Vector3(4627.02, -1329.76, -1313.84), gdLobby, new THREE.Vector3(4597.21, -1408.92, -1338.99));
-createInfospot(gd2Tangga, new THREE.Vector3(2325.22, -1073.04, 4285.35), gd2Kanan, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gd2Tangga, new THREE.Vector3(3558.40, -1178.10, -3303.54), gd2Kiri, new THREE.Vector3(-4151.22, -762.09, -2666.99));
+createInfospot(gd2Tangga, new THREE.Vector3(4627.02, -1329.76, -1313.84), gdLobby, new THREE.Vector3(4597.21, -1408.92, -1338.99), 81, 98);
+createInfospot(gd2Tangga, new THREE.Vector3(2325.22, -1073.04, 4285.35), gd2Kanan, new THREE.Vector3(4977.40, 304.08, 203.23), 52, 127);
+createInfospot(gd2Tangga, new THREE.Vector3(3558.40, -1178.10, -3303.54), gd2Kiri, new THREE.Vector3(-4151.22, -762.09, -2666.99), 52, 73);
 createInfospot(gd2Tangga, new THREE.Vector3(3826.59, -1124.64, 3002.97), gd3Tangga, new THREE.Vector3(498.63, -11.73, 4973.41));
-createInfospot(gd2Tangga, new THREE.Vector3(-4837.94, -1131.24, -536.67), gd2Koridor, new THREE.Vector3(609.10, -19.14, 4958.16));
+createInfospot(gd2Tangga, new THREE.Vector3(-4837.94, -1131.24, -536.67), gd2Koridor, new THREE.Vector3(609.10, -19.14, 4958.16), 50, 100);
 
-createInfospot(gd2Kiri, new THREE.Vector3(-483.48, -1565.97, 4722.24), gd2Tangga, new THREE.Vector3(-4959.03, -224.82, -551.99));
-createInfospot(gd2Kiri, new THREE.Vector3(-4758.40, -1490.48, -234.36), gd2Kiri2, new THREE.Vector3(486.93, -492.05, -4947.26));
+createInfospot(gd2Kiri, new THREE.Vector3(-483.48, -1565.97, 4722.24), gd2Tangga, new THREE.Vector3(-4959.03, -224.82, -551.99), 29, 99);
+createInfospot(gd2Kiri, new THREE.Vector3(-4758.40, -1490.48, -234.36), gd2Kiri2, new THREE.Vector3(486.93, -492.05, -4947.26), 52, 59);
 
-createInfospot(gd2Kiri2, new THREE.Vector3(-483.48, -1565.97, 4722.24), gd2Kiri, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gd2Kiri2, new THREE.Vector3(459.22, -1191.43, -4830.96), gd2Kiri3, new THREE.Vector3(-44.28, -473.02, -4972.71));
+createInfospot(gd2Kiri2, new THREE.Vector3(-483.48, -1565.97, 4722.24), gd2Kiri, new THREE.Vector3(4977.40, 304.08, 203.23), 52, 73);
+createInfospot(gd2Kiri2, new THREE.Vector3(459.22, -1191.43, -4830.96), gd2Kiri3, new THREE.Vector3(-44.28, -473.02, -4972.71), 52, 45);
 
-createInfospot(gd2Kiri3, new THREE.Vector3(-74.78, -1574.07, 4740.67), gd2Kiri2, new THREE.Vector3(-391.08, -411.29, 4961.84));
-createInfospot(gd2Kiri3, new THREE.Vector3(-105.88, -1257.37, -4830.88), gd2Kiri4, new THREE.Vector3(-694.04, -129.14, -4940.33));
+createInfospot(gd2Kiri3, new THREE.Vector3(-74.78, -1574.07, 4740.67), gd2Kiri2, new THREE.Vector3(-391.08, -411.29, 4961.84), 52, 59);
+createInfospot(gd2Kiri3, new THREE.Vector3(-105.88, -1257.37, -4830.88), gd2Kiri4, new THREE.Vector3(-694.04, -129.14, -4940.33), 52, 24);
 createInfospot(gd2Kiri3, new THREE.Vector3(-2348.41, -636.07, -4357.75), gd2Keuangan, new THREE.Vector3(4977.40, 304.08, 203.23));
 
-createInfospot(gd2Keuangan, new THREE.Vector3(1607.78, -2941.09, -3707.94), gd2Kiri3, new THREE.Vector3(3195.60, -512.70, 3799.11));
+createInfospot(gd2Keuangan, new THREE.Vector3(1607.78, -2941.09, -3707.94), gd2Kiri3, new THREE.Vector3(3195.60, -512.70, 3799.11), 52, 45);
 
-createInfospot(gd2Kiri4, new THREE.Vector3(394.23, -1475.99, 4754.11), gd2Kiri3, new THREE.Vector3(26.91, -229.18, 4989.59));
-createInfospot(gd2Kiri4, new THREE.Vector3(-732.22, -1819.85, -4589.50), gd2Kiri5, new THREE.Vector3(104.92, -290.58, -4983.08));
+createInfospot(gd2Kiri4, new THREE.Vector3(394.23, -1475.99, 4754.11), gd2Kiri3, new THREE.Vector3(26.91, -229.18, 4989.59), 52, 45);
+createInfospot(gd2Kiri4, new THREE.Vector3(-732.22, -1819.85, -4589.50), gd2Kiri5, new THREE.Vector3(104.92, -290.58, -4983.08), 52, 17);
 
-createInfospot(gd2Kiri5, new THREE.Vector3(271.29, -1527.68, 4745.97), gd2Kiri4, new THREE.Vector3(481.98, -229.87, 4965.71));
+createInfospot(gd2Kiri5, new THREE.Vector3(271.29, -1527.68, 4745.97), gd2Kiri4, new THREE.Vector3(481.98, -229.87, 4965.71), 52, 24);
 
-createInfospot(gd2Kanan, new THREE.Vector3(-746.82, -1336.54, 4749.14), gd2Tangga, new THREE.Vector3(-4965.94, 18.55, -560.11));
-createInfospot(gd2Kanan, new THREE.Vector3(4767.42, -1348.32, 610.20), gd2Kanan2, new THREE.Vector3(-4980.88, -68.20, -313.71));
+createInfospot(gd2Kanan, new THREE.Vector3(-746.82, -1336.54, 4749.14), gd2Tangga, new THREE.Vector3(-4965.94, 18.55, -560.11), 29, 99);
+createInfospot(gd2Kanan, new THREE.Vector3(4767.42, -1348.32, 610.20), gd2Kanan2, new THREE.Vector3(-4980.88, -68.20, -313.71), 52, 142);
 
-createInfospot(gd2Kanan2, new THREE.Vector3(4777.66, -1401.85, 343.71), gd2Kanan, new THREE.Vector3(-4970.86, -163.47, -433.53));
-createInfospot(gd2Kanan2, new THREE.Vector3(-4851.10, -1142.85, -297.66), gd2Kanan3, new THREE.Vector3(-2823.44, -319.27, 4105.14));
+createInfospot(gd2Kanan2, new THREE.Vector3(4777.66, -1401.85, 343.71), gd2Kanan, new THREE.Vector3(-4970.86, -163.47, -433.53), 52, 127);
+createInfospot(gd2Kanan2, new THREE.Vector3(-4851.10, -1142.85, -297.66), gd2Kanan3, new THREE.Vector3(-2823.44, -319.27, 4105.14), 52, 168);
 
-createInfospot(gd2Kanan3, new THREE.Vector3(2932.12, -1146.89, -3878.27), gd2Kanan2, new THREE.Vector3(4977.40, 304.08, 203.23));
-createInfospot(gd2Kanan3, new THREE.Vector3(-2595.92, -1574.04, 3963.73), gd2Kanan4, new THREE.Vector3(-139.43, -291.52, -4981.24));
+createInfospot(gd2Kanan3, new THREE.Vector3(2932.12, -1146.89, -3878.27), gd2Kanan2, new THREE.Vector3(4977.40, 304.08, 203.23), 52, 142);
+createInfospot(gd2Kanan3, new THREE.Vector3(-2595.92, -1574.04, 3963.73), gd2Kanan4, new THREE.Vector3(-139.43, -291.52, -4981.24), 52, 182);
 
-createInfospot(gd2Kanan4, new THREE.Vector3(592.78, -1325.03, 4776.82), gd2Kanan3, new THREE.Vector3(3006.41, -223.37, -3979.16));
+createInfospot(gd2Kanan4, new THREE.Vector3(592.78, -1325.03, 4776.82), gd2Kanan3, new THREE.Vector3(3006.41, -223.37, -3979.16), 52, 168);
 
 
-createInfospot(gd3Tangga, new THREE.Vector3(-782.49, -2593.74, -4197.11), gd2Tangga, new THREE.Vector3(-4955.87, -292.61, -554.97 ));
+createInfospot(gd3Tangga, new THREE.Vector3(-782.49, -2593.74, -4197.11), gd2Tangga, new THREE.Vector3(-4955.87, -292.61, -554.97), 29, 99);
 createInfospot(gd3Tangga, new THREE.Vector3(-4915.84, -821.02, 176.00), gd3Kanan, new THREE.Vector3(-4986.71, 79.17, -194.18));
 createInfospot(gd3Tangga, new THREE.Vector3(4586.65, -1939.40, 396.31), gd3Kiri, new THREE.Vector3(-403.84, 114.20, 4974.35));
 
@@ -459,7 +496,6 @@ createInfospot(gd3LKanan, new THREE.Vector3(-192.94, -1253.53, 4827.40), gd3Kana
 
 createInfospot(gd3LKanan2, new THREE.Vector3(338.78, -1441.53, -4766.73), gd3LKanan3, new THREE.Vector3(26.18, 75.54, 4995.66));
 createInfospot(gd3LKanan2, new THREE.Vector3(-195.31, -976.84, 4889.48), gd3LKanan, new THREE.Vector3(-155.42, -152.54, 4985.86));
-// createInfospot(gd3LKanan2, new THREE.Vector3(338.78, -1441.53, -4766.73), gd3LKanan, new THREE.Vector3(-155.42, -152.54, 4985.86));
 
 createInfospot(gd3LKanan3, new THREE.Vector3(121.51, -1470.08, -4770.07), gd3LKanan2, new THREE.Vector3(-213.43, -214.72, 4980.38));
 
@@ -486,41 +522,41 @@ createInfospot(gb1Kiri, new THREE.Vector3(-1584.94, -2054.51, 4263.28), gb2Tangg
 createInfospot(gb1Kanan, new THREE.Vector3(-2352.69, -1859.25, -3996.39), gb1Lobby, new THREE.Vector3(-3156.16, -76.14, 3865.33));
 createInfospot(gb1Kanan, new THREE.Vector3(1285.87, -1980.71, 4399.18), gb2Tangga, new THREE.Vector3(4992.14, -182.87, -12.78));
 
-createInfospot(gb2Tangga, new THREE.Vector3(4877.68, -1086.24, 5.24), gb2Lobby, new THREE.Vector3(309.22, -174.21, -4976.95));
+createInfospot(gb2Tangga, new THREE.Vector3(4877.68, -1086.24, 5.24), gb2Lobby, new THREE.Vector3(309.22, -174.21, -4976.95), 45, 100);
 createInfospot(gb2Tangga, new THREE.Vector3(-3715.77, -1872.58, -2765.55), gb1Kiri, new THREE.Vector3(444.66, -136.94, -4971.32));
 createInfospot(gb2Tangga, new THREE.Vector3(-3408.36, -1740.71, 3205.49), gb1Kanan, new THREE.Vector3(4992.14, -182.87, -12.78));
 
 createInfospot(gb2Lobby, new THREE.Vector3(-209.95, -1007.56, 4882.61), gb2Tangga, new THREE.Vector3(79.40, 263.53, -4985.48));
-createInfospot(gb2Lobby, new THREE.Vector3(-4789.64, -1372.60, -272.65), gb2TanggaKiri, new THREE.Vector3(-343.74, -31.29, 4980.76));
-createInfospot(gb2Lobby, new THREE.Vector3(4835.55, -1205.93, 293.50), gb2TanggaKanan, new THREE.Vector3(4992.14, -182.87, -12.78));
-createInfospot(gb2Lobby, new THREE.Vector3(323.69, -911.31, -4895.79), gd2Koridor, new THREE.Vector3(-585.82, -100.17, -4958.62));
+createInfospot(gb2Lobby, new THREE.Vector3(-4789.64, -1372.60, -272.65), gb2TanggaKiri, new THREE.Vector3(-343.74, -31.29, 4980.76), 45, 74);
+createInfospot(gb2Lobby, new THREE.Vector3(4835.55, -1205.93, 293.50), gb2TanggaKanan, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 124);
+createInfospot(gb2Lobby, new THREE.Vector3(323.69, -911.31, -4895.79), gd2Koridor, new THREE.Vector3(-585.82, -100.17, -4958.62), 50, 100);
 
-createInfospot(gd2Koridor, new THREE.Vector3(-552.57, -782.28, -4905.61), gd2Tangga, new THREE.Vector3(4890.32, -245.53, 980.63));
-createInfospot(gd2Koridor, new THREE.Vector3(584.83, -665.04, 4914.54), gb2Lobby, new THREE.Vector3(-207.43, 77.13, 4986.10));
+createInfospot(gd2Koridor, new THREE.Vector3(-552.57, -782.28, -4905.61), gd2Tangga, new THREE.Vector3(4890.32, -245.53, 980.63), 29, 99);
+createInfospot(gd2Koridor, new THREE.Vector3(584.83, -665.04, 4914.54), gb2Lobby, new THREE.Vector3(-207.43, 77.13, 4986.10), 45, 100);
 
 
 createInfospot(gb2TanggaKiri, new THREE.Vector3(4572.83, -1288.11, 1540.42), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36));
-createInfospot(gb2TanggaKiri, new THREE.Vector3(-363.33, -1110.97, 4854.00), gb2Kiri, new THREE.Vector3(421.84, -150.13, -4971.99));
-createInfospot(gb2TanggaKiri, new THREE.Vector3(230.43, -1439.06, -4773.11), gb2Lobby, new THREE.Vector3(4982.24, -187.19, 198.63));
+createInfospot(gb2TanggaKiri, new THREE.Vector3(-363.33, -1110.97, 4854.00), gb2Kiri, new THREE.Vector3(421.84, -150.13, -4971.99), 45, 48);
+createInfospot(gb2TanggaKiri, new THREE.Vector3(230.43, -1439.06, -4773.11), gb2Lobby, new THREE.Vector3(4982.24, -187.19, 198.63), 45, 100);
 
 createInfospot(gb2TanggaKanan, new THREE.Vector3(1287.52, -1190.96, 4674.55), gb3Tangga, new THREE.Vector3(-4992.54, -14.53, -131.36));
-createInfospot(gb2TanggaKanan, new THREE.Vector3(4858.37, -1139.51, 171.54), gb2Kanan, new THREE.Vector3(4992.14, -182.87, -12.78));
-createInfospot(gb2TanggaKanan, new THREE.Vector3(-4799.36, -1363.71, -135.07), gb2Lobby, new THREE.Vector3(-4985.05, -38.56, -256.39));
+createInfospot(gb2TanggaKanan, new THREE.Vector3(4858.37, -1139.51, 171.54), gb2Kanan, new THREE.Vector3(4992.14, -182.87, -12.78), 45, 135);
+createInfospot(gb2TanggaKanan, new THREE.Vector3(-4799.36, -1363.71, -135.07), gb2Lobby, new THREE.Vector3(-4985.05, -38.56, -256.39), 45, 100);
 
-createInfospot(gb2Kiri, new THREE.Vector3(-447.73, -627.58, 4933.27), gb2TanggaKiri, new THREE.Vector3(288.16, -97.89, -4981.05));
+createInfospot(gb2Kiri, new THREE.Vector3(-447.73, -627.58, 4933.27), gb2TanggaKiri, new THREE.Vector3(288.16, -97.89, -4981.05), 45, 74);
 createInfospot(gb2Kiri, new THREE.Vector3(-1994.90, -428.06, 4561.60), gb2RT, new THREE.Vector3(4992.14, -182.87, -12.78));
 
-createInfospot(gb2RT, new THREE.Vector3(-863.19, -1255.06, -4753.95), gb2TanggaKiri, new THREE.Vector3(-4125.70, -274.93, -2794.99));
+createInfospot(gb2RT, new THREE.Vector3(-863.19, -1255.06, -4753.95), gb2TanggaKiri, new THREE.Vector3(-4125.70, -274.93, -2794.99), 45, 74);
 
-createInfospot(gb2TU, new THREE.Vector3(3364.12, -1604.15, 3320.88), gb2Kanan, new THREE.Vector3(-4985.42, -218.05, 114.72));
+createInfospot(gb2TU, new THREE.Vector3(3364.12, -1604.15, 3320.88), gb2Kanan, new THREE.Vector3(-4985.42, -218.05, 114.72), 45, 135);
 
-createInfospot(gb2Kanan, new THREE.Vector3(-4757.19, -1515.85, 120.94), gb2TanggaKanan, new THREE.Vector3(-4990.98, 5.65, -167.82));
-createInfospot(gb2Kanan, new THREE.Vector3(4966.16, -457.80, -203.76), gb2TU, new THREE.Vector3(-4689.31, -58.02, -1710.60));
+createInfospot(gb2Kanan, new THREE.Vector3(-4757.19, -1515.85, 120.94), gb2TanggaKanan, new THREE.Vector3(-4990.98, 5.65, -167.82), 45, 124);
+createInfospot(gb2Kanan, new THREE.Vector3(4966.16, -457.80, -203.76), gb2TU, new THREE.Vector3(-4689.31, -58.02, -1710.60), 70, 171);
 
 
 createInfospot(gb3Tangga, new THREE.Vector3(-4901.32, -942.96, -98.02), gb3Lobby, new THREE.Vector3(-520.95, -28.25, 4971.59));
-createInfospot(gb3Tangga, new THREE.Vector3(3706.43, -1940.26, -2733.54), gb2TanggaKanan, new THREE.Vector3(-3763.42, -228.35, -3272.51));
-createInfospot(gb3Tangga, new THREE.Vector3(3440.39, -1934.18, 3066.52), gb2TanggaKiri, new THREE.Vector3(-1314.32, -143.90, -4811.27));
+createInfospot(gb3Tangga, new THREE.Vector3(3706.43, -1940.26, -2733.54), gb2TanggaKanan, new THREE.Vector3(-3763.42, -228.35, -3272.51), 45, 124);
+createInfospot(gb3Tangga, new THREE.Vector3(3440.39, -1934.18, 3066.52), gb2TanggaKiri, new THREE.Vector3(-1314.32, -143.90, -4811.27), 45, 74);
 
 createInfospot(gb3Lobby, new THREE.Vector3(521.18, -925.47, -4881.78), gb3Tangga, new THREE.Vector3(-4989.99, 105.21, 112.19));
 createInfospot(gb3Lobby, new THREE.Vector3(4832.90, -1135.98, 562.50), gb3TanggaKiri, new THREE.Vector3(-4984.87, 15.60, 277.05));
@@ -556,7 +592,9 @@ createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-
 const buttonData = {
   'Lobby': {
     page: gdLobby,
-    coordinates: new THREE.Vector3(4941.28, -189.36, 672.96)
+    coordinates: new THREE.Vector3(4941.28, -189.36, 672.96),
+    top: 81,
+    left: 98,
   },
   'Kendaraan Masuk': {
     page: halamanKanan,
@@ -576,27 +614,39 @@ const buttonData = {
   },
   'Akademik dan Evaluasi': {
     page: gd1Kiri,
-    coordinates: new THREE.Vector3(4465.35, -339.47, -2205.26)
+    coordinates: new THREE.Vector3(4465.35, -339.47, -2205.26),
+    top: 49,
+    left: 58
   },
   'Registrasi dan Statistik': {
     page: gd1Kiri2,
-    coordinates: new THREE.Vector3(2924.08, 9.09, 4054.30)
+    coordinates: new THREE.Vector3(2924.08, 9.09, 4054.30),
+    top: 49,
+    left: 38
   },
   'Wakil Rektor 3': {
     page: gd1Kanan,
-    coordinates: new THREE.Vector3(-4848.31, -46.54, 1190.84)
+    coordinates: new THREE.Vector3(-4848.31, -46.54, 1190.84),
+    top: 49,
+    left: 140
   },
   'Rapat Lt.1': {
     page: gd1Kanan2,
-    coordinates: new THREE.Vector3(-4544.91, 1202.52, 1680.42)
+    coordinates: new THREE.Vector3(-4544.91, 1202.52, 1680.42),
+    top: 49,
+    left: 156
   },
   'Sekretariat WR 3': {
     page: gd1Kanan2,
-    coordinates: new THREE.Vector3(4850.64, 717.78, -948.42)
+    coordinates: new THREE.Vector3(4850.64, 717.78, -948.42),
+    top: 49,
+    left: 156
   },
   'Kesejahteraan Mahasiswa': {
     page: gd1Kanan3,
-    coordinates: new THREE.Vector3(4635.21, 21.91, 1855.48)
+    coordinates: new THREE.Vector3(4635.21, 21.91, 1855.48),
+    top: 49,
+    left: 170
   },
   'Lobby2': {
     page: gb1Lobby,
@@ -612,31 +662,45 @@ const buttonData = {
   },
   'Rumah Tangga': {
     page: gb2Kiri,
-    coordinates: new THREE.Vector3(-2233.03, -24.06, 4465.09)
+    coordinates: new THREE.Vector3(-2233.03, -24.06, 4465.09),
+    top: 45,
+    left: 48
   },
   'Tata Usaha': {
     page: gb2Kanan,
-    coordinates: new THREE.Vector3(4976.97, -270.50, -236.62)
+    coordinates: new THREE.Vector3(4976.97, -270.50, -236.62),
+    top: 45,
+    left: 135
   },
   'Keuangan': {
     page: gd2Kiri3,
-    coordinates: new THREE.Vector3(-2346.43, -639.67, -4358.28)
+    coordinates: new THREE.Vector3(-2346.43, -639.67, -4358.28),
+    top: 52,
+    left: 45
   },
   'Sekretariat WR 2': {
     page: gd2Kanan,
-    coordinates: new THREE.Vector3(672.59, -450.06, -4926.36)
+    coordinates: new THREE.Vector3(672.59, -450.06, -4926.36),
+    top: 52,
+    left: 127
   },
   'Tenaga Kependidikan': {
     page: gd2Kanan2,
-    coordinates: new THREE.Vector3(3039.34, -476.80, 3931.11)
+    coordinates: new THREE.Vector3(3039.34, -476.80, 3931.11),
+    top: 52,
+    left: 142
   },
   'Kepegawaian': {
     page: gd2Kanan2,
-    coordinates: new THREE.Vector3(-2539.42, -349.04, -4288.20)
+    coordinates: new THREE.Vector3(-2539.42, -349.04, -4288.20),
+    top: 52,
+    left: 142
   },
   'Akuntansi dan Pelaporan': {
     page: gd2Kanan3,
-    coordinates: new THREE.Vector3(4051.46, -644.93, 2846.03)
+    coordinates: new THREE.Vector3(4051.46, -644.93, 2846.03),
+    top: 52,
+    left: 168
   },
   'Rektor': {
     page: gd3Tangga,
@@ -683,7 +747,7 @@ selectButtons.forEach((button) => {
         viewer.tweenControlCenter(data.coordinates, 3000);
       } else {
         // If the page is different, call the onButtonClick function
-        onButtonClick(data.page);
+        onButtonClick(data.page, data.top, data.left);
         data.page.addEventListener('enter-fade-start', function () {
           viewer.tweenControlCenter(data.coordinates, 1);
         });
@@ -691,12 +755,6 @@ selectButtons.forEach((button) => {
     }
   });
 });
-
-// var gyroPresent = true;
-// window.addEventListener("devicemotion", function(event){
-//     if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
-//         gyroPresent = true;
-// });
 
 $('#featureButton').on('click', function (e) {
   controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
@@ -706,11 +764,6 @@ $('#featureButton').on('click', function (e) {
     default: break;
   }
 });
-// if (gyroPresent) {
-//   // If supported, show the feature button and attach the click event
-// } else {
-//   $('#featureButton').hide();
-// }
 
 $('#featureButton2').on('click', function (e) {
   if (!isAutoRotate) {
@@ -778,50 +831,6 @@ function updateLocation(element) {
   element.classList.add('selected');
 }
 
-function filterBuildingsAndFloors() {
-  const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
-  const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
-  const searchText = document.getElementById('searchInput').value.toLowerCase();
-  
-
-  const buildings = document.querySelectorAll('.building');
-  buildings.forEach(building => {
-    const isBuildingSelected = selectedBuildingFilters.length === 0 || selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase()));
-    building.style.display = isBuildingSelected ? 'flex' : 'none';
-    console.log(selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase())));
-    
-    const floors = building.querySelectorAll('.floor');
-    floors.forEach(floor => {
-      const isFloorSelected = selectedFloorFilters.length === 0 || selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase()));
-      const shouldShowFloor = isBuildingSelected && isFloorSelected && selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase())).includes(searchText);
-      floor.style.display = shouldShowFloor ? 'flex' : 'none';
-    });
-  });
-}
-
-function filterSelectButtons(searchText) {
-  const floors = document.querySelectorAll('.floor');
-  floors.forEach(floor => {
-    const selectButtons = floor.querySelectorAll('.select-button');
-    let shouldShowFloor = false;
-
-    selectButtons.forEach(button => {
-      const text = button.querySelector('p').textContent.toLowerCase();
-      if (text.includes(searchText)) {
-        button.style.display = 'block';
-        shouldShowFloor = true;
-      } else {
-        button.style.display = 'none';
-      }
-    });
-
-    floor.style.display = shouldShowFloor ? 'flex' : 'none';
-  });
-
-  filterBuildingsAndFloors();
-}
-
-
 function updateFilter(element) {
   element.classList.toggle('selected');
 
@@ -842,44 +851,37 @@ function updateFilter(element) {
     return;
   }
 
-  // Hide all buildings and floors first
-  const buildings = document.querySelectorAll('.building');
-  buildings.forEach(building => {
-    building.style.display = 'none';
-  });
-
+  // Show all floors
   const floors = document.querySelectorAll('.floor');
   floors.forEach(floor => {
     floor.style.display = 'none';
   });
 
-  // Get the selected filters and search text
-  const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
-  const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
-  const searchText = document.getElementById('searchInput').value.toLowerCase();
-  
-
-  // Show the buildings and floors based on the selected filters and search text
+  // Hide all buildings
+  const buildings = document.querySelectorAll('.building');
   buildings.forEach(building => {
-    const isBuildingSelected = selectedBuildingFilters.length === 0 || selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase()));
-    building.style.display = isBuildingSelected ? 'flex' : 'none';
+    building.style.display = 'none';
+  });
 
-    const floors = building.querySelectorAll('.floor');
-    floors.forEach(floor => {
-      const isFloorSelected = selectedFloorFilters.length === 0 || selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase()));
-      const shouldShowFloor = isBuildingSelected && isFloorSelected;
-
-      // Check if the searchText matches the floor text
-      if (shouldShowFloor) {
-        const floorText = floor.querySelector('.text-sm-medium.gray-text').textContent.toLowerCase();
-        if (searchText && !floorText.includes(searchText)) {
-          floor.style.display = 'none';
-        } else {
-          floor.style.display = 'flex';
-        }
-      }
+  // Show buildings and floors based on selected filters
+  selectedFilters.forEach(filter => {
+    const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
+    const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
+  
+    const buildings = document.querySelectorAll('.building');
+    buildings.forEach(building => {
+      const isBuildingSelected = selectedBuildingFilters.length === 0 || selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase()));
+      building.style.display = isBuildingSelected ? 'flex' : 'none';
+  
+      const floors = building.querySelectorAll('.floor');
+      floors.forEach(floor => {
+        const isFloorSelected = selectedFloorFilters.length === 0 || selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase()));
+        const shouldShowFloor = isBuildingSelected && isFloorSelected;
+        floor.style.display = shouldShowFloor ? 'flex' : 'none';
+      });
     });
   });
+  
 }
 
 
@@ -924,14 +926,7 @@ floorImage.addEventListener("click", function(event) {
     redDot.style.left = left + "px";
     redDot.style.display = "block";
 
-    if (left >= 0 && left <= 50 && top >= 0 && top <= 60) {
-        // Change the image source to a different image
-        floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
-    } else {
-        // Change it back to the original image source
-        floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
-    }
-
     // Show the coordinates as text (you can customize this part)
-    alert(`Top: ${top}px, Left: ${left}px`);
+    console.log(`Top: ${top}px, Left: ${left}px`);
 });
+
