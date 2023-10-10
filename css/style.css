@@ -840,6 +840,9 @@ body {
 
   border-radius: 8px;
   border: 1.5px solid var(--color-base-white);
+
+  transform-origin: top left; /* Set the transform origin to the top right corner */
+  transform: scale(1); /* Initial scale */
 }
 
 .floormap {
@@ -878,6 +881,11 @@ body {
 }
 
 @media (max-width: 780px) {
+
+  .text-display-sm-semi-bold {
+    font-size: 24px;
+  }
+
   .search-container {
     height: calc(100vh - 70px);
   }
@@ -912,5 +920,9 @@ body {
 
     padding-right: 1rem;
     padding-left: 1rem;
+  }
+
+  .floormap-container {
+    transform: scale(0.8);
   }
 }

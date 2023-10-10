@@ -317,6 +317,9 @@ function createInfospot(panorama, position, targetPanorama, coordinates, redDotT
     infospot.position.copy(position);
     infospot.addEventListener('click', function () {
       onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord);
+      selectButtons.forEach(button => {
+        button.classList.remove('selected');
+      });
       viewer.clearAllCache();
       targetPanorama.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(coordinates, 1);
@@ -324,8 +327,6 @@ function createInfospot(panorama, position, targetPanorama, coordinates, redDotT
     });
     panorama.add(infospot);
   });
-
-
 }
 
 function createInfoPlace(panorama, position, descId = null, assetLocation = 'assets/icons/info-ruangan.png') {
