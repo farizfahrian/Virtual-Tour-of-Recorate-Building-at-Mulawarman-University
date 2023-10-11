@@ -301,6 +301,8 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     floorImage.src = "assets/images/floormap/penghubung_lt2.png";
   } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
     floorImage.src = "assets/images/floormap/penghubung_lt3.png";
+  } else if (floorText.textContent === "Halaman Rektorat") {
+    floorImage.src = "assets/images/floormap/halaman.png";
   }
 
   const redDot = document.getElementById("redDot");
@@ -344,44 +346,44 @@ function createInfoPlace(panorama, position, descId = null, assetLocation = 'ass
 }
 
 
-createInfospot(halamanTiang, new THREE.Vector3(-4986.21, -69.52, 211.10), halamanDepan, new THREE.Vector3(-4960.98, 237.15, -536.58));
+createInfospot(halamanTiang, new THREE.Vector3(-4986.21, -69.52, 211.10), halamanDepan, new THREE.Vector3(-4960.98, 237.15, -536.58), 61, 101);
 
-createInfospot(halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), halamanKanan, new THREE.Vector3(-1990.98, 342.98, 4569.70),100,100);
+createInfospot(halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), halamanKanan, new THREE.Vector3(-1990.98, 342.98, 4569.70), 61, 147);
 createInfospot(halamanDepan, new THREE.Vector3(4885.27, -843.06, 603.77), halamanTiang, new THREE.Vector3(4977.40, 304.08, 203.23),100,100);
 createInfospot(halamanDepan, new THREE.Vector3(-4956.69, -366.28, -531.28), gdLobby, new THREE.Vector3(4977.40, 304.08, 203.23), 81, 98);
-createInfospot(halamanDepan, new THREE.Vector3(743.10, -454.38, -4914.68), halamanKiri, new THREE.Vector3(705.35, 57.83, -4941.37),100,100);
+createInfospot(halamanDepan, new THREE.Vector3(743.10, -454.38, -4914.68), halamanKiri, new THREE.Vector3(705.35, 57.83, -4941.37), 61, 58);
 
-createInfospot(halamanKanan, new THREE.Vector3(-1286.88, -601.83, -4782.89), halamanDepan, new THREE.Vector3(705.35, 57.83, -4941.37));
-createInfospot(halamanKanan, new THREE.Vector3(-4977.46, -287.91, -214.31), halamanKananAtas, new THREE.Vector3(-4965.49, 107.20, -540.68));
+createInfospot(halamanKanan, new THREE.Vector3(-1286.88, -601.83, -4782.89), halamanDepan, new THREE.Vector3(705.35, 57.83, -4941.37), 61, 101);
+createInfospot(halamanKanan, new THREE.Vector3(-4977.46, -287.91, -214.31), halamanKananAtas, new THREE.Vector3(-4965.49, 107.20, -540.68), 28, 147);
 
-createInfospot(halamanKananAtas, new THREE.Vector3(4935.11, -585.04, 508.73), halamanKanan, new THREE.Vector3(4965.71, 203.93, 501.47));
-createInfospot(halamanKananAtas, new THREE.Vector3(286.19, -399.25, -4968.77), halamanPenghubung, new THREE.Vector3(79.40, 263.53, -4985.48));
+createInfospot(halamanKananAtas, new THREE.Vector3(4935.11, -585.04, 508.73), halamanKanan, new THREE.Vector3(4965.71, 203.93, 501.47), 61, 147);
+createInfospot(halamanKananAtas, new THREE.Vector3(286.19, -399.25, -4968.77), halamanPenghubung, new THREE.Vector3(79.40, 263.53, -4985.48), 28, 101);
 
-createInfospot(halamanPenghubung, new THREE.Vector3(-211.86, -490.22, 4961.89), halamanKananAtas, new THREE.Vector3(-405.42, 28.87, 4977.62));
-createInfospot(halamanPenghubung, new THREE.Vector3(65.84, -349.80, -4982.81), halamanKiriAtas2, new THREE.Vector3(-241.62, 245.92, 4977.68));
+createInfospot(halamanPenghubung, new THREE.Vector3(-211.86, -490.22, 4961.89), halamanKananAtas, new THREE.Vector3(-405.42, 28.87, 4977.62), 28, 147);
+createInfospot(halamanPenghubung, new THREE.Vector3(65.84, -349.80, -4982.81), halamanKiriAtas2, new THREE.Vector3(-241.62, 245.92, 4977.68), 28, 83);
 createInfospot(halamanPenghubung, new THREE.Vector3(4730.04, -813.56, -1377.70), gdLobby2, new THREE.Vector3(-4980.10, 158.98, -260.53), 28, 100);
 createInfospot(halamanPenghubung, new THREE.Vector3(-4971.56, -227.91, -371.81), gb1Lobby, new THREE.Vector3(4914.81, -241.64, -826.97), 50, 100);
 
-createInfospot(halamanKiriAtas2, new THREE.Vector3(-254.71, -482.44, 4960.57), halamanKiriAtas, new THREE.Vector3(-4905.65, 514.73, 754.50));
-createInfospot(halamanKiriAtas2, new THREE.Vector3(563.21, -426.51, -4946.51), halamanPenghubung, new THREE.Vector3(-74.25, 38.93, 4994.58));
+createInfospot(halamanKiriAtas2, new THREE.Vector3(-254.71, -482.44, 4960.57), halamanKiriAtas, new THREE.Vector3(-4905.65, 514.73, 754.50), 28, 58);
+createInfospot(halamanKiriAtas2, new THREE.Vector3(563.21, -426.51, -4946.51), halamanPenghubung, new THREE.Vector3(-74.25, 38.93, 4994.58), 28, 101);
 
-createInfospot(halamanKiriAtas, new THREE.Vector3(-659.88, -269.95, -4940.15), halamanKiri, new THREE.Vector3(4975.90, 111.93, 375.85));
-createInfospot(halamanKiriAtas, new THREE.Vector3(4953.84, -639.68, 27.93), halamanKiriAtas2, new THREE.Vector3(452.74, 142.12, -4970.69));
+createInfospot(halamanKiriAtas, new THREE.Vector3(-659.88, -269.95, -4940.15), halamanKiri, new THREE.Vector3(4975.90, 111.93, 375.85), 61, 58);
+createInfospot(halamanKiriAtas, new THREE.Vector3(4953.84, -639.68, 27.93), halamanKiriAtas2, new THREE.Vector3(452.74, 142.12, -4970.69), 28, 83);
 
-createInfospot(halamanKiri, new THREE.Vector3(-689.16, -444.59, 4924.39), halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50),50,50);
-createInfospot(halamanKiri, new THREE.Vector3(-4976.04, -420.76, -98.72), halamanKiriAtas, new THREE.Vector3(370.93, 320.95, 4967.95),50,50);
-createInfospot(halamanKiri, new THREE.Vector3(4870.96, -513.93, -974.17), halamanMPK, new THREE.Vector3(4993.73, 14.87, -108.50),50,50);
-createInfospot(halamanKiri, new THREE.Vector3(2379.90, -401.49, -4372.82), jalanULT, new THREE.Vector3(4969.59, 79.10, 521.03),50,50);
+createInfospot(halamanKiri, new THREE.Vector3(-689.16, -444.59, 4924.39), halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), 61, 101);
+createInfospot(halamanKiri, new THREE.Vector3(-4976.04, -420.76, -98.72), halamanKiriAtas, new THREE.Vector3(370.93, 320.95, 4967.95), 28, 58);
+createInfospot(halamanKiri, new THREE.Vector3(4870.96, -513.93, -974.17), halamanMPK, new THREE.Vector3(4993.73, 14.87, -108.50), 73, 31);
+createInfospot(halamanKiri, new THREE.Vector3(2379.90, -401.49, -4372.82), jalanULT, new THREE.Vector3(4969.59, 79.10, 521.03), 50, 43);
 
-createInfospot(halamanMPK, new THREE.Vector3(-4883.64, -374.01, -990.58), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(halamanMPK, new THREE.Vector3(-4883.64, -374.01, -990.58), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50), 61, 58);
 
-createInfospot(jalanULT, new THREE.Vector3(-4964.23, -442.53, -275.02), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(jalanULT, new THREE.Vector3(4970.90, -27.06, 526.65), halamanULT, new THREE.Vector3(-4952.39, 30.32, -642.69));
+createInfospot(jalanULT, new THREE.Vector3(-4964.23, -442.53, -275.02), halamanKiri, new THREE.Vector3(-447.66, -422.90, 4957.50), 61, 58);
+createInfospot(jalanULT, new THREE.Vector3(4970.90, -27.06, 526.65), halamanULT, new THREE.Vector3(-4952.39, 30.32, -642.69), 50, 37);
 
-createInfospot(halamanULT, new THREE.Vector3(4889.92, -955.03, -269.70), jalanULT, new THREE.Vector3(-4982.19, -61.90, -293.34));
+createInfospot(halamanULT, new THREE.Vector3(4889.92, -955.03, -269.70), jalanULT, new THREE.Vector3(-4982.19, -61.90, -293.34), 50, 43);
 createInfospot(halamanULT, new THREE.Vector3(-4939.15, -348.46, -646.50), depanULT, new THREE.Vector3(-4947.47, 82.96, 660.54));
 
-createInfospot(depanULT, new THREE.Vector3(4797.32, -853.39, -1096.03), halamanULT, new THREE.Vector3(4970.00, -266.30, -372.76));
+createInfospot(depanULT, new THREE.Vector3(4797.32, -853.39, -1096.03), halamanULT, new THREE.Vector3(4970.00, -266.30, -372.76), 50, 37);
 createInfospot(depanULT, new THREE.Vector3(-1395.88, -2263.40, -4232.85), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56));
 createInfospot(depanULT, new THREE.Vector3(-1885.81, -2532.41, 3867.54), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16));
 
@@ -399,12 +401,12 @@ createInfospot(kiriULT, new THREE.Vector3(-4659.89, -1493.08, 1013.46), belakang
 createInfospot(belakangULT, new THREE.Vector3(2834.89, -1278.00, -3910.95), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
 createInfospot(belakangULT, new THREE.Vector3(4257.88, -993.31, 2414.01), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
 
-createInfospot(gdLobby, new THREE.Vector3(-4925.31, -844.62, -13.58), halamanDepan, new THREE.Vector3(4977.40, 304.08, 203.23));
+createInfospot(gdLobby, new THREE.Vector3(-4925.31, -844.62, -13.58), halamanDepan, new THREE.Vector3(4977.40, 304.08, 203.23), 61, 101);
 createInfospot(gdLobby, new THREE.Vector3(3661.43, -944.47, 3263.79), gdLobbyKiri, new THREE.Vector3(2697.65, -600.05, -4154.14), 49, 78);
 createInfospot(gdLobby, new THREE.Vector3(1122.77, -1022.19, -4755.44), gdLobbyKanan, new THREE.Vector3(-1897.02, 239.75, -4610.11), 49, 121);
 createInfospot(gdLobby, new THREE.Vector3(2468.64, -1477.17, -4081.91), gd2Tangga, new THREE.Vector3(-4952.06, -334.60, -568.49), 29, 99);
 
-createInfospot(gdLobby2, new THREE.Vector3(4926.39, -724.57, 360.08), halamanPenghubung, new THREE.Vector3(-4976.35, 261.76, 254.96));
+createInfospot(gdLobby2, new THREE.Vector3(4926.39, -724.57, 360.08), halamanPenghubung, new THREE.Vector3(-4976.35, 261.76, 254.96), 28, 101);
 createInfospot(gdLobby2, new THREE.Vector3(-2628.56, -1186.21, -4075.77), gdLobbyKanan, new THREE.Vector3(-4179.59, -231.09, 2715.15), 49, 121);
 createInfospot(gdLobby2, new THREE.Vector3(-3487.27, -1148.65, 3384.22), gdLobbyKiri, new THREE.Vector3(4822.92, -687.55, 1098.35), 49, 78);
 
@@ -513,7 +515,7 @@ createInfospot(gd3Koridor2, new THREE.Vector3(-4199.08, -949.42, -2527.92), gd3K
 
 
 
-createInfospot(gb1Lobby, new THREE.Vector3(-4971.56, -227.91, -371.81), halamanPenghubung, new THREE.Vector3(4940.86, 41.11, 712.81));
+createInfospot(gb1Lobby, new THREE.Vector3(-4971.56, -227.91, -371.81), halamanPenghubung, new THREE.Vector3(4940.86, 41.11, 712.81), 28, 101);
 createInfospot(gb1Lobby, new THREE.Vector3(640.67, -1720.45, 4631.59), gb1Kiri, new THREE.Vector3(-2817.40, -183.49, -4115.42), 42, 74);
 createInfospot(gb1Lobby, new THREE.Vector3(-824.54, -1702.28, -4618.73), gb1Kanan, new THREE.Vector3(4082.36, -260.97, -2862.72), 42, 124);
 
@@ -599,15 +601,21 @@ const buttonData = {
   },
   'Kendaraan Masuk': {
     page: halamanKanan,
-    coordinates: new THREE.Vector3(4941.28, -189.36, 672.96)
+    coordinates: new THREE.Vector3(4941.28, -189.36, 672.96),
+    top: 61,
+    left: 147
   },
   'Kendaraan Keluar': {
     page: halamanKiri,
-    coordinates: new THREE.Vector3(4976.53, -86.25, 383.24)
+    coordinates: new THREE.Vector3(4976.53, -86.25, 383.24),
+    top: 61,
+    left: 58
   },
   'Parkiran': {
-    page: halamanKananAtas,
-    coordinates: new THREE.Vector3(-4965.49, 107.20, -540.68)
+    page: halamanMPK,
+    coordinates: new THREE.Vector3(2855.55, 166.30, 4091.45),
+    top: 73, 
+    left: 31
   },
   'ULT': {
     page: halamanULT,
