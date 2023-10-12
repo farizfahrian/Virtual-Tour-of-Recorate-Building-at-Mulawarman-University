@@ -9,7 +9,7 @@ const container = document.querySelector('#container');
 
 function clearCache() {
   // Clear any variables or data that need to be reset
- 
+
   localStorage.clear(); // This will clear all data stored in localStorage
   sessionStorage.clear(); // This will clear all data stored in sessionStorage
 
@@ -24,19 +24,19 @@ const swiftUpElements = document.querySelectorAll('.swift-up-text');
 
 swiftUpElements.forEach(elem => {
 
-	const words = elem.textContent.split(' ');
-	elem.innerHTML = '';
+  const words = elem.textContent.split(' ');
+  elem.innerHTML = '';
 
-	words.forEach((el, index) => {
-		words[index] = `<span><i>${words[index]}</i></span>`;
-	});
+  words.forEach((el, index) => {
+    words[index] = `<span><i>${words[index]}</i></span>`;
+  });
 
-	elem.innerHTML = words.join(' ');
+  elem.innerHTML = words.join(' ');
 
-	const children = document.querySelectorAll('span > i');
-	children.forEach((node, index) => {
-		node.style.animationDelay = `${index * .2}s`;
-	});
+  const children = document.querySelectorAll('span > i');
+  children.forEach((node, index) => {
+    node.style.animationDelay = `${index * .2}s`;
+  });
 });
 
 
@@ -44,10 +44,9 @@ var viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false
 
 function createPanorama(imagePath) {
   const panorama = new PANOLENS.ImagePanorama(imagePath);
-  
-  panorama.addEventListener('enter-fade-start', function () { 
+
+  panorama.addEventListener('enter-fade-start', function () {
     viewer.tweenControlCenter(new THREE.Vector3(4944.62, -220.74, 644.03), 1);
-    bar.classList.add('hide');
   });
 
   return panorama;
@@ -110,7 +109,7 @@ var gd3Kiri3 = createPanorama('assets/images/gedung_depan/lt_3/Kiri3.jpg');
 var gd3LKiri = createPanorama('assets/images/gedung_depan/lt_3/Lorong-kiri.jpg');
 var gd3LKiri2 = createPanorama('assets/images/gedung_depan/lt_3/Lorong-kiri2.jpg');
 var gd3Koridor = createPanorama('assets/images/gedung_depan/lt_3/Koridor.jpg');
-var gd3Koridor2= createPanorama('assets/images/gedung_depan/lt_3/Koridor2.jpg');
+var gd3Koridor2 = createPanorama('assets/images/gedung_depan/lt_3/Koridor2.jpg');
 
 var gb1Lobby = createPanorama('assets/images/gedung_belakang/lt_1/Lobby.jpg');
 var gb1Kanan = createPanorama('assets/images/gedung_belakang/lt_1/Kanan.jpg');
@@ -221,12 +220,6 @@ const panoramaTexts = new Map([
   [gb4Lobby.uuid, { floor: 'Gedung Belakang Lt.4', location: 'Lobby' }],
 ]);
 
-document.addEventListener('DOMContentLoaded', function () {
-  const splashScreen = document.getElementById('splashContainer');
-
-  splashScreen.style.display = 'flex';
-});
-
 function onProgressUpdate(event) {
   var percentage = event.progress.loaded / event.progress.total * 100;
   bar.style.width = percentage + "%";
@@ -235,35 +228,45 @@ function onProgressUpdate(event) {
     setTimeout(function () {
       bar.style.width = 0;
     }, 1000);
-    window.addEventListener('load', function () {
-      const splashScreen = document.getElementById('splashContainer');
-      const control = document.getElementById('control');
-      const floormap = document.getElementById('floormapContainer');
-    
-      setTimeout(function () {
-        splashScreen.classList.add('fade-out');
-    
-        setTimeout(() => {
-          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-          if (isMobile) {
-            // Hide the splash screen immediately on mobile devices
-            splashScreen.style.display = 'none';
-          }
-          control.style.display = 'flex';
-          control.classList.add('swift-up-animation');
-          
-          floormap.style.display = 'inline-flex';
-          floormap.classList.add('swift-down-animation');
-    
-          bar.classList.add('hide');
-        }, 600);
-      }, 4000); // 
-    });
+    console.log("its me");
   }
 }
 
-function onButtonClick(event, targetPanorama, redDotTopCoord, redDotLeftCoord) {
+document.addEventListener('DOMContentLoaded', function () {
+  const splashScreen = document.getElementById('splashContainer');
+
+  splashScreen.style.display = 'flex';
+});
+
+window.addEventListener('load', function () {
+  const splashScreen = document.getElementById('splashContainer');
+  const control = document.getElementById('control');
+  const floormap = document.getElementById('floormapContainer');
+
+  setTimeout(function () {
+    splashScreen.classList.add('fade-out');
+
+    setTimeout(() => {
+      halamanKanan.addEventListener('progress', onProgressUpdate);
+
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Hide the splash screen immediately on mobile devices
+        splashScreen.style.display = 'none';
+      }
+      control.style.display = 'flex';
+      control.classList.add('swift-up-animation');
+
+      floormap.style.display = 'inline-flex';
+      floormap.classList.add('swift-down-animation');
+
+      bar.classList.add('hide');
+    }, 600);
+  }, 4000); // 
+});
+
+function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
   bar.classList.remove('hide');
   targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
@@ -277,45 +280,39 @@ function onButtonClick(event, targetPanorama, redDotTopCoord, redDotLeftCoord) {
     floorText.textContent = floor;
     locationText.textContent = location;
   }
-  console.log(floorText);
-  
 
-    progress = event.progress.loaded / event.progress.total * 100;
-    progressElement.style.width = progress + '%';
-    if ( progress === 100 ) {
-      const floorImage = document.getElementById("floorImage");
-      if (floorText.textContent === 'Gedung Depan Lt.1') {
-        floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
-      } else if (floorText.textContent === "Gedung Depan Lt.2") {
-        floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
-      } else if (floorText.textContent === "Gedung Depan Lt.3") {
-        floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
-      } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-        floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
-      } else if (floorText.textContent === "Gedung Belakang Lt.2") {
-        floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
-      } else if (floorText.textContent === "Gedung Belakang Lt.3") {
-        floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
-      } else if (floorText.textContent === "Gedung Belakang Lt.4") {
-        floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
-      } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-        floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-      } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
-        floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-      } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
-        floorImage.src = "assets/images/floormap/penghubung_lt3.png";
-      } else if (floorText.textContent === "Halaman Rektorat") {
-        floorImage.src = "assets/images/floormap/halaman.png";
-      }
-    
-      const redDot = document.getElementById("redDot");
-      
-      redDot.style.top = redDotTopCoord + "px";
-      redDot.style.left = redDotLeftCoord + "px";
-      redDot.style.display = "block";
-    
+    const floorImage = document.getElementById("floorImage");
+    if (floorText.textContent === 'Gedung Depan Lt.1') {
+      floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
+    } else if (floorText.textContent === "Gedung Depan Lt.2") {
+      floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
+    } else if (floorText.textContent === "Gedung Depan Lt.3") {
+      floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
+    } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+      floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
+    } else if (floorText.textContent === "Gedung Belakang Lt.2") {
+      floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
+    } else if (floorText.textContent === "Gedung Belakang Lt.3") {
+      floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
+    } else if (floorText.textContent === "Gedung Belakang Lt.4") {
+      floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
+    } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+      floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+    } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
+      floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+    } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
+      floorImage.src = "assets/images/floormap/penghubung_lt3.png";
+    } else if (floorText.textContent === "Halaman Rektorat") {
+      floorImage.src = "assets/images/floormap/halaman.png";
+    }
 
-  }
+    const redDot = document.getElementById("redDot");
+
+    redDot.style.top = redDotTopCoord + "px";
+    redDot.style.left = redDotLeftCoord + "px";
+    redDot.style.display = "block";
+
+
 
 }
 
@@ -594,7 +591,7 @@ createInfospot(gb4Lobby, new THREE.Vector3(105.69, -918.88, -4905.71), gb4Tangga
 createInfoPlace(halamanKanan, new THREE.Vector3(4944.62, -220.74, 644.03), null, 'assets/icons/Enter.png');
 createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-mushola');
 
-createInfoPlace(halamanULT, new THREE.Vector3(181 -3790.29, 198.97, 3241.17), 'desc-ult');
+createInfoPlace(halamanULT, new THREE.Vector3(181 - 3790.29, 198.97, 3241.17), 'desc-ult');
 createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), null, 'assets/icons/Exit.png');
 
 createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan');
@@ -621,7 +618,7 @@ const buttonData = {
   'Parkiran': {
     page: halamanMPK,
     coordinates: new THREE.Vector3(2855.55, 166.30, 4091.45),
-    top: 73, 
+    top: 73,
     left: 31
   },
   'ULT': {
@@ -726,7 +723,7 @@ const buttonData = {
   },
   'Rektor': {
     page: gd3Tangga,
-    coordinates: new THREE.Vector3(-3497.82, -285.13, 3547.73), 
+    coordinates: new THREE.Vector3(-3497.82, -285.13, 3547.73),
     top: 76,
     left: 90
   },
@@ -734,7 +731,7 @@ const buttonData = {
     page: gd3Kiri,
     coordinates: new THREE.Vector3(-413.54, -48.25, 4976.43),
     top: 76,
-    left: 74 
+    left: 74
   },
   'Humas': {
     page: gd3LKiri2,
@@ -763,12 +760,12 @@ selectButtons.forEach((button) => {
 
     const parentElement = button.parentNode;
     const floorText = parentElement.querySelector('p').textContent;
-    
+
     const text = button.querySelector('p').textContent;
     const data = buttonData[text];
     console.log();
     if (floorText === 'Gedung belakang Lt.1' && text === 'Lobby') {
-      onButtonClick(buttonData.Lobby2.page, buttonData.Lobby2.top,buttonData.Lobby2.left);
+      onButtonClick(buttonData.Lobby2.page, buttonData.Lobby2.top, buttonData.Lobby2.left);
       buttonData.Lobby2.page.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(buttonData.Lobby2.coordinates, 1);
       });
@@ -899,12 +896,12 @@ function updateFilter(element) {
   selectedFilters.forEach(filter => {
     const selectedBuildingFilters = Array.from(document.querySelectorAll('.building-filter .select-filter.selected'));
     const selectedFloorFilters = Array.from(document.querySelectorAll('.floor-filter .select-filter.selected'));
-  
+
     const buildings = document.querySelectorAll('.building');
     buildings.forEach(building => {
       const isBuildingSelected = selectedBuildingFilters.length === 0 || selectedBuildingFilters.some(filter => building.classList.contains(filter.textContent.trim().toLowerCase()));
       building.style.display = isBuildingSelected ? 'flex' : 'none';
-  
+
       const floors = building.querySelectorAll('.floor');
       floors.forEach(floor => {
         const isFloorSelected = selectedFloorFilters.length === 0 || selectedFloorFilters.some(filter => floor.classList.contains(filter.textContent.trim().toLowerCase()));
@@ -913,7 +910,7 @@ function updateFilter(element) {
       });
     });
   });
-  
+
 }
 
 
@@ -927,17 +924,17 @@ function toggleFilterSection(element) {
   const isActiveIcon = imgElement.src.includes('-white');
 
   imgElement.src = isActiveIcon ? imgElement.src.replace('-white.svg', '.svg')
-                                 : imgElement.src.replace('.svg', '-white.svg');
+    : imgElement.src.replace('.svg', '-white.svg');
 }
 
 function toggleFeatureSection(element) {
   element.classList.toggle('selected-feature');
-  
+
   const imgElement = element.querySelector('img');
   const isActiveIcon = imgElement.src.includes('-white');
 
   imgElement.src = isActiveIcon ? imgElement.src.replace('-white.svg', '.svg')
-                                 : imgElement.src.replace('.svg', '-white.svg');
+    : imgElement.src.replace('.svg', '-white.svg');
 
   Event.preventDefault();
 }
@@ -947,18 +944,18 @@ const floorImage = document.getElementById("floorImage");
 const redDot = document.getElementById("redDot");
 
 // Add a click event listener to the image
-floorImage.addEventListener("click", function(event) {
-    // Calculate the top and left coordinates relative to the image
-    const rect = floorImage.getBoundingClientRect();
-    const top = event.clientY - rect.top;
-    const left = event.clientX - rect.left;
+floorImage.addEventListener("click", function (event) {
+  // Calculate the top and left coordinates relative to the image
+  const rect = floorImage.getBoundingClientRect();
+  const top = event.clientY - rect.top;
+  const left = event.clientX - rect.left;
 
-    // Set the red dot's position and display it
-    redDot.style.top = top + "px";
-    redDot.style.left = left + "px";
-    redDot.style.display = "block";
+  // Set the red dot's position and display it
+  redDot.style.top = top + "px";
+  redDot.style.left = left + "px";
+  redDot.style.display = "block";
 
-    // Show the coordinates as text (you can customize this part)
-    console.log(`Top: ${top}px, Left: ${left}px`);
+  // Show the coordinates as text (you can customize this part)
+  console.log(`Top: ${top}px, Left: ${left}px`);
 });
 
