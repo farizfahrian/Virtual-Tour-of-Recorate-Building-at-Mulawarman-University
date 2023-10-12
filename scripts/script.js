@@ -257,7 +257,7 @@ function splashOnProgressUpdate(event) {
 
       bar.classList.add('hide');
     }, 600);
-  }, 4000); // 
+  }, 2000); // 
   }
 }
 
