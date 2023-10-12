@@ -221,6 +221,12 @@ const panoramaTexts = new Map([
   [gb4Lobby.uuid, { floor: 'Gedung Belakang Lt.4', location: 'Lobby' }],
 ]);
 
+document.addEventListener('DOMContentLoaded', function () {
+  const splashScreen = document.getElementById('splashContainer');
+
+  splashScreen.style.display = 'flex';
+});
+
 function onProgressUpdate(event) {
   var percentage = event.progress.loaded / event.progress.total * 100;
   bar.style.width = percentage + "%";
@@ -229,42 +235,35 @@ function onProgressUpdate(event) {
     setTimeout(function () {
       bar.style.width = 0;
     }, 1000);
+    window.addEventListener('load', function () {
+      const splashScreen = document.getElementById('splashContainer');
+      const control = document.getElementById('control');
+      const floormap = document.getElementById('floormapContainer');
+    
+      setTimeout(function () {
+        splashScreen.classList.add('fade-out');
+    
+        setTimeout(() => {
+          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+          if (isMobile) {
+            // Hide the splash screen immediately on mobile devices
+            splashScreen.style.display = 'none';
+          }
+          control.style.display = 'flex';
+          control.classList.add('swift-up-animation');
+          
+          floormap.style.display = 'inline-flex';
+          floormap.classList.add('swift-down-animation');
+    
+          bar.classList.add('hide');
+        }, 600);
+      }, 4000); // 
+    });
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const splashScreen = document.getElementById('splashContainer');
-
-  splashScreen.style.display = 'flex';
-});
-
-window.addEventListener('load', function () {
-  const splashScreen = document.getElementById('splashContainer');
-  const control = document.getElementById('control');
-  const floormap = document.getElementById('floormapContainer');
-
-  setTimeout(function () {
-    splashScreen.classList.add('fade-out');
-
-    setTimeout(() => {
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-      if (isMobile) {
-        // Hide the splash screen immediately on mobile devices
-        splashScreen.style.display = 'none';
-      }
-      control.style.display = 'flex';
-      control.classList.add('swift-up-animation');
-      
-      floormap.style.display = 'inline-flex';
-      floormap.classList.add('swift-down-animation');
-
-      bar.classList.add('hide');
-    }, 600);
-  }, 4000); // 
-});
-
-function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
+function onButtonClick(event, targetPanorama, redDotTopCoord, redDotLeftCoord) {
   bar.classList.remove('hide');
   targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
@@ -279,37 +278,45 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     locationText.textContent = location;
   }
   console.log(floorText);
+  
 
-  const floorImage = document.getElementById("floorImage");
-  if (floorText.textContent === 'Gedung Depan Lt.1') {
-    floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
-  } else if (floorText.textContent === "Gedung Depan Lt.2") {
-    floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
-  } else if (floorText.textContent === "Gedung Depan Lt.3") {
-    floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
-  } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-    floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
-  } else if (floorText.textContent === "Gedung Belakang Lt.2") {
-    floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
-  } else if (floorText.textContent === "Gedung Belakang Lt.3") {
-    floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
-  } else if (floorText.textContent === "Gedung Belakang Lt.4") {
-    floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
-  } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-    floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-  } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
-    floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-  } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
-    floorImage.src = "assets/images/floormap/penghubung_lt3.png";
-  } else if (floorText.textContent === "Halaman Rektorat") {
-    floorImage.src = "assets/images/floormap/halaman.png";
+    progress = event.progress.loaded / event.progress.total * 100;
+    progressElement.style.width = progress + '%';
+    if ( progress === 100 ) {
+      const floorImage = document.getElementById("floorImage");
+      if (floorText.textContent === 'Gedung Depan Lt.1') {
+        floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
+      } else if (floorText.textContent === "Gedung Depan Lt.2") {
+        floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
+      } else if (floorText.textContent === "Gedung Depan Lt.3") {
+        floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
+      } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+        floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
+      } else if (floorText.textContent === "Gedung Belakang Lt.2") {
+        floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
+      } else if (floorText.textContent === "Gedung Belakang Lt.3") {
+        floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
+      } else if (floorText.textContent === "Gedung Belakang Lt.4") {
+        floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
+      } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+        floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+      } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
+        floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+      } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
+        floorImage.src = "assets/images/floormap/penghubung_lt3.png";
+      } else if (floorText.textContent === "Halaman Rektorat") {
+        floorImage.src = "assets/images/floormap/halaman.png";
+      }
+    
+      const redDot = document.getElementById("redDot");
+      
+      redDot.style.top = redDotTopCoord + "px";
+      redDot.style.left = redDotLeftCoord + "px";
+      redDot.style.display = "block";
+    
+
   }
 
-  const redDot = document.getElementById("redDot");
-  
-  redDot.style.top = redDotTopCoord + "px";
-  redDot.style.left = redDotLeftCoord + "px";
-  redDot.style.display = "block";
 }
 
 function createInfospot(panorama, position, targetPanorama, coordinates, redDotTopCoord, redDotLeftCoord) {
@@ -349,7 +356,7 @@ function createInfoPlace(panorama, position, descId = null, assetLocation = 'ass
 createInfospot(halamanTiang, new THREE.Vector3(-4986.21, -69.52, 211.10), halamanDepan, new THREE.Vector3(-4960.98, 237.15, -536.58), 61, 101);
 
 createInfospot(halamanDepan, new THREE.Vector3(-447.66, -422.90, 4957.50), halamanKanan, new THREE.Vector3(-1990.98, 342.98, 4569.70), 61, 147);
-createInfospot(halamanDepan, new THREE.Vector3(4885.27, -843.06, 603.77), halamanTiang, new THREE.Vector3(4977.40, 304.08, 203.23),100,100);
+createInfospot(halamanDepan, new THREE.Vector3(4885.27, -843.06, 603.77), halamanTiang, new THREE.Vector3(4977.40, 304.08, 203.23), 74, 101);
 createInfospot(halamanDepan, new THREE.Vector3(-4956.69, -366.28, -531.28), gdLobby, new THREE.Vector3(4977.40, 304.08, 203.23), 81, 98);
 createInfospot(halamanDepan, new THREE.Vector3(743.10, -454.38, -4914.68), halamanKiri, new THREE.Vector3(705.35, 57.83, -4941.37), 61, 58);
 

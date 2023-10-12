@@ -881,11 +881,6 @@ body {
 }
 
 @media (max-width: 780px) {
-
-  .text-display-sm-semi-bold {
-    font-size: 24px;
-  }
-
   .search-container {
     height: calc(100vh - 70px);
   }
@@ -924,5 +919,12 @@ body {
 
   .floormap-container {
     transform: scale(0.8);
+  }
+}
+
+@media (max-width: 465px) {
+  .text-display-sm-semi-bold {
+    font-size: 26px !important;
+    line-height: 30px !important;
   }
 }
