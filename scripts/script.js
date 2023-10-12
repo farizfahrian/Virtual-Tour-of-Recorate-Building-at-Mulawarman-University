@@ -231,19 +231,14 @@ function onProgressUpdate(event) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const splashScreen = document.getElementById('splashContainer');
-
-  splashScreen.style.display = 'flex';
-});
-
-window.addEventListener('load', function () {
-  const splashScreen = document.getElementById('splashContainer');
-  const control = document.getElementById('control');
-  const floormap = document.getElementById('floormapContainer');
-
-  halamanKanan.addEventListener('progress', onProgressUpdate);
-  setTimeout(function () {
+function splashOnProgressUpdate(event) {
+  var percentage = event.progress.loaded / event.progress.total * 100;
+  bar.style.width = percentage + "%";
+  if (percentage >= 100) {
+    const splashScreen = document.getElementById('splashContainer');
+    const control = document.getElementById('control');
+    const floormap = document.getElementById('floormapContainer');
+    setTimeout(function () {
     splashScreen.classList.add('fade-out');
 
     setTimeout(() => {
@@ -263,13 +258,23 @@ window.addEventListener('load', function () {
       bar.classList.add('hide');
     }, 600);
   }, 4000); // 
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const splashScreen = document.getElementById('splashContainer');
+
+  splashScreen.style.display = 'flex';
+});
+
+window.addEventListener('load', function () {
+  halamanKanan.addEventListener('progress', splashOnProgressUpdate);
+  
 });
 
 function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
   targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
-  bar.classList.remove('hide');
-
   const locationText = document.getElementById('roomText');
   const floorText = document.getElementById('floorText');
   const panoramaData = panoramaTexts.get(targetPanorama.uuid);
@@ -311,6 +316,8 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     redDot.style.top = redDotTopCoord + "px";
     redDot.style.left = redDotLeftCoord + "px";
     redDot.style.display = "block";
+
+    bar.classList.remove('hide');
   }
 }
 
@@ -326,7 +333,7 @@ function createInfospot(panorama, position, targetPanorama, coordinates, redDotT
       });
       viewer.clearAllCache();
       targetPanorama.addEventListener('enter-fade-start', function () {
-        viewer.tweenControlCenter(coordinates, 1);
+        viewer.tweenControlCenter(coordinates, 0);
       });
     });
     panorama.add(infospot);
