@@ -46,7 +46,7 @@ function createPanorama(imagePath) {
   const panorama = new PANOLENS.ImagePanorama(imagePath);
 
   panorama.addEventListener('enter-fade-start', function () {
-    viewer.tweenControlCenter(new THREE.Vector3(4944.62, -220.74, 644.03), 1);
+    viewer.tweenControlCenter(new THREE.Vector3(4944.62, -220.74, 644.03), 0);
   });
 
   return panorama;
@@ -228,7 +228,6 @@ function onProgressUpdate(event) {
     setTimeout(function () {
       bar.style.width = 0;
     }, 1000);
-    console.log("its me");
   }
 }
 
@@ -243,11 +242,11 @@ window.addEventListener('load', function () {
   const control = document.getElementById('control');
   const floormap = document.getElementById('floormapContainer');
 
+  halamanKanan.addEventListener('progress', onProgressUpdate);
   setTimeout(function () {
     splashScreen.classList.add('fade-out');
 
     setTimeout(() => {
-      halamanKanan.addEventListener('progress', onProgressUpdate);
 
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -267,9 +266,9 @@ window.addEventListener('load', function () {
 });
 
 function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
-  bar.classList.remove('hide');
   targetPanorama.addEventListener('progress', onProgressUpdate);
   viewer.setPanorama(targetPanorama);
+  bar.classList.remove('hide');
 
   const locationText = document.getElementById('roomText');
   const floorText = document.getElementById('floorText');
@@ -281,7 +280,8 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     locationText.textContent = location;
   }
 
-    const floorImage = document.getElementById("floorImage");
+  const floorImage = document.getElementById("floorImage");
+  if (bar.classList.contains('hide')) {
     if (floorText.textContent === 'Gedung Depan Lt.1') {
       floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
     } else if (floorText.textContent === "Gedung Depan Lt.2") {
@@ -311,9 +311,7 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     redDot.style.top = redDotTopCoord + "px";
     redDot.style.left = redDotLeftCoord + "px";
     redDot.style.display = "block";
-
-
-
+  }
 }
 
 function createInfospot(panorama, position, targetPanorama, coordinates, redDotTopCoord, redDotLeftCoord) {
