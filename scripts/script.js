@@ -220,13 +220,46 @@ const panoramaTexts = new Map([
   [gb4Lobby.uuid, { floor: 'Gedung Belakang Lt.4', location: 'Lobby' }],
 ]);
 
-function onProgressUpdate(event) {
+function onProgressUpdate(event, redDotTopCoord, redDotLeftCoord) {
   var percentage = event.progress.loaded / event.progress.total * 100;
   bar.style.width = percentage + "%";
   if (percentage >= 100) {
     bar.classList.add('hide');
     setTimeout(function () {
       bar.style.width = 0;
+      setTimeout(() => {
+        const floorImage = document.getElementById("floorImage");
+
+        if (floorText.textContent === 'Gedung Depan Lt.1') {
+          floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
+        } else if (floorText.textContent === "Gedung Depan Lt.2") {
+          floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
+        } else if (floorText.textContent === "Gedung Depan Lt.3") {
+          floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
+        } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+          floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
+        } else if (floorText.textContent === "Gedung Belakang Lt.2") {
+          floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
+        } else if (floorText.textContent === "Gedung Belakang Lt.3") {
+          floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
+        } else if (floorText.textContent === "Gedung Belakang Lt.4") {
+          floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
+        } else if (floorText.textContent === "Gedung Belakang Lt.1") {
+          floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+        } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
+          floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+        } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
+          floorImage.src = "assets/images/floormap/penghubung_lt3.png";
+        } else if (floorText.textContent === "Halaman Rektorat") {
+          floorImage.src = "assets/images/floormap/halaman.png";
+        }
+
+        const redDot = document.getElementById("redDot");
+
+        redDot.style.top = redDotTopCoord + "px";
+        redDot.style.left = redDotLeftCoord + "px";
+        redDot.style.display = "block";
+      }, 200);
     }, 1000);
   }
 }
@@ -239,25 +272,25 @@ function splashOnProgressUpdate(event) {
     const control = document.getElementById('control');
     const floormap = document.getElementById('floormapContainer');
     setTimeout(function () {
-    splashScreen.classList.add('fade-out');
+      splashScreen.classList.add('fade-out');
 
-    setTimeout(() => {
+      setTimeout(() => {
 
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-      if (isMobile) {
-        // Hide the splash screen immediately on mobile devices
-        splashScreen.style.display = 'none';
-      }
-      control.style.display = 'flex';
-      control.classList.add('swift-up-animation');
+        if (isMobile) {
+          // Hide the splash screen immediately on mobile devices
+          splashScreen.style.display = 'none';
+        }
+        control.style.display = 'flex';
+        control.classList.add('swift-up-animation');
 
-      floormap.style.display = 'inline-flex';
-      floormap.classList.add('swift-down-animation');
+        floormap.style.display = 'inline-flex';
+        floormap.classList.add('swift-down-animation');
 
-      bar.classList.add('hide');
-    }, 600);
-  }, 2000); // 
+        bar.classList.add('hide');
+      }, 600);
+    }, 2000); // 
   }
 }
 
@@ -269,11 +302,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 window.addEventListener('load', function () {
   halamanKanan.addEventListener('progress', splashOnProgressUpdate);
-  
+
 });
 
 function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
-  targetPanorama.addEventListener('progress', onProgressUpdate);
+  targetPanorama.addEventListener('progress', onProgressUpdate(redDotTopCoord, redDotLeftCoord));
   viewer.setPanorama(targetPanorama);
   const locationText = document.getElementById('roomText');
   const floorText = document.getElementById('floorText');
@@ -285,40 +318,6 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     locationText.textContent = location;
   }
 
-  const floorImage = document.getElementById("floorImage");
-  if (bar.classList.contains('hide')) {
-    if (floorText.textContent === 'Gedung Depan Lt.1') {
-      floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
-    } else if (floorText.textContent === "Gedung Depan Lt.2") {
-      floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
-    } else if (floorText.textContent === "Gedung Depan Lt.3") {
-      floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
-    } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-      floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
-    } else if (floorText.textContent === "Gedung Belakang Lt.2") {
-      floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
-    } else if (floorText.textContent === "Gedung Belakang Lt.3") {
-      floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
-    } else if (floorText.textContent === "Gedung Belakang Lt.4") {
-      floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
-    } else if (floorText.textContent === "Gedung Belakang Lt.1") {
-      floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-    } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
-      floorImage.src = "assets/images/floormap/penghubung_lt2.png";
-    } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
-      floorImage.src = "assets/images/floormap/penghubung_lt3.png";
-    } else if (floorText.textContent === "Halaman Rektorat") {
-      floorImage.src = "assets/images/floormap/halaman.png";
-    }
-
-    const redDot = document.getElementById("redDot");
-
-    redDot.style.top = redDotTopCoord + "px";
-    redDot.style.left = redDotLeftCoord + "px";
-    redDot.style.display = "block";
-
-    bar.classList.remove('hide');
-  }
 }
 
 function createInfospot(panorama, position, targetPanorama, coordinates, redDotTopCoord, redDotLeftCoord) {
