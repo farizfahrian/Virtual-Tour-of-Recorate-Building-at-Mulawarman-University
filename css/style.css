@@ -853,6 +853,22 @@ body {
   border-radius: 4px;
 }
 
+.compass-container {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 245px;
+  padding-top: 21px;
+}
+
+.compass{
+  width: 66px;
+  height: 66px;
+  opacity: 0.7;
+  
+  transform: rotate(120deg);
+}
+
 .red-dot {
   position: absolute;
   top: 61px;

@@ -3,22 +3,13 @@ var isAutoRotate = false;
 
 var infospotIcon;
 
-const bar = document.querySelector('#bar');
+const bar = document.getElementById('bar');
+const container = document.getElementById('container');
+const featureButton = document.getElementById('featureButton');
+const featureButton2 = document.getElementById('featureButton2');
+const featureButton3 = document.getElementById('featureButton3');
+const compass = document.getElementById('compassContainer');
 
-const container = document.querySelector('#container');
-
-function clearCache() {
-  // Clear any variables or data that need to be reset
-
-  localStorage.clear(); // This will clear all data stored in localStorage
-  sessionStorage.clear(); // This will clear all data stored in sessionStorage
-
-  // Reload the page after clearing the cache
-  window.location.reload(true);
-}
-
-// Execute the clearCache function when the page is being unloaded (refreshed)
-window.onbeforeunload = clearCache;
 
 const swiftUpElements = document.querySelectorAll('.swift-up-text');
 
@@ -255,6 +246,9 @@ function splashOnProgressUpdate(event) {
       floormap.style.display = 'inline-flex';
       floormap.classList.add('swift-down-animation');
 
+      compass.style.display = 'inline-flex';
+      compass.classList.add('swift-down-animation');
+
       bar.classList.add('hide');
     }, 600);
   }, 2000); // 
@@ -287,26 +281,37 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
     const floorImage = document.getElementById("floorImage");
     if (floorText.textContent === 'Gedung Depan Lt.1') {
       floorImage.src = "assets/images/floormap/gedung_depan_lt1.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Depan Lt.2") {
       floorImage.src = "assets/images/floormap/gedung_depan_lt2.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Depan Lt.3") {
       floorImage.src = "assets/images/floormap/gedung_depan_lt3.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Belakang Lt.1") {
       floorImage.src = "assets/images/floormap/gedung_belakang_lt1.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Belakang Lt.2") {
       floorImage.src = "assets/images/floormap/gedung_belakang_lt2.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Belakang Lt.3") {
       floorImage.src = "assets/images/floormap/gedung_belakang_lt3.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Belakang Lt.4") {
       floorImage.src = "assets/images/floormap/gedung_belakang_lt4.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Gedung Belakang Lt.1") {
       floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Koridor Penghubung Lt.2") {
       floorImage.src = "assets/images/floormap/penghubung_lt2.png";
+      compass.style.display = "none";
     } else if (floorText.textContent === "Koridor Penghubung Lt.3") {
       floorImage.src = "assets/images/floormap/penghubung_lt3.png";
-    } else if (floorText.textContent === "Halaman Rektorat") {
+      compass.style.display = "none";
+    } else if (floorText.textContent === "Halaman Rektorat" || floorText.textContent !== "Halaman Rektorat") {
       floorImage.src = "assets/images/floormap/halaman.png";
+      compass.style.display = "inline-flex";
     }
   
     const redDot = document.getElementById("redDot");
@@ -624,7 +629,7 @@ const buttonData = {
     top: 73,
     left: 31
   },
-  'ULT': {
+  'Unit Layanan Terpadu (ULT)': {
     page: halamanULT,
     coordinates: new THREE.Vector3(-4231.21, 138.32, 2642.35)
   },
@@ -646,7 +651,7 @@ const buttonData = {
     top: 49,
     left: 140
   },
-  'Rapat Lt.1': {
+  'Ruang Rapat Lt.1': {
     page: gd1Kanan2,
     coordinates: new THREE.Vector3(-4544.91, 1202.52, 1680.42),
     top: 49,
@@ -670,13 +675,7 @@ const buttonData = {
     top: 50,
     left: 100
   },
-  'Kantin 1': {
-    page: gb1Kiri,
-    coordinates: new THREE.Vector3(-2781.08, -152.93, -4140.44),
-    top: 42,
-    left: 74
-  },
-  'Kantin 2': {
+  'Kantin': {
     page: gb1Kanan,
     coordinates: new THREE.Vector3(3682.00, -281.03, -3363.78),
     top: 42,
@@ -724,7 +723,7 @@ const buttonData = {
     top: 52,
     left: 168
   },
-  'Rektor': {
+  'Ruang Rektor': {
     page: gd3Tangga,
     coordinates: new THREE.Vector3(-3497.82, -285.13, 3547.73),
     top: 76,
@@ -742,11 +741,17 @@ const buttonData = {
     top: 53,
     left: 35
   },
-  'Rapat Lt.3': {
+  'Ruang Rapat Lt.3': {
     page: gd3LKiri2,
     coordinates: new THREE.Vector3(4539.05, -34.65, 2086.96),
     top: 53,
     left: 35
+  },
+  'Wakil Rektor 4': {
+    page: gb3Kiri2,
+    coordinates: new THREE.Vector3(-4988.97, -90.78, 142.34),
+    top: 45,
+    left: 58
   },
   'Serbaguna Lt.4': {
     page: gb4Lobby,
@@ -788,7 +793,7 @@ selectButtons.forEach((button) => {
   });
 });
 
-$('#featureButton').on('click', function (e) {
+featureButton.addEventListener('click', function (e) {
   controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
   switch (controlIndex) {
     case 0: viewer.enableControl(PANOLENS.CONTROLS.ORBIT); break;
@@ -797,7 +802,7 @@ $('#featureButton').on('click', function (e) {
   }
 });
 
-$('#featureButton2').on('click', function (e) {
+featureButton2.addEventListener('click', function (e) {
   if (!isAutoRotate) {
     viewer.options.autoRotate = true;
     viewer.OrbitControls.autoRotate = true;
@@ -810,7 +815,7 @@ $('#featureButton2').on('click', function (e) {
   }
 });
 
-$('#featureButton3').on('click', function (e) {
+featureButton3.addEventListener('click', function (e) {
   if (!document.fullscreenElement) {
     container.requestFullscreen().catch((err) => {
       alert(
@@ -823,7 +828,7 @@ $('#featureButton3').on('click', function (e) {
 });
 
 // Changing Scroll Wheel Behaviour
-$('#container').on('wheel', function (e) {
+container.addEventListener('wheel', function (e) {
   if (e.originalEvent.wheelDelta / 120 > 0) {
     var currentZoom = viewer.camera.fov;
     var newZoom = currentZoom - 5;

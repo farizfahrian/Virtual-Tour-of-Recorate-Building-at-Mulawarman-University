@@ -6,11 +6,6 @@
       name="viewport"
       content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no"
     />
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.min.js"
-      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-      crossorigin="anonymous"
-    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,10 +29,14 @@
       </div>
     </div>
 
-    <div id="floormapContainer" class="floormap-container">
-      <img id="floorImage" class="floormap" src="assets/images/floormap/halaman.png">
-      <div id="redDot" class="red-dot"></div>
-    </div>
+      <div id="floormapContainer" class="floormap-container">
+        <img id="floorImage" class="floormap" src="assets/images/floormap/halaman.png">
+        <div id="redDot" class="red-dot"></div>
+      </div>
+      
+      <div id="compassContainer" class="compass-container">
+        <img id="compass" class="compass" src="assets/icons/Compass.png" alt="compass">
+      </div>
 
     <div class="search-container disable-selection" id="searchContainer">
       <div class="search" id="search">
@@ -105,7 +104,7 @@
                 <p class="text-sm-medium location-name">Wakil Rektor 3</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Rapat 3 Lt.1</p>
+                <p class="text-sm-medium location-name">Ruang Rapat 3 Lt.1</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
                 <p class="text-sm-medium location-name">Sekretariat WR 3</p>
@@ -135,10 +134,13 @@
             <div class="lt-3 floor">
               <p class="text-sm-medium gray-text">Gedung depan Lt.3</p>
               <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Rektor</p>
+                <p class="text-sm-medium location-name">Ruang Rektor</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
                 <p class="text-sm-medium location-name">Humas</p>
+              </div>
+              <div class="select-button" onclick="updateLocation(this)">
+                <p class="text-sm-medium location-name">Ruang Rapat Lt.3</p>
               </div>
             </div>
           </div>
@@ -149,10 +151,7 @@
                 <p class="text-sm-medium location-name">Lobby</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kantin 1</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kantin 2</p>
+                <p class="text-sm-medium location-name">Kantin</p>
               </div>
             </div>
             <div class="lt-2 floor">
@@ -167,7 +166,7 @@
             <div class="lt-3 floor">
               <p class="text-sm-medium gray-text">Gedung belakang Lt.3</p>
               <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Ruang Rumah Tangga</p>
+                <p class="text-sm-medium location-name">Wakil Rektor 4</p>
               </div>
             </div>
             <div class="lt-4 floor">
@@ -187,7 +186,7 @@
                 <p class="text-sm-medium location-name">Parkiran</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">ULT</p>
+                <p class="text-sm-medium location-name">Unit Layanan Terpadu (ULT)</p>
               </div>
               <div class="select-button" onclick="updateLocation(this)">
                 <p class="text-sm-medium location-name">Kendaraan Keluar</p>
