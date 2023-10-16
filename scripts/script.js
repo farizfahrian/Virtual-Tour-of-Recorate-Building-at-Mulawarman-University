@@ -139,12 +139,12 @@ const panoramaTexts = new Map([
   [halamanPenghubung.uuid, { floor: 'Halaman Rektorat', location: 'Halaman Belakang' }],
   [halamanMPK.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
   [jalanULT.uuid, { floor: 'Halaman Rektorat', location: 'Parkiran MPK' }],
-  [halamanULT.uuid, { floor: 'Halaman ULT', location: 'Parkiran MPK' }],
-  [depanULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
-  [kiriULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
-  [kananULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
-  [tengahULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
-  [belakangULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Parkiran MPK' }],
+  [halamanULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Halaman ULT' }],
+  [depanULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Ruang ULT' }],
+  [kiriULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Ruang ULT' }],
+  [kananULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Ruang ULT' }],
+  [tengahULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Ruang ULT' }],
+  [belakangULT.uuid, { floor: 'Unit Layanan Terpadu (ULT)', location: 'Ruang ULT' }],
 
   [gdLobby.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
   [gdLobby2.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lobby' }],
@@ -155,9 +155,9 @@ const panoramaTexts = new Map([
   [gd1Kanan.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lorong Kanan' }],
   [gd1Kanan2.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lorong Kanan' }],
   [gd1Kanan3.uuid, { floor: 'Gedung Depan Lt.1', location: 'Lorong Kanan' }],
-  [gd1Akademik.uuid, { floor: 'Gedung Depan Lt.1', location: 'Akademik dan Evaluasi' }],
-  [gd1Registrasi.uuid, { floor: 'Gedung Depan Lt.1', location: 'Registrasi dan Statistik' }],
-  [gd1SaranaP.uuid, { floor: 'Gedung Depan Lt.1', location: 'Sarana Pendidikan' }],
+  [gd1Akademik.uuid, { floor: 'Gedung Depan Lt.1', location: 'Ruang Akademik dan Evaluasi' }],
+  [gd1Registrasi.uuid, { floor: 'Gedung Depan Lt.1', location: 'Ruang Registrasi dan Statistik' }],
+  [gd1SaranaP.uuid, { floor: 'Gedung Depan Lt.1', location: 'Ruang Sarana Pendidikan' }],
 
   [gd2Tangga.uuid, { floor: 'Gedung Depan Lt.2', location: 'Tangga' }],
   [gd2Kanan.uuid, { floor: 'Gedung Depan Lt.2', location: 'Lorong Kanan' }],
@@ -230,28 +230,28 @@ function splashOnProgressUpdate(event) {
     const control = document.getElementById('control');
     const floormap = document.getElementById('floormapContainer');
     setTimeout(function () {
-    splashScreen.classList.add('fade-out');
+      splashScreen.classList.add('fade-out');
 
-    setTimeout(() => {
+      setTimeout(() => {
 
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-      if (isMobile) {
-        // Hide the splash screen immediately on mobile devices
-        splashScreen.style.display = 'none';
-      }
-      control.style.display = 'flex';
-      control.classList.add('swift-up-animation');
+        if (isMobile) {
+          // Hide the splash screen immediately on mobile devices
+          splashScreen.style.display = 'none';
+        }
+        control.style.display = 'flex';
+        control.classList.add('swift-up-animation');
 
-      floormap.style.display = 'inline-flex';
-      floormap.classList.add('swift-down-animation');
+        floormap.style.display = 'inline-flex';
+        floormap.classList.add('swift-down-animation');
 
-      compass.style.display = 'inline-flex';
-      compass.classList.add('swift-down-animation');
+        compass.style.display = 'inline-flex';
+        compass.classList.add('swift-down-animation');
 
-      bar.classList.add('hide');
-    }, 600);
-  }, 2000); // 
+        bar.classList.add('hide');
+      }, 600);
+    }, 2000); // 
   }
 }
 
@@ -261,10 +261,10 @@ document.addEventListener('DOMContentLoaded', function () {
   splashScreen.style.display = 'flex';
 });
 
-window.addEventListener('load', function () {
-  halamanKanan.addEventListener('progress', splashOnProgressUpdate);
-  
-});
+halamanKanan.addEventListener('progress', splashOnProgressUpdate);
+// window.addEventListener('load', function () {
+
+// });
 
 function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
   targetPanorama.addEventListener('progress', onProgressUpdate);
@@ -313,13 +313,13 @@ function onButtonClick(targetPanorama, redDotTopCoord, redDotLeftCoord) {
       floorImage.src = "assets/images/floormap/halaman.png";
       compass.style.display = "inline-flex";
     }
-  
+
     const redDot = document.getElementById("redDot");
-  
+
     redDot.style.top = redDotTopCoord + "px";
     redDot.style.left = redDotLeftCoord + "px";
     redDot.style.display = "block";
-  
+
     bar.classList.remove('hide');
   }
 }
@@ -393,25 +393,25 @@ createInfospot(jalanULT, new THREE.Vector3(-4964.23, -442.53, -275.02), halamanK
 createInfospot(jalanULT, new THREE.Vector3(4970.90, -27.06, 526.65), halamanULT, new THREE.Vector3(-4952.39, 30.32, -642.69), 50, 37);
 
 createInfospot(halamanULT, new THREE.Vector3(4889.92, -955.03, -269.70), jalanULT, new THREE.Vector3(-4982.19, -61.90, -293.34), 50, 43);
-createInfospot(halamanULT, new THREE.Vector3(-4939.15, -348.46, -646.50), depanULT, new THREE.Vector3(-4947.47, 82.96, 660.54));
+createInfospot(halamanULT, new THREE.Vector3(-4939.15, -348.46, -646.50), depanULT, new THREE.Vector3(-4947.47, 82.96, 660.54), 45, 23);
 
 createInfospot(depanULT, new THREE.Vector3(4797.32, -853.39, -1096.03), halamanULT, new THREE.Vector3(4970.00, -266.30, -372.76), 50, 37);
-createInfospot(depanULT, new THREE.Vector3(-1395.88, -2263.40, -4232.85), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56));
-createInfospot(depanULT, new THREE.Vector3(-1885.81, -2532.41, 3867.54), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16));
+createInfospot(depanULT, new THREE.Vector3(-1395.88, -2263.40, -4232.85), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56), 45, 23);
+createInfospot(depanULT, new THREE.Vector3(-1885.81, -2532.41, 3867.54), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16), 45, 23);
 
-createInfospot(kananULT, new THREE.Vector3(4633.46, -1809.20, -465.27), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36));
-createInfospot(kananULT, new THREE.Vector3(-257.70, -2225.31, -4462.11), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(kananULT, new THREE.Vector3(-4493.71, -1619.46, -1468.11), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00));
+createInfospot(kananULT, new THREE.Vector3(4633.46, -1809.20, -465.27), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36), 45, 23);
+createInfospot(kananULT, new THREE.Vector3(-257.70, -2225.31, -4462.11), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
+createInfospot(kananULT, new THREE.Vector3(-4493.71, -1619.46, -1468.11), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00), 45, 23);
 
-createInfospot(tengahULT, new THREE.Vector3(-386.80, -1636.64, 4701.24), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(tengahULT, new THREE.Vector3(-821.41, -1705.11, -4618.17), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(tengahULT, new THREE.Vector3(-386.80, -1636.64, 4701.24), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
+createInfospot(tengahULT, new THREE.Vector3(-821.41, -1705.11, -4618.17), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
 
-createInfospot(kiriULT, new THREE.Vector3(4438.23, -1441.72, 1770.34), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36));
-createInfospot(kiriULT, new THREE.Vector3(-1099.60, -1969.90, 4454.24), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(kiriULT, new THREE.Vector3(-4659.89, -1493.08, 1013.46), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00));
+createInfospot(kiriULT, new THREE.Vector3(4438.23, -1441.72, 1770.34), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36), 45, 23);
+createInfospot(kiriULT, new THREE.Vector3(-1099.60, -1969.90, 4454.24), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
+createInfospot(kiriULT, new THREE.Vector3(-4659.89, -1493.08, 1013.46), belakangULT, new THREE.Vector3(-4952.52, 241.21, 589.00), 45, 23);
 
-createInfospot(belakangULT, new THREE.Vector3(2834.89, -1278.00, -3910.95), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
-createInfospot(belakangULT, new THREE.Vector3(4257.88, -993.31, 2414.01), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50));
+createInfospot(belakangULT, new THREE.Vector3(2834.89, -1278.00, -3910.95), kiriULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
+createInfospot(belakangULT, new THREE.Vector3(4257.88, -993.31, 2414.01), kananULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
 
 createInfospot(gdLobby, new THREE.Vector3(-4925.31, -844.62, -13.58), halamanDepan, new THREE.Vector3(4977.40, 304.08, 203.23), 61, 101);
 createInfospot(gdLobby, new THREE.Vector3(3661.43, -944.47, 3263.79), gdLobbyKiri, new THREE.Vector3(2697.65, -600.05, -4154.14), 49, 78);
@@ -442,6 +442,9 @@ createInfospot(gd1Kiri, new THREE.Vector3(-3868.78, -993.15, -2992.36), gd1Kiri2
 createInfospot(gd1Kiri, new THREE.Vector3(3852.92, -1500.50, 2807.86), gdLobbyKiri, new THREE.Vector3(-4540.36, -292.63, 2062.10), 49, 78);
 
 createInfospot(gd1Kiri2, new THREE.Vector3(4857.03, -1169.06, -82.12), gd1Kiri, new THREE.Vector3(4001.28, -190.52, 2981.15), 49, 58);
+createInfospot(gd1Kiri2, new THREE.Vector3(604.75, -1068.67, 4839.75), gd1Registrasi, new THREE.Vector3(-4565.28, -347.48, 2002.01), 28, 38);
+
+createInfospot(gd1Registrasi, new THREE.Vector3(604.75, -1068.67, 4839.75), gd1Kiri2, new THREE.Vector3(371.00, -391.78, -4965.16), 49, 38);
 
 createInfospot(gd2Tangga, new THREE.Vector3(4627.02, -1329.76, -1313.84), gdLobby, new THREE.Vector3(4597.21, -1408.92, -1338.99), 81, 98);
 createInfospot(gd2Tangga, new THREE.Vector3(2325.22, -1073.04, 4285.35), gd2Kanan, new THREE.Vector3(4977.40, 304.08, 203.23), 52, 127);
@@ -602,6 +605,8 @@ createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-
 createInfoPlace(halamanULT, new THREE.Vector3(181 - 3790.29, 198.97, 3241.17), 'desc-ult');
 createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), null, 'assets/icons/Exit.png');
 
+createInfoPlace(gd1Kiri2, new THREE.Vector3(3851.59, -226.35, 3163.76), 'desc-registrasi-statistik');
+
 createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan');
 
 const buttonData = {
@@ -633,19 +638,19 @@ const buttonData = {
     page: halamanULT,
     coordinates: new THREE.Vector3(-4231.21, 138.32, 2642.35)
   },
-  'Akademik dan Evaluasi': {
+  'Ruang Akademik dan Evaluasi': {
     page: gd1Kiri,
     coordinates: new THREE.Vector3(4465.35, -339.47, -2205.26),
     top: 49,
     left: 58
   },
-  'Registrasi dan Statistik': {
+  'Ruang Registrasi dan Statistik': {
     page: gd1Kiri2,
     coordinates: new THREE.Vector3(2924.08, 9.09, 4054.30),
     top: 49,
     left: 38
   },
-  'Wakil Rektor 3': {
+  'Ruang Wakil Rektor 3': {
     page: gd1Kanan,
     coordinates: new THREE.Vector3(-4848.31, -46.54, 1190.84),
     top: 49,
@@ -663,7 +668,7 @@ const buttonData = {
     top: 49,
     left: 156
   },
-  'Kesejahteraan Mahasiswa': {
+  'Ruang Kesejahteraan Mahasiswa': {
     page: gd1Kanan3,
     coordinates: new THREE.Vector3(4635.21, 21.91, 1855.48),
     top: 49,
@@ -735,7 +740,7 @@ const buttonData = {
     top: 76,
     left: 74
   },
-  'Humas': {
+  'Ruang Humas': {
     page: gd3LKiri2,
     coordinates: new THREE.Vector3(-1685.00, -634.46, 4654.43),
     top: 53,
@@ -747,13 +752,13 @@ const buttonData = {
     top: 53,
     left: 35
   },
-  'Wakil Rektor 4': {
+  'Ruang Wakil Rektor 4': {
     page: gb3Kiri2,
     coordinates: new THREE.Vector3(-4988.97, -90.78, 142.34),
     top: 45,
     left: 58
   },
-  'Serbaguna Lt.4': {
+  'Ruang Serbaguna Lt.4': {
     page: gb4Lobby,
     coordinates: new THREE.Vector3(4850.92, -170.99, 1162.23),
     top: 50,
@@ -948,22 +953,22 @@ function toggleFeatureSection(element) {
 }
 
 // Get references to the image and red dot elements
-const floorImage = document.getElementById("floorImage");
-const redDot = document.getElementById("redDot");
+// const floorImage = document.getElementById("floorImage");
+// const redDot = document.getElementById("redDot");
 
-// Add a click event listener to the image
-floorImage.addEventListener("click", function (event) {
-  // Calculate the top and left coordinates relative to the image
-  const rect = floorImage.getBoundingClientRect();
-  const top = event.clientY - rect.top;
-  const left = event.clientX - rect.left;
+// // Add a click event listener to the image
+// floorImage.addEventListener("click", function (event) {
+//   // Calculate the top and left coordinates relative to the image
+//   const rect = floorImage.getBoundingClientRect();
+//   const top = event.clientY - rect.top;
+//   const left = event.clientX - rect.left;
 
-  // Set the red dot's position and display it
-  redDot.style.top = top + "px";
-  redDot.style.left = left + "px";
-  redDot.style.display = "block";
+//   // Set the red dot's position and display it
+//   redDot.style.top = top + "px";
+//   redDot.style.left = left + "px";
+//   redDot.style.display = "block";
 
-  // Show the coordinates as text (you can customize this part)
-  console.log(`Top: ${top}px, Left: ${left}px`);
-});
+//   // Show the coordinates as text (you can customize this part)
+//   console.log(`Top: ${top}px, Left: ${left}px`);
+// });
 

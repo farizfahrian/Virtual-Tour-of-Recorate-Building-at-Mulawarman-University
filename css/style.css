@@ -14,26 +14,26 @@
   --color-gray-900: #101828;
 
   --color-green-light: #e6f5ed;
-	--color-green-light-hover: #d9f0e4;
-	--color-green-light-active: #b0e0c8;
-	--color-green-normal: #009b4c;
-	--color-green-normal-hover: #008c44;
-	--color-green-normal-active: #007c3d;
-	--color-green-dark: #007439;
-	--color-green-dark-hover: #005d2e;
-	--color-green-dark-active: #004622;
-	--color-green-darker: #00361b;
+  --color-green-light-hover: #d9f0e4;
+  --color-green-light-active: #b0e0c8;
+  --color-green-normal: #009b4c;
+  --color-green-normal-hover: #008c44;
+  --color-green-normal-active: #007c3d;
+  --color-green-dark: #007439;
+  --color-green-dark-hover: #005d2e;
+  --color-green-dark-active: #004622;
+  --color-green-darker: #00361b;
 
-	--color-yellow-darker: #463A01;
-	--color-yellow-light: #FFFAE6;
-	--color-yellow-light-hover: #fff8d9;
-	--color-yellow-light-active: #fef1b0;
-	--color-yellow-normal: #FFCB02;
-	--color-yellow-normal-hover: #e4bc00;
-	--color-yellow-normal-active: #CAA700;
-	--color-yellow-dark: #be9d00;
-	--color-yellow-dark-hover: #987D00;
-	--color-yellow-dark-active: #725e00;
+  --color-yellow-darker: #463a01;
+  --color-yellow-light: #fffae6;
+  --color-yellow-light-hover: #fff8d9;
+  --color-yellow-light-active: #fef1b0;
+  --color-yellow-normal: #ffcb02;
+  --color-yellow-normal-hover: #e4bc00;
+  --color-yellow-normal-active: #caa700;
+  --color-yellow-dark: #be9d00;
+  --color-yellow-dark-hover: #987d00;
+  --color-yellow-dark-active: #725e00;
 
   .text-display-2-xl-regular {
     font-size: 72px;
@@ -288,15 +288,15 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.splash-container{
+.splash-container {
   margin: 0;
-	display: none;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.splash-container.hide{
+.splash-container.hide {
   opacity: 0;
   transition: opacity 1s ease;
 }
@@ -304,31 +304,31 @@ body {
 .splash-container div {
   display: flex;
   flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
   gap: 60px;
 
   width: 500px;
   font-size: 55px;
 }
 
-.splash-container h1{
+.splash-container h1 {
   margin: 0;
   text-align: center;
   letter-spacing: -1px;
 }
 
-.splash-container span{
+.splash-container span {
   display: inline-block;
   overflow: hidden;
-  animation: .3s swift-up ease-out forwards;	
+  animation: 0.3s swift-up ease-out forwards;
 }
 
-.splash-container i{
+.splash-container i {
   font-style: normal;
   position: relative;
   top: 55px;
-  animation: .5s swift-up ease-out forwards;
+  animation: 0.5s swift-up ease-out forwards;
 }
 
 .logo-unmul {
@@ -415,7 +415,6 @@ body {
   box-shadow: 0px 1px 0px #bdbec0;
   z-index: 1;
 }
-
 
 .mb-0 {
   margin: 0px;
@@ -524,7 +523,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 26px;
-  
+
   max-width: 500px;
   min-width: 200px;
   background: var(--color-base-white);
@@ -564,18 +563,25 @@ body {
   gap: 4px;
 }
 
-.operational-time p{
+.operational-time p {
   margin-block-start: 0;
   margin-block-end: 0;
 }
 
-.contact {
+.contact-group {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.contact div{
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.contact div {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -718,7 +724,7 @@ body {
   border-color: var(--color-green-normal-active);
   background-color: var(--color-green-normal-active);
   color: var(--color-green-normal-active);
-  border: 1.5px solid var(--color-green-normal-active)
+  border: 1.5px solid var(--color-green-normal-active);
 }
 
 .select-button p {
@@ -754,9 +760,8 @@ body {
   transition: 0.2s ease-in-out;
   border-color: var(--color-green-dark-hover);
   background-color: var(--color-green-dark-hover);
-  border: solid 1.5px var(--color-base-white)
+  border: solid 1.5px var(--color-base-white);
 }
-
 
 .filter-button.selected {
   background-color: var(--color-base-white);
@@ -787,7 +792,7 @@ body {
 }
 
 .selection-container::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: var(--color-gray-300);
   border-radius: 6px;
 }
 
@@ -807,7 +812,7 @@ body {
   gap: 24px;
 }
 
-.floor{
+.floor {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -861,11 +866,11 @@ body {
   padding-top: 21px;
 }
 
-.compass{
+.compass {
   width: 66px;
   height: 66px;
   opacity: 0.7;
-  
+
   transform: rotate(120deg);
 }
 
@@ -883,16 +888,16 @@ body {
 /* Keyframes for pulsating animation */
 @keyframes pulse {
   0% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
   50% {
-      transform: scale(1.2);
-      opacity: 0.7;
+    transform: scale(1.2);
+    opacity: 0.7;
   }
   100% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

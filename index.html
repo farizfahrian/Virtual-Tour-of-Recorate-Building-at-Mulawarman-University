@@ -1,266 +1,262 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" sizes="32x32" href="assets/icons/favicon-16x16.png" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Virtual Tour Gedung Rektorat Unmul</title>
-  </head>
 
-  <body>
-    <div id="progress">
-      <div id="bar"></div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" sizes="32x32" href="assets/icons/favicon-16x16.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Virtual Tour Gedung Rektorat Unmul</title>
+</head>
+
+<body>
+  <div id="progress">
+    <div id="bar"></div>
+  </div>
+
+  <div id="splashContainer" class="splash-container">
+    <div>
+      <img class="logo-unmul" src="assets/images/logo_unmul.png" alt="logo_unmul">
+      <h1 class="swift-up-text text-display-sm-semi-bold">Virtual Tour Gedung Rektorat Universitas Mulawarman</h1>
     </div>
+  </div>
 
-    <div id="splashContainer" class="splash-container">
-      <div>
-        <img class="logo-unmul" src="assets/images/logo_unmul.png" alt="logo_unmul">
-        <h1 class="swift-up-text text-display-sm-semi-bold">Virtual Tour Gedung Rektorat Universitas Mulawarman</h1>
-      </div>
-    </div>
+  <div id="floormapContainer" class="floormap-container">
+    <img id="floorImage" class="floormap" src="assets/images/floormap/halaman.png">
+    <div id="redDot" class="red-dot"></div>
+  </div>
 
-      <div id="floormapContainer" class="floormap-container">
-        <img id="floorImage" class="floormap" src="assets/images/floormap/halaman.png">
-        <div id="redDot" class="red-dot"></div>
-      </div>
-      
-      <div id="compassContainer" class="compass-container">
-        <img id="compass" class="compass" src="assets/icons/Compass.png" alt="compass">
-      </div>
+  <div id="compassContainer" class="compass-container">
+    <img id="compass" class="compass" src="assets/icons/Compass.png" alt="compass">
+  </div>
 
-    <div class="search-container disable-selection" id="searchContainer">
-      <div class="search" id="search">
-        <div class="header-input">
-          <div class="filter-button" onclick="toggleFilterSection(this)">
-            <img src="assets/icons/filter-lines-white.svg" alt="filter icon" />
+  <div class="search-container disable-selection" id="searchContainer">
+    <div class="search" id="search">
+      <div class="header-input">
+        <div class="filter-button" onclick="toggleFilterSection(this)">
+          <img src="assets/icons/filter-lines-white.svg" alt="filter icon" />
+        </div>
+      </div>
+      <div class="filter-section" id="filterSection">
+        <div class="building-filter">
+          <p class="text-sm-medium gray-text" style="margin: 0 0 8px">
+            Gedung
+          </p>
+          <div>
+            <div class="select-filter" onclick="updateFilter(this)">
+              <p class="text-sm-regular">Depan</p>
+            </div>
+            <div class="select-filter" onclick="updateFilter(this)">
+              <p class="text-sm-regular">Belakang</p>
+            </div>
+            <div class="select-filter" onclick="updateFilter(this)">
+              <p class="text-sm-regular">Halaman</p>
+            </div>
           </div>
         </div>
-        <div class="filter-section" id="filterSection">
-          <div class="building-filter">
-            <p class="text-sm-medium gray-text" style="margin: 0 0 8px">
-              Gedung
-            </p>
+        <div class="floor-filter">
+          <p class="text-sm-medium gray-text" style="margin: 0 0 8px">
+            Lantai
+          </p>
+          <div class="radio-buttons">
             <div>
               <div class="select-filter" onclick="updateFilter(this)">
-                <p class="text-sm-regular">Depan</p>
+                <p class="text-sm-regular">lt-1</p>
               </div>
               <div class="select-filter" onclick="updateFilter(this)">
-                <p class="text-sm-regular">Belakang</p>
+                <p class="text-sm-regular">lt-2</p>
               </div>
               <div class="select-filter" onclick="updateFilter(this)">
-                <p class="text-sm-regular">Halaman</p>
+                <p class="text-sm-regular">lt-3</p>
               </div>
-            </div>
-          </div>
-          <div class="floor-filter">
-            <p class="text-sm-medium gray-text" style="margin: 0 0 8px">
-              Lantai
-            </p>
-            <div class="radio-buttons">
-              <div>
-                <div class="select-filter" onclick="updateFilter(this)">
-                  <p class="text-sm-regular">lt-1</p>
-                </div>
-                <div class="select-filter" onclick="updateFilter(this)">
-                  <p class="text-sm-regular">lt-2</p>
-                </div>
-                <div class="select-filter" onclick="updateFilter(this)">
-                  <p class="text-sm-regular">lt-3</p>
-                </div>
-                <div class="select-filter" onclick="updateFilter(this)">
-                  <p class="text-sm-regular">lt-4</p>
-                </div>
+              <div class="select-filter" onclick="updateFilter(this)">
+                <p class="text-sm-regular">lt-4</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="selection-container">
-          <div class="depan building">
-            <div class="lt-1 floor">
-              <p class="text-sm-medium gray-text">Gedung depan Lt.1</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Lobby</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Akademik dan Evaluasi</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Sarana Pendidikan</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Registrasi dan Statistik</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Wakil Rektor 3</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Ruang Rapat 3 Lt.1</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Sekretariat WR 3</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kesejahteraan Mahasiswa</p>
-              </div>
+      </div>
+      <div class="selection-container">
+        <div class="depan building">
+          <div class="lt-1 floor">
+            <p class="text-sm-medium gray-text">Gedung depan Lt.1</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Lobby</p>
             </div>
-            <div class="lt-2 floor">
-              <p class="text-sm-medium gray-text">Gedung depan Lt.2</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Keuangan</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Sekretariat WR 2</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Tenaga Kependidikan</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kepegawaian</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Akuntansi dan Pelaporan</p>
-              </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Akademik dan Evaluasi</p>
             </div>
-            <div class="lt-3 floor">
-              <p class="text-sm-medium gray-text">Gedung depan Lt.3</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Ruang Rektor</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Humas</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Ruang Rapat Lt.3</p>
-              </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Sarana Pendidikan</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Registrasi dan Statistik</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Wakil Rektor 3</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Ruang Rapat 3 Lt.1</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Sekretariat WR 3</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Kesejahteraan Mahasiswa</p>
             </div>
           </div>
-          <div class="belakang building">
-            <div class="lt-1 floor">
-              <p class="text-sm-medium gray-text">Gedung belakang Lt.1</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Lobby</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kantin</p>
-              </div>
+          <div class="lt-2 floor">
+            <p class="text-sm-medium gray-text">Gedung depan Lt.2</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Keuangan</p>
             </div>
-            <div class="lt-2 floor">
-              <p class="text-sm-medium gray-text">Gedung belakang Lt.2</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Rumah Tangga</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Tata Usaha</p>
-              </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Sekretariat WR 2</p>
             </div>
-            <div class="lt-3 floor">
-              <p class="text-sm-medium gray-text">Gedung belakang Lt.3</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Wakil Rektor 4</p>
-              </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Tenaga Kependidikan</p>
             </div>
-            <div class="lt-4 floor">
-              <p class="text-sm-medium gray-text">Gedung belakang Lt.4</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Serbaguna Lt.4</p>
-              </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Kepegawaian</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Akuntansi dan Pelaporan</p>
             </div>
           </div>
-          <div class="halaman building">
-            <div class="lt-1 floor">
-              <p class="text-sm-medium gray-text">Halaman</p>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kendaraan Masuk</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Parkiran</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Unit Layanan Terpadu (ULT)</p>
-              </div>
-              <div class="select-button" onclick="updateLocation(this)">
-                <p class="text-sm-medium location-name">Kendaraan Keluar</p>
-              </div>
+          <div class="lt-3 floor">
+            <p class="text-sm-medium gray-text">Gedung depan Lt.3</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Ruang Rektor</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Humas</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Ruang Rapat Lt.3</p>
+            </div>
+          </div>
+        </div>
+        <div class="belakang building">
+          <div class="lt-1 floor">
+            <p class="text-sm-medium gray-text">Gedung belakang Lt.1</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Lobby</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Kantin</p>
+            </div>
+          </div>
+          <div class="lt-2 floor">
+            <p class="text-sm-medium gray-text">Gedung belakang Lt.2</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Rumah Tangga</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Tata Usaha</p>
+            </div>
+          </div>
+          <div class="lt-3 floor">
+            <p class="text-sm-medium gray-text">Gedung belakang Lt.3</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Wakil Rektor 4</p>
+            </div>
+          </div>
+          <div class="lt-4 floor">
+            <p class="text-sm-medium gray-text">Gedung belakang Lt.4</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Serbaguna Lt.4</p>
+            </div>
+          </div>
+        </div>
+        <div class="halaman building">
+          <div class="lt-1 floor">
+            <p class="text-sm-medium gray-text">Halaman</p>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Kendaraan Masuk</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Parkiran</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Unit Layanan Terpadu (ULT)</p>
+            </div>
+            <div class="select-button" onclick="updateLocation(this)">
+              <p class="text-sm-medium location-name">Kendaraan Keluar</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="control" class="control">
-      <div class="location-dropdown disable-selection" id="locationDropdown">
-        <img src="assets/icons/location-marker.svg" alt="" />
-        <p class="text-md-medium" style="width: 100%">Pilih lokasi</p>
-        <img src="assets/icons/chevron-up.svg" alt="" />
-      </div>
-      <div class="location-container control-item">
-        <p id="roomText" class="room-location">Jalur Kendaraan Masuk</p>
-        <p id="floorText" class="floor-location">Halaman Rektorat</p>
-      </div>
-      <div class="icon-container control-item disable-selection">
-        <div id="featureButton" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
-          <img src="assets/icons/gyroscope-white.svg" data-inactive-icon="gyroscope.svg" alt="gyroscope icon" />
-          <div class="tooltip-content text-sm-regular">Gyroscope</div>
-        </div>
-        <div id="featureButton2" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
-          <img src="assets/icons/rotate-white.svg" data-inactive-icon="rotate.svg" alt="rotate icon" />
-          <div class="tooltip-content text-sm-regular">Auto Rotate</div>
-        </div>
-        <div id="featureButton3" class="feature-button tooltip">
-          <img src="assets/icons/fullscreen-white.svg" alt="fullscreen icon" />
-          <div class="tooltip-content text-sm-regular">Fullscreen</div>
-        </div>
-      </div>
-      
+  <div id="control" class="control">
+    <div class="location-dropdown disable-selection" id="locationDropdown">
+      <img src="assets/icons/location-marker.svg" alt="" />
+      <p class="text-md-medium" style="width: 100%">Pilih lokasi</p>
+      <img src="assets/icons/chevron-up.svg" alt="" />
     </div>
-
-    <div id="container"></div>
-
-    <div id="desc-mushola" style="display: none">
-      <div class="desc-container">
-        <div class="heading-text" style="justify-content: center;">
-          <p class="title text-lg-semi-bold ">Mushola Rektorat</p>
-        </div>
-        <div class="text text-md-regular ">
-          Tempat ibadah dan doa bagi para anggota universitas, termasuk mahasiswa,
-          dosen, dan staf. Mushola ini adalah fasilitas religius yang disediakan
-          oleh universitas untuk memenuhi kebutuhan keagamaan dari warga kampus.
-        </div>
+    <div class="location-container control-item">
+      <p id="roomText" class="room-location">Jalur Kendaraan Masuk</p>
+      <p id="floorText" class="floor-location">Halaman Rektorat</p>
+    </div>
+    <div class="icon-container control-item disable-selection">
+      <div id="featureButton" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
+        <img src="assets/icons/gyroscope-white.svg" data-inactive-icon="gyroscope.svg" alt="gyroscope icon" />
+        <div class="tooltip-content text-sm-regular">Gyroscope</div>
+      </div>
+      <div id="featureButton2" class="feature-button tooltip" onclick="toggleFeatureSection(this)">
+        <img src="assets/icons/rotate-white.svg" data-inactive-icon="rotate.svg" alt="rotate icon" />
+        <div class="tooltip-content text-sm-regular">Auto Rotate</div>
+      </div>
+      <div id="featureButton3" class="feature-button tooltip">
+        <img src="assets/icons/fullscreen-white.svg" alt="fullscreen icon" />
+        <div class="tooltip-content text-sm-regular">Fullscreen</div>
       </div>
     </div>
+  </div>
 
-    <div id="desc-ult" style="display: none">
-      <div class="desc-container">
-        <div class="heading-text">
-          <p class="title text-lg-semi-bold">ULT (Unit Layanan Terpadu)</p>
-          <div class="operational-container">
-            <div class="operational-time">
-              <p class="text-sm-regular">Hari operasional</p>
-              <p class="text-sm-semi-bold">Senin - Sabtu</p>
-            </div>
-            <div class="operational-time">
-              <p class="text-sm-regular">Jam operasional</p>
-              <p class="text-sm-semi-bold">08.00 - 16.00</p>
-            </div>
+  <div id="container"></div>
+
+  <div id="desc-mushola" style="display: none">
+    <div class="desc-container">
+      <div class="heading-text" style="justify-content: center;">
+        <p class="title text-lg-semi-bold ">Mushola Rektorat</p>
+      </div>
+      <div class="text text-md-regular ">
+        Tempat ibadah dan doa bagi para anggota universitas, termasuk mahasiswa,
+        dosen, dan staf. Mushola ini adalah fasilitas religius yang disediakan
+        oleh universitas untuk memenuhi kebutuhan keagamaan dari warga kampus.
+      </div>
+    </div>
+  </div>
+
+  <div id="desc-ult" style="display: none">
+    <div class="desc-container">
+      <div class="heading-text">
+        <p class="title text-lg-semi-bold">ULT (Unit Layanan Terpadu)</p>
+        <div class="operational-container">
+          <div class="operational-time">
+            <p class="text-sm-regular">Hari operasional</p>
+            <p class="text-sm-semi-bold">Senin - Sabtu</p>
+          </div>
+          <div class="operational-time">
+            <p class="text-sm-regular">Jam operasional</p>
+            <p class="text-sm-semi-bold">08.00 - 16.00</p>
           </div>
         </div>
-        <div class="text text-md-regular">
-          Unit Layanan Terpadu adalah sebuah pusat pelayanan yang menyediakan
-          berbagai layanan dan informasi terkait universitas atau lembaga
-          tertentu. Tujuan dari Unit Layanan Terpadu adalah untuk memberikan
-          kemudahan akses bagi mahasiswa mendapatkan layanan dan informasi yang beragam tanpa harus mengunjungi
-          berbagai departemen yang berbeda.
-        </div>
+      </div>
+      <div class="text text-md-regular">
+        Unit Layanan Terpadu adalah sebuah pusat pelayanan yang menyediakan
+        berbagai layanan dan informasi terkait universitas atau lembaga
+        tertentu. Tujuan dari Unit Layanan Terpadu adalah untuk memberikan
+        kemudahan akses bagi mahasiswa mendapatkan layanan dan informasi yang beragam tanpa harus mengunjungi
+        berbagai departemen yang berbeda.
+      </div>
+      <div class="contact-group">
         <div class="contact">
           <div>
             <img src="assets/icons/globe.svg" alt="web">
@@ -268,25 +264,32 @@
           </div>
           <div>
             <img src="assets/icons/instagram.svg" alt="instagram">
-            <a href="https://ult.unmul.ac.id/" target="_blank" class="text-sm-regular">@ultunmul</a>
+            <a href="https://www.instagram.com/ultunmul/" target="_blank" class="text-sm-regular">@ultunmul</a>
           </div>
+        </div>
+        <div class="contact">
           <div>
             <img src="assets/icons/whatsapp.svg" alt="whatsapp">
             <a href="https://wa.me/+628115809970" target="_blank" class="text-sm-regular">+628115809970</a>
           </div>
+          <div>
+            <img src="assets/icons/mail.svg" alt="email">
+            <a href="mailto:ult@unmul.ac.id" target="_blank" class="text-sm-regular">ult@unmul.ac.id</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="desc-keuangan" style="display: none">
-      <div class="desc-container">
-        <div class="heading-text">
-          <p class="title text-lg-semi-bold">Ruang Keuangan</p>
-          <div class="operational-container">
-            <div class="operational-time">
-              <p class="text-sm-regular">Hari operasional</p>
-              <p class="text-sm-semi-bold">Senin - Jumat</p>
-            </div>
+  <div id="desc-keuangan" style="display: none">
+    <div class="desc-container">
+      <div class="heading-text">
+        <p class="title text-lg-semi-bold">Ruang Keuangan</p>
+        <div class="operational-container">
+          <div class="operational-time">
+            <p class="text-sm-regular">Hari operasional</p>
+            <p class="text-sm-semi-bold">Senin - Jumat</p>
+          </div>
           <div class="operational-time">
             <p class="text-sm-regular">Jam operasional</p>
             <p class="text-sm-semi-bold">08.00 - 16.00</p>
@@ -302,10 +305,36 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="build/three.min.js"></script>
-    <script src="build/panolens.min.js"></script>
+  <div id="desc-registrasi-statistik" style="display: none">
+    <div class="desc-container">
+      <div class="heading-text">
+        <p class="title text-lg-semi-bold">Ruang Registrasi dan Statistik</p>
+        <div class="operational-container">
+          <div class="operational-time">
+            <p class="text-sm-regular">Hari operasional</p>
+            <p class="text-sm-semi-bold">Senin - Jumat</p>
+          </div>
+          <div class="operational-time">
+            <p class="text-sm-regular">Jam operasional</p>
+            <p class="text-sm-semi-bold">08.00 - 16.00</p>
+          </div>
+        </div>
+        <div class="text text-md-regular">
+          Ruang registrasi dan statistik memiliki fungsi utama dalam proses pendaftaran dan pemeliharaan data 
+          mahasiswa, penyediaan informasi akademik, serta pelaporan statistik pendidikan kepada manajemen 
+          universitas. Ruang ini juga merupakan tempat penyimpanan dan pengarsipan data akademik yang
+          penting, seperti transkrip akademik, ijazah, dan catatan pribadi mahasiswa.
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="scripts/script.js"></script>
-  </body>
+
+  <script src="build/three.min.js"></script>
+  <script src="build/panolens.min.js"></script>
+
+  <script src="scripts/script.js"></script>
+</body>
 </html>
