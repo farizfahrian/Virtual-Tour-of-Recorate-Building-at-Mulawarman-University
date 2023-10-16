@@ -864,6 +864,9 @@ body {
   top: 45px;
   left: 245px;
   padding-top: 21px;
+
+  transform-origin: top left; /* Set the transform origin to the top right corner */
+  transform: scale(1); /* Initial scale */
 }
 
 .compass {
@@ -940,6 +943,10 @@ body {
 
   .floormap-container {
     transform: scale(0.8);
+  }
+  .compass-container {
+    transform: scale(0.8);
+    left: 210px;
   }
 }
 
