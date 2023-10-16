@@ -31,7 +31,7 @@ swiftUpElements.forEach(elem => {
 });
 
 
-var viewer = new PANOLENS.Viewer({ container: container, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false, output: 'console' });
+var viewer = new PANOLENS.Viewer({ container: container, cameraFov: 80, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
 
 function createPanorama(imagePath) {
   const panorama = new PANOLENS.ImagePanorama(imagePath);
@@ -834,15 +834,15 @@ featureButton3.addEventListener('click', function (e) {
 
 // Changing Scroll Wheel Behaviour
 container.addEventListener('wheel', function (e) {
-  if (e.originalEvent.wheelDelta / 120 > 0) {
-    var currentZoom = viewer.camera.fov;
-    var newZoom = currentZoom - 5;
-    if (newZoom < 30) newZoom = 30;
-    viewer.setCameraFov(newZoom);
-  } else {
+  if (e.deltaY / 120 > 0) {
     var currentZoom = viewer.camera.fov;
     var newZoom = currentZoom + 5;
     if (newZoom > 110) newZoom = 110;
+    viewer.setCameraFov(newZoom);
+  } else {
+    var currentZoom = viewer.camera.fov;
+    var newZoom = currentZoom - 5;
+    if (newZoom < 30) newZoom = 30;
     viewer.setCameraFov(newZoom);
   }
 })
@@ -948,27 +948,4 @@ function toggleFeatureSection(element) {
 
   imgElement.src = isActiveIcon ? imgElement.src.replace('-white.svg', '.svg')
     : imgElement.src.replace('.svg', '-white.svg');
-
-  Event.preventDefault();
 }
-
-// Get references to the image and red dot elements
-// const floorImage = document.getElementById("floorImage");
-// const redDot = document.getElementById("redDot");
-
-// // Add a click event listener to the image
-// floorImage.addEventListener("click", function (event) {
-//   // Calculate the top and left coordinates relative to the image
-//   const rect = floorImage.getBoundingClientRect();
-//   const top = event.clientY - rect.top;
-//   const left = event.clientX - rect.left;
-
-//   // Set the red dot's position and display it
-//   redDot.style.top = top + "px";
-//   redDot.style.left = left + "px";
-//   redDot.style.display = "block";
-
-//   // Show the coordinates as text (you can customize this part)
-//   console.log(`Top: ${top}px, Left: ${left}px`);
-// });
-
