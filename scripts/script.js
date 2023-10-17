@@ -31,7 +31,7 @@ swiftUpElements.forEach(elem => {
 });
 
 
-var viewer = new PANOLENS.Viewer({ container: container, cameraFov: 80, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false });
+var viewer = new PANOLENS.Viewer({ container: container, cameraFov: 80, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false, output: 'console' });
 
 function createPanorama(imagePath) {
   const panorama = new PANOLENS.ImagePanorama(imagePath);
@@ -343,14 +343,14 @@ function createInfospot(panorama, position, targetPanorama, coordinates, redDotT
   });
 }
 
-function createInfoPlace(panorama, position, descId = null, assetLocation = 'assets/icons/info-ruangan.png') {
+function createInfoPlace(panorama, position, descId = null, assetLocation, delta) {
   var textureLoader = new THREE.TextureLoader();
   textureLoader.load(assetLocation, function () {
     var infoPlace = new PANOLENS.Infospot(300, assetLocation);
     infoPlace.position.copy(position);
 
     if (descId) {
-      infoPlace.addHoverElement(document.getElementById(descId), 200);
+      infoPlace.addHoverElement(document.getElementById(descId), delta);
     }
 
     panorama.add(infoPlace);
@@ -396,8 +396,8 @@ createInfospot(halamanULT, new THREE.Vector3(4889.92, -955.03, -269.70), jalanUL
 createInfospot(halamanULT, new THREE.Vector3(-4939.15, -348.46, -646.50), depanULT, new THREE.Vector3(-4947.47, 82.96, 660.54), 45, 23);
 
 createInfospot(depanULT, new THREE.Vector3(4797.32, -853.39, -1096.03), halamanULT, new THREE.Vector3(4970.00, -266.30, -372.76), 50, 37);
-createInfospot(depanULT, new THREE.Vector3(-1395.88, -2263.40, -4232.85), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56), 45, 23);
-createInfospot(depanULT, new THREE.Vector3(-1885.81, -2532.41, 3867.54), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16), 45, 23);
+createInfospot(depanULT, new THREE.Vector3(-2004.40, -902.45, -4486.84), kiriULT, new THREE.Vector3(-4895.16, -4.26, -1010.56), 45, 23);
+createInfospot(depanULT, new THREE.Vector3(-2839.91, -1042.72, 3974.37), kananULT, new THREE.Vector3(-4979.78, -26.11, -366.16), 45, 23);
 
 createInfospot(kananULT, new THREE.Vector3(4633.46, -1809.20, -465.27), depanULT, new THREE.Vector3(4870.69, -138.61, -1093.36), 45, 23);
 createInfospot(kananULT, new THREE.Vector3(-257.70, -2225.31, -4462.11), tengahULT, new THREE.Vector3(-447.66, -422.90, 4957.50), 45, 23);
@@ -599,15 +599,15 @@ createInfospot(gb4Tangga, new THREE.Vector3(3721.61, -1973.17, 2688.67), gb3Tang
 
 createInfospot(gb4Lobby, new THREE.Vector3(105.69, -918.88, -4905.71), gb4Tangga, new THREE.Vector3(4963.91, -461.86, -237.52), 33, 98);
 
-createInfoPlace(halamanKanan, new THREE.Vector3(4944.62, -220.74, 644.03), null, 'assets/icons/Enter.png');
-createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-mushola');
+createInfoPlace(halamanKanan, new THREE.Vector3(4944.62, -220.74, 644.03), 'desc-masuk', 'assets/icons/Enter.png', 70);
+createInfoPlace(halamanKanan, new THREE.Vector3(1854.06, 51.58, 4634.51), 'desc-mushola', 'assets/icons/info-ruangan.png', 150);
 
-createInfoPlace(halamanULT, new THREE.Vector3(181 - 3790.29, 198.97, 3241.17), 'desc-ult');
-createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), null, 'assets/icons/Exit.png');
+createInfoPlace(halamanULT, new THREE.Vector3(181 - 3790.29, 198.97, 3241.17), 'desc-ult', 'assets/icons/info-ruangan.png', 220);
+createInfoPlace(halamanKiri, new THREE.Vector3(4971.73, -173.27, 409.47), 'desc-keluar', 'assets/icons/Exit.png', 70);
 
-createInfoPlace(gd1Kiri2, new THREE.Vector3(3851.59, -226.35, 3163.76), 'desc-registrasi-statistik');
+createInfoPlace(gd1Kiri2, new THREE.Vector3(3851.59, -226.35, 3163.76), 'desc-registrasi-statistik', 'assets/icons/info-ruangan.png', 200);
 
-createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan');
+createInfoPlace(gd2Kiri3, new THREE.Vector3(-3609.32, -695.46, -3379.61), 'desc-keuangan', 'assets/icons/info-ruangan.png', 200);
 
 const buttonData = {
   'Lobby': {
@@ -636,7 +636,9 @@ const buttonData = {
   },
   'Unit Layanan Terpadu (ULT)': {
     page: halamanULT,
-    coordinates: new THREE.Vector3(-4231.21, 138.32, 2642.35)
+    coordinates: new THREE.Vector3(-4231.21, 138.32, 2642.35),
+    top: 50,
+    left: 37
   },
   'Ruang Akademik dan Evaluasi': {
     page: gd1Kiri,
