@@ -31,7 +31,7 @@ swiftUpElements.forEach(elem => {
 });
 
 
-var viewer = new PANOLENS.Viewer({ container: container, cameraFov: 80, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false, output: 'console' });
+var viewer = new PANOLENS.Viewer({ container: container, cameraFov: 70, autoHideInfospot: false, autoRotateActivationDuration: 3500, autoRotateSpeed: 1, controlBar: false, output: 'console'});
 
 function createPanorama(imagePath) {
   const panorama = new PANOLENS.ImagePanorama(imagePath);
@@ -42,6 +42,10 @@ function createPanorama(imagePath) {
 
   return panorama;
 }
+
+container.addEventListener("drag", (event) => {
+  console.log("dragging");
+});
 
 // Create panoramas
 var halamanTiang = createPanorama('assets/images/halaman/Tiang.jpg');
@@ -809,16 +813,25 @@ featureButton.addEventListener('click', function (e) {
   }
 });
 
+if (controlIndex === 1) {
+  console.log("Gyroscope Aktif: ");
+  console.log(viewer.camera.position);
+}
+
 featureButton2.addEventListener('click', function (e) {
   if (!isAutoRotate) {
     viewer.options.autoRotate = true;
     viewer.OrbitControls.autoRotate = true;
     isAutoRotate = true;
+    console.log("Auto Rotate Aktif: ");
+    console.log(viewer.camera.position);
   } else {
     clearTimeout(viewer.autoRotateRequestId);
     viewer.options.autoRotate = false;
     viewer.OrbitControls.autoRotate = false;
     isAutoRotate = false;
+    console.log("Auto Rotate Nonaktif: ");
+    console.log(viewer.camera.position);
   }
 });
 
@@ -840,11 +853,13 @@ container.addEventListener('wheel', function (e) {
     var currentZoom = viewer.camera.fov;
     var newZoom = currentZoom + 5;
     if (newZoom > 110) newZoom = 110;
+    console.log("Nilai FoV: " + newZoom);
     viewer.setCameraFov(newZoom);
   } else {
     var currentZoom = viewer.camera.fov;
     var newZoom = currentZoom - 5;
     if (newZoom < 30) newZoom = 30;
+    console.log("Nilai FoV: " + newZoom);
     viewer.setCameraFov(newZoom);
   }
 })
