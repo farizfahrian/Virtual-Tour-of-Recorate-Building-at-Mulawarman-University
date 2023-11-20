@@ -3,12 +3,13 @@ var isAutoRotate = false;
 
 var infospotIcon;
 
-const bar = document.getElementById('bar');
-const container = document.getElementById('container');
-const featureButton = document.getElementById('featureButton');
-const featureButton2 = document.getElementById('featureButton2');
-const featureButton3 = document.getElementById('featureButton3');
-const compass = document.getElementById('compassContainer');
+const bar = document.querySelector('#bar');
+const container = document.querySelector('#container');
+var controlButton = document.querySelector( '#controlButton' );
+const featureButton = document.querySelector('#featureButton');
+const featureButton2 = document.querySelector('#featureButton2');
+const featureButton3 = document.querySelector('#featureButton3');
+const compass = document.querySelector('#compassContainer');
 
 
 const swiftUpElements = document.querySelectorAll('.swift-up-text');
@@ -803,6 +804,20 @@ selectButtons.forEach((button) => {
     }
   });
 });
+
+controlButton.addEventListener( 'click', function(){
+
+  controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
+  
+  switch ( controlIndex ) {
+      
+    case 0: viewer.enableControl( PANOLENS.CONTROLS.ORBIT ); break;
+    case 1: viewer.enableControl( PANOLENS.CONTROLS.DEVICEORIENTATION ); break;
+    default: break;
+      
+  }
+
+} );
 
 featureButton.addEventListener('click', function (e) {
   controlIndex = controlIndex >= 1 ? 0 : controlIndex + 1;
